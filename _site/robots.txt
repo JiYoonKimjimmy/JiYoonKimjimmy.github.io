@@ -1,1 +1,1 @@
-Sitemap: /zolan/sitemap.xml
+Sitemap: /jimmyberg/sitemap.xml

@@ -1,26 +1,24 @@
 #-------------------------------
 # General Site Settings
-title: Zolan
-logo: logo.svg # You can add own logo.
-description: Zolan is modern minimal theme for Jekyll
+title: Jimmyberg's Dev blog
+logo:  # You can add own logo.
+description: The NEW Jimmyberg's blog.
 
 
 #-------------------------------
 # Author Settings
 author:
-  name: Alex Rodriguez
-  image: 01.jpg
-  say-hello: Hello, I’m <strong>Alex Rodriguez</strong>
-  bio: Designs, talks, and writes about <strong>web</strong>, <strong>ethics</strong>, <strong>privacy</strong>, and dev. I share design tutorials, free resources and inspiration. Loves <a href="#">music</a> & riding his bicycle.
+  name: Ji Yoon Kim
+  image: profile.jpg
+  say-hello: <strong>사막을 건너는 낙타처럼..</strong>
+  bio: 무더운 사막을 묵묵히 한 발자국씩 나아가는 낙타처럼, 꾸준히 배우고 성장하여, 보다 더 멋지고, 성숙한 Back-End 개발자가 되기 위한 기록 저장소.<br><strong>#Back-End,#Java,#SpringFramework,#JPA,#Oracle,#Kotlin</strong>
 
 
 #-------------------------------
 # Contact links
-twitter: https://twitter.com/ # Add your Twitter handle
-facebook: https://facebook.com/ # Add your Facebook handle
-dribbble: https://dribbble.com/ # Add your Dribbble handle
-instagram: https://instagram.com/ # Add your Instagram handle
-pinterest: https://pinterest.com/ # Add your Pinterest handle
+facebook: https://www.facebook.com/kim90314
+instagram: https://www.instagram.com/_jimmyberg_
+github: https://github.com/JiYoonKimjimmy
 
 
 #-------------------------------
@@ -31,7 +29,7 @@ disqus-identifier: mr-brown # add your shortname for Disqus Comment. For example
 #-------------------------------
 # Instagram Feed
 instafeed: # To enable the instafeed, use the value true. To turn off use the value false.
-instagram-profile: artemsheludko_ # Add instagram username
+instagram-profile: _jimmyberg_ # Add instagram username
 
 
 #-------------------------------
