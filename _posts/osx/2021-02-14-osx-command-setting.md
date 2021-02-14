@@ -1,6 +1,11 @@
-# OSX command setting
+---
+layout: post
+title : OSX command setting
+date  : 2021-02-14
+image : 2021-02-14-osx-command-setting.jpg
+tags  : OSX
+---
 ## OSX command 설정 관련 정리
-
 ### iTerm2 설치
 [iTerm2 Download](https://iterm2.com/index.html)
 * Custom 단축키 및 Script, 화면 분할 가능한 Mac terminal Tool
@@ -27,7 +32,7 @@ $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/
 ```bash
 # zsh 설치
 $ brew install zsh
-# oh-my-zsh 설욕
+# oh-my-zsh 설치
 $ sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
 
@@ -66,23 +71,17 @@ $ mkdir ~/.vim
 $ cp ~/Download/awesome-vim-colorschemes/colors ~/.vim/
 ```
 
-3. `~/.vimrc` file 생성
+3. `~/.vimrc` file 추가 생성
 ```bash
-$ vi ~/.vimrc
-
-# .vimrc
-" Syntax Highlighting
+\" Syntax Highlighting
 if has("syntax")
     syntax on
-endif
-
+fi
 set autoindent
 set cindent
 set nu
-
 # 원하는 color 지정
 colo jellybeans
-
 set laststatus=2
 set statusline=\ %<%l:%v\ [%P]%=%a\ %h%m%r\ %F\
 ```
