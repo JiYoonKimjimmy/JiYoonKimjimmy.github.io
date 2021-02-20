@@ -55,6 +55,22 @@ $ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
 $ git clone https://github.com/zsh-users/zsh-autosuggestions.git
 ```
 
+#### zsh Custom command 만들기
+* 원하는 directory 이동 후, `ls -al` 실행
+```bash
+# ~/.zshrc 수정
+function ex() {
+    cd ~/go_to_directory
+    ls -al
+}
+```
+
+* alias `ll` 실행 변경
+```bash
+# ~/.zshrc 수정
+alias ll="la -al"
+```
+
 ---
 
 ### `vim` editor 설정
@@ -76,7 +92,7 @@ $ cp ~/Download/awesome-vim-colorschemes/colors ~/.vim/
 \" Syntax Highlighting
 if has("syntax")
     syntax on
-fi
+endif
 set autoindent
 set cindent
 set nu
