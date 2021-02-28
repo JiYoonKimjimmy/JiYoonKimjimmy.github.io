@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "Java SOLID 원칙",
+      "category" : "",
+      "tags"     : "java and oop",
+      "url"      : "/2021/02/28/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC_5%E1%84%8B%E1%85%AF%E1%86%AB%E1%84%8E%E1%85%B5%E1%86%A8_%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5/",
+      "date"     : "28 Feb, 2021"
+    } ,
+  
+    {
       "title"    : "Token Authorization",
       "category" : "",
       "tags"     : "back-end, etc, and authorization",
