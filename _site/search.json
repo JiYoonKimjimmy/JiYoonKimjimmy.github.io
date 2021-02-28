@@ -1,6 +1,94 @@
 [
   
     {
+      "title"    : "Token Authorization",
+      "category" : "",
+      "tags"     : "back-end, etc, and authorization",
+      "url"      : "/2021/02/21/Token_Authorization/",
+      "date"     : "21 Feb, 2021"
+    } ,
+  
+    {
+      "title"    : "Spring Boot + Travis CI 연동",
+      "category" : "",
+      "tags"     : "back-end, spirng, and devOps",
+      "url"      : "/2021/02/21/TravisCI/",
+      "date"     : "21 Feb, 2021"
+    } ,
+  
+    {
+      "title"    : "Spring Boot + Redis",
+      "category" : "",
+      "tags"     : "back-end, spirng, and devOps",
+      "url"      : "/2021/02/21/Redis/",
+      "date"     : "21 Feb, 2021"
+    } ,
+  
+    {
+      "title"    : "Spring Boot + Nginx",
+      "category" : "",
+      "tags"     : "back-end, spirng, and devOps",
+      "url"      : "/2021/02/21/Nginx/",
+      "date"     : "21 Feb, 2021"
+    } ,
+  
+    {
+      "title"    : "AWS Basic",
+      "category" : "",
+      "tags"     : "back-end and AWS",
+      "url"      : "/2021/02/21/AWS_basic/",
+      "date"     : "21 Feb, 2021"
+    } ,
+  
+    {
+      "title"    : "AWS ElastiCache for Redis",
+      "category" : "",
+      "tags"     : "back-end and AWS",
+      "url"      : "/2021/02/21/AWS_ElastiCache/",
+      "date"     : "21 Feb, 2021"
+    } ,
+  
+    {
+      "title"    : "Spring Basic",
+      "category" : "",
+      "tags"     : "back-end and spring",
+      "url"      : "/2021/02/21/Spring_basic/",
+      "date"     : "21 Feb, 2021"
+    } ,
+  
+    {
+      "title"    : "Spring Unit Test",
+      "category" : "",
+      "tags"     : "back-end and spring",
+      "url"      : "/2021/02/21/Spring_Unit_Test/",
+      "date"     : "21 Feb, 2021"
+    } ,
+  
+    {
+      "title"    : "Spring Security",
+      "category" : "",
+      "tags"     : "back-end and spring",
+      "url"      : "/2021/02/21/Spring_Security/",
+      "date"     : "21 Feb, 2021"
+    } ,
+  
+    {
+      "title"    : "Spring Annotation",
+      "category" : "",
+      "tags"     : "back-end and spring",
+      "url"      : "/2021/02/21/Spring_Annotation_%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5/",
+      "date"     : "21 Feb, 2021"
+    } ,
+  
+    {
+      "title"    : "Spring Boot + Social Login(Kakao)",
+      "category" : "",
+      "tags"     : "back-end and spring",
+      "url"      : "/2021/02/21/SpringBoot_Social_Login/",
+      "date"     : "21 Feb, 2021"
+    } ,
+  
+    {
       "title"    : "OSX command setting",
       "category" : "",
       "tags"     : "OSX",

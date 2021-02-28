@@ -5,6 +5,8 @@ permalink: /about/
 image: about.jpg
 ---
 
+# Jimmyberg's 개발 소개서
+
 금융 Hybrid App Application 개발 프로젝트를 통해 **Web UI/UX Front-End 개발**과 **Java 기반의 Back-End 개발**을 기반으로, 현재는 서비스의 인프라 구축과 시스템 아키텍처에 대한 관심으로 **Back-End 개발자**로서 일하고 있습니다.<br>
 *지금까지의 경험과 꾸준한 노력을 바탕으로 주체적으로 가지고 있는 기술력을 활용하여 생활 속의 불편함을 찾아 해결하고, 조그만한 변화로 세상을 바꿀 수 있는 서비스의 개발자가 되는 꿈을 가지고 있습니다.*
 
@@ -30,6 +32,8 @@ image: about.jpg
 * 코나카드 전체 시스템 회원 관리 API 신규 개발 및 유지 보수
 * Spring Boot 기반의 REST API 제공
 * JPA, Oracle DB 개발 및 관리
+
+---
 
 #### 아톤(ATON) <small>2016.03 ~ 2020.10</small>
 ##### 금융 플랫폼 Server Developer

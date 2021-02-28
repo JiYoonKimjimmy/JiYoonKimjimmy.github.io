@@ -19,12 +19,15 @@
 }
 
 .page__head {
-  
+
   .page-image {
-    background-size: cover;
+    max-width: 80%;
+    max-height: 300px;
+    margin: 0px auto;
+    background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: $light-gray;
+    background-color: $white;
     &:after {
       content: "";
       display: table;

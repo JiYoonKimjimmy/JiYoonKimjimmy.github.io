@@ -86,7 +86,9 @@ layout: default
   <div class="post__navigation">
     {% if page.previous.url %}
     <div class="prev">
+      {% if page.previous.image %}
       <a class="post__nav__image" href="{{ site.baseurl }}{{page.previous.url}}" style="background-image: url({{site.baseurl}}/images/{{page.previous.image}})"></a>
+      {% endif %}
       <h2 class="post__nav__title">
         <i class="ion ion-md-arrow-back"></i>
         <a href="{{ site.baseurl }}{{page.previous.url}}">{{page.previous.title}}</a>
@@ -103,8 +105,10 @@ layout: default
 
     {% if page.next.url %}
     <div class="next">
+      {% if page.next.image %}
       <a class="post__nav__image" href="{{ site.baseurl }}{{page.next.url}}" style="background-image: url({{site.baseurl}}/images/{{page.next.image}})">
       </a>
+      {% endif %}
       <h2 class="post__nav__title">
         <a href="{{ site.baseurl }}{{page.next.url}}">{{page.next.title}}</a>
         <i class="ion ion-md-arrow-forward"></i>

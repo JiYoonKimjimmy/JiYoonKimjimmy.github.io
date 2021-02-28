@@ -1,0 +1,176 @@
+I"�%<h1 id="spring-boot--social-loginkakao">Spring Boot + Social Login(Kakao)</h1>
+<h2 id="oauth-20">OAuth 2.0</h2>
+<p>타사의 API 사용하고 싶을 때 권한 획득 및 인증을 위한 Open Standard Protocol</p>
+
+<h2 id="oauth-구조">OAuth 구조</h2>
+<h3 id="oauth-구성">OAuth 구성</h3>
+<ul>
+  <li>Client : 사용자</li>
+  <li>Resource Owner : API DB 사용자</li>
+  <li>Resource Server : API 서버</li>
+  <li>AUthorization Server : OAuth 인증 서버</li>
+</ul>
+
+<h3 id="oauth-flow">OAuth Flow</h3>
+<p><img src="/assets/25238637583547EC0A.png" alt="25238637583547EC0A" />
+<br />
+(A) Client 가 Social Login 요청<br />
+(B) Resource Owner 는 Social Login 할 수 있게 화면 이동<br />
+(C) Client 는 Social Login 완료<br />
+(D) 로그인이 성공하면 AUthorization Server 는 Client 에게 Access Token 발급<br />
+(E) Client 는 발급받은 Token 으로 Resource Server 에게 Resource 를 요청<br />
+(D) Resource Server 는 Token 유효한지 검증하고 응답 처리<br /></p>
+
+<hr />
+
+<h2 id="kakao-soical-login">Kakao Soical Login</h2>
+<h3 id="token-종류">Token 종류</h3>
+<ul>
+  <li>Access Token : API 호출 권한 인증용 Token</li>
+  <li>Refresh Token : Access Token 갱신용 Token</li>
+</ul>
+
+<h3 id="kakao-developer-관리">Kakao Developer 관리</h3>
+<ul>
+  <li><a href="https://developers.kakao.com/">Kakao Developer 사이트</a></li>
+  <li><a href="https://velog.io/@magnoliarfsit/%EA%B7%B8%EB%A3%B9%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%ED%94%84%EB%A6%BD-%EB%93%A4%EC%96%B4%EA%B0%80%EA%B8%B0-%EC%A0%84%EC%97%90-1">계정 생성 및 등록 방법(velog blog)</a></li>
+</ul>
+
+<h3 id="구현-순서">구현 순서</h3>
+<p><a href="https://developers.kakao.com/docs/latest/ko/kakaologin/common">Kakao Login 구현 공통 가이드</a></p>
+
+<p><strong>RestTemplate Bean 등록</strong></p>
+<ul>
+  <li>Main Application Class 에 RestTemplate Class Bean 등록
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
+<span class="kd">public</span> <span class="nc">RestTemplate</span> <span class="nf">getRestTemplate</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="k">new</span> <span class="nc">RestTemplate</span><span class="o">();</span> <span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p><strong>GSON dependency 추가</strong></p>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">implementation</span> <span class="s1">'com.google.code.gson:gson'</span>
+</code></pre></div></div>
+
+<p><strong>Social Login 관련 설정 추가</strong></p>
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">spring.social.kakao.client_id</span><span class="p">=</span><span class="s">[앱생성시 받은 REST API Key]</span>
+<span class="py">spring.social.kakao.redirect</span><span class="p">=</span><span class="s">/social/login/kakao</span>
+<span class="py">spring.social.kakao.url.login</span><span class="p">=</span><span class="s">https://kauth.kakao.com/oauth/authorize</span>
+<span class="py">spring.social.kakao.url.token</span><span class="p">=</span><span class="s">https://kauth.kakao.com/oauth/token</span>
+<span class="py">spring.social.kakao.url.profile</span><span class="p">=</span><span class="s">https://kapi.kakao.com/v2/user/me</span>
+</code></pre></div></div>
+
+<p><strong>Social Login 처리 Controller 추가</strong></p>
+<ul>
+  <li>Kakao Login 화면으로 Fowording 할 수 있는 Demo 페이지 연동 처리</li>
+  <li>Kakao 연동 후 redirect 처리</li>
+</ul>
+
+<p><strong>로그인 화면</strong></p>
+<ul>
+  <li>/resource/templates/social/login.ftl
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;button</span> <span class="na">onclick=</span><span class="s">"popupKakaoLogin()"</span><span class="nt">&gt;</span>KakaoLogin<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+  <span class="kd">function</span> <span class="nx">popupKakaoLogin</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nb">window</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="dl">'</span><span class="s1">${loginUrl}</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">popupKakaoLogin</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">width=700,height=500,scrollbars=0,toolbar=0,menubar=no</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div>    </div>
+    <p><em>(만약 View Mapping 안된다면, Freemarker Bean 등록!)</em></p>
+  </li>
+</ul>
+
+<p><strong>User Entity 수정</strong></p>
+<ul>
+  <li>provoider 필드 추가</li>
+  <li>Social Login 은 비밀번호가 필요없으므로 password 필드는 Null 허용으로 변경</li>
+</ul>
+
+<p><strong>User JPA Repository 수정</strong></p>
+<ul>
+  <li>Uid 와 Provider 로 회원 정보 조회하는 Method 추가
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="nf">findByUidAndProvider</span><span class="o">(</span><span class="nc">String</span> <span class="n">uid</span><span class="o">,</span> <span class="nc">String</span> <span class="n">provider</span><span class="o">);</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p><strong>Social Login 에 필요한 Model 객체 생성</strong></p>
+<ul>
+  <li>RetKakaoAuth.java
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Getter</span>
+<span class="nd">@Setter</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">RetKakaoAuth</span> <span class="o">{</span>
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">access_token</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">token_type</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">refresh_token</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="kt">long</span> <span class="n">expires_in</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">scope</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>KakaoProfile.java
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Getter</span>
+<span class="nd">@Setter</span>
+<span class="nd">@ToString</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">KakaoProfile</span> <span class="o">{</span>
+  <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="nc">Properties</span> <span class="n">properties</span><span class="o">;</span>
+
+  <span class="nd">@Getter</span>
+  <span class="nd">@Setter</span>
+  <span class="nd">@ToString</span>
+  <span class="kd">private</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">Properties</span> <span class="o">{</span>
+      <span class="kd">private</span> <span class="nc">String</span> <span class="n">nickname</span><span class="o">;</span>
+      <span class="kd">private</span> <span class="nc">String</span> <span class="n">thumbnail_image</span><span class="o">;</span>
+      <span class="kd">private</span> <span class="nc">String</span> <span class="n">profile_image</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p><strong>Kakao 연동 Service 생성</strong></p>
+<ul>
+  <li>Kakao Token 조회 method 구현</li>
+  <li>Kakao profile 조회 method 구현</li>
+</ul>
+
+<p><strong>Social Login 연동할 REST API 추가</strong></p>
+<ul>
+  <li>Kakao 와 연동 여부 확인한 후 JWT Token 발급 처리</li>
+</ul>
+
+<p><strong>Security Config 관련 설정 수정</strong></p>
+<ul>
+  <li>“/social/**” API 권한 승인 처리</li>
+</ul>
+
+<hr />
+
+<h2 id="추가">추가</h2>
+<h4 id="social-login-test-flow">Social Login TEST Flow</h4>
+<ol>
+  <li>/social/login 접속</li>
+  <li>소셜 로그인 요청</li>
+  <li>소셜 로그인 완료 후 access_token 발급</li>
+  <li>/swagger-ui.html 접속</li>
+  <li>/api/sign/signup/{provider} 사용자 가입
+    <ol>
+      <li>발급받은 Social Login access_token 필요</li>
+    </ol>
+  </li>
+  <li>/api/sign/singin 사용자 로그인하여 JWT Token 발급</li>
+  <li>발급받은 JWT Token 으로 API 테스트</li>
+</ol>
+
+<h4 id="social-login-관련-기타-class-및-interface2">Social Login 관련 기타 Class 및 Interface2</h4>
+<h5 id="resttemplate-class">RestTemplate Class</h5>
+<ul>
+  <li>Spring 에서 지원하는 REST API 를 호출하고 응답 받을 때까지 기다리는 동기 방식의 내장 Class <strong><em>(비동기식은 AsyncRestTemplate.class)</em></strong></li>
+  <li>HTTP 프로토콜의 메서드들 제공</li>
+</ul>
+
+<hr />
+
+<p><a href="https://github.com/JiYoonKimjimmy/demo-rest-api">관련 Github Repository</a></p>
+:ET

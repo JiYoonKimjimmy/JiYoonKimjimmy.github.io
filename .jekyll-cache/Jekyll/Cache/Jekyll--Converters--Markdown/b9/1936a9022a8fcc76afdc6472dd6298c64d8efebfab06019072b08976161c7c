@@ -1,0 +1,158 @@
+I"�"<h1 id="jimmybergs-개발-소개서">Jimmyberg’s 개발 소개서</h1>
+
+<p>금융 Hybrid App Application 개발 프로젝트를 통해 <strong>Web UI/UX Front-End 개발</strong>과 <strong>Java 기반의 Back-End 개발</strong>을 기반으로, 현재는 서비스의 인프라 구축과 시스템 아키텍처에 대한 관심으로 <strong>Back-End 개발자</strong>로서 일하고 있습니다.<br />
+<em>지금까지의 경험과 꾸준한 노력을 바탕으로 주체적으로 가지고 있는 기술력을 활용하여 생활 속의 불편함을 찾아 해결하고, 조그만한 변화로 세상을 바꿀 수 있는 서비스의 개발자가 되는 꿈을 가지고 있습니다.</em></p>
+
+<p><strong>작은 고민이라도 게을리하지 않으며,<br />항상 자신의 것에 만족하지 않으며,<br />새로운 변화를 두려워 하지않으며,<br />나와 다른 의견일지라도 겸허하게 받아들이는<br />개발자가 되겠습니다.</strong></p>
+
+<hr />
+
+<h3 id="experience">Experience</h3>
+
+<h4 id="코나아이konai-202011--현재"><strong>코나아이(Konai)</strong> <small>2020.11 ~ 현재</small></h4>
+<h5 id="기술연구소-server-developer">기술연구소 Server Developer</h5>
+<ul>
+  <li>코나카드, 지역 화폐 등 서비스 개발/운영</li>
+  <li>Spring Boot 기반의 API 서버 개발</li>
+</ul>
+
+<h4 id="projects">Projects</h4>
+<h5 id="휴면-회원-정책-적용-프로젝트-202101--202102">휴면 회원 정책 적용 프로젝트 <small>2021.01 ~ 2021.02</small></h5>
+<ul>
+  <li>코나카드 전체 회원 1년 이상 미사용자 휴면 전환 정책 적용</li>
+  <li>1일 1회 휴면 전환 실행 Batch 시스템 개발</li>
+  <li>회원 가입, Login, JWT Token 갱신 등 휴면 회원 여부 확인 API 개발</li>
+  <li>회원 본인 인증을 통한 휴면 해제 API 개발</li>
+</ul>
+
+<h5 id="회원-관리-api-component-관리-202011--현재">회원 관리 API Component 관리 <small>2020.11 ~ 현재</small></h5>
+<ul>
+  <li>코나카드 전체 시스템 회원 관리 API 신규 개발 및 유지 보수</li>
+  <li>Spring Boot 기반의 REST API 제공</li>
+  <li>JPA, Oracle DB 개발 및 관리</li>
+</ul>
+
+<hr />
+
+<h4 id="아톤aton-201603--202010">아톤(ATON) <small>2016.03 ~ 2020.10</small></h4>
+<h5 id="금융-플랫폼-server-developer">금융 플랫폼 Server Developer</h5>
+<ul>
+  <li>KB국민은행, IBK기업은행, KEB하나은행 제1금융권 프로젝트 참여</li>
+  <li>자회사 아톤모빌리 중고차 유통 플랫폼 시스템 고도화 프로젝트 참여</li>
+  <li>HTML, JavaScript, jQuery, Vue.js 를 활용한 Web Front-End 개발 경험</li>
+  <li>Java, Spring Framework, JPA 등 Java 기반의 Back-End 개발 경험</li>
+  <li>각각 다른 협력사의 개발 환경에 맞춰 다양한 플랫폼 및 서비스 개발 경험</li>
+  <li>대형 프로젝트의 개발 프로세스 경험</li>
+</ul>
+
+<h4 id="projects-1">Projects</h4>
+<h5 id="하나원큐-20-고도화-keb하나은행-202003--202008">하나원큐 2.0 고도화 <small>KEB하나은행 (2020.03 ~ 2020.08)</small></h5>
+<ul>
+  <li>하나원큐 전체 서비스 UI/UX 개편 및 고도화 프로젝트 참여</li>
+  <li>고객이 선택한 Image와 문구가 담긴 메시지 카드와 전자지갑 기술을 접목한 <strong>연락처 이체</strong> 프로세스 UI/UX 개발</li>
+  <li>CMS 시스템과 연동 후 Server에 저장되어있는 JSON File를 조회하여 HashMap형태의 Response Data를 반환하는 <strong>공통 API</strong> 개발</li>
+</ul>
+
+<h5 id="liiv-및-리브똑똑-오픈뱅킹-구축-kb국민은행-201909--202001">Liiv 및 리브똑똑 오픈뱅킹 구축 <small>KB국민은행 (2019.09 ~ 2020.01)</small></h5>
+<ul>
+  <li>타은행 계좌 등록하여 은행 업무를 이용할 수 있는 <strong>오픈뱅킹</strong> 등록 프로세스 UI/UX 개발</li>
+  <li>어카운트인포 및 오픈뱅킹 공통 표준 정책에 따른 타은행 계좌 이체 프로세스 개발</li>
+  <li>제로페이/뱅크페이/리브페이 이용 결제 프로세스 UI/UX 고도화</li>
+</ul>
+
+<h5 id="리브똑똑-비대면인증-구축-kb국민은행-201906--201909">리브똑똑 비대면인증 구축 <small>KB국민은행 (2019.06 ~ 2019.09)</small></h5>
+<ul>
+  <li>비대면 입출금 계좌 개설 프로세스 신규 개발</li>
+  <li>상품 안내 API 조회 후 상세 안내부터 <strong>비대면 인증</strong>, 개설 완료까지 UI/UX 개발</li>
+  <li>신분증 촬영 및 영상 통화 Native Module 연동</li>
+</ul>
+
+<h5 id="ione-bank-20-고도화-ibk기업은행-201812--201906">iONE Bank 2.0 고도화 <small>IBK기업은행 (2018.12 ~ 2019.06)</small></h5>
+<ul>
+  <li>iONE Bank 전체 서비스 UI/UX 개편 및 고도화 프로젝트 참여</li>
+  <li>입출금 계좌 개설 및 카드 상품 <strong>비대면 인증/가입</strong> 프로세스 개발</li>
+  <li>메인 계좌뷰 설정 신규 개발</li>
+  <li>고객센터 전체 UI/UX 개발</li>
+</ul>
+
+<h5 id="중고차-데이터-연동-rest-api-개발-아톤모빌리티-201808--201812">중고차 데이터 연동 REST API 개발 <small>아톤모빌리티 (2018.08 ~ 2018.12)</small></h5>
+<ul>
+  <li>하나캐피탈, 아주캐피탈 중고차 데이터 연동 인터페이스 구축</li>
+  <li>Spring Boot 2.0, JPA, JOOQ, MySQL 활용한 연동 API Server 개발</li>
+  <li>Jenkins, Docker 이용하여 배포 및 Server 관리</li>
+  <li><strong>Vue.js</strong>기반의 ADMIN 백오피스 개발</li>
+</ul>
+
+<h5 id="카매니저-서비스-고도화-아톤모빌리티-201805--201808">카매니저 서비스 고도화 <small>아톤모빌리티 (2018.05 ~ 2018.08)</small></h5>
+<ul>
+  <li>중고차 딜러 서비스 <strong>카매니저</strong> UI/UX 전체 개편 및 API Server 재구축</li>
+  <li>HTML, CSS, JavaScript, jQuery 활용한 UI/UX 개발</li>
+  <li>PHP 기반 API Server를 <strong>Spring Boot</strong> 기반 API Server로 재구축</li>
+</ul>
+
+<h5 id="리브똑똑-20-kb그룹-전체-조직도-통합-kb국민은행-201711--201802">리브똑똑 2.0 KB그룹 전체 조직도 통합 <small>KB국민은행 (2017.11 ~ 2018.02)</small></h5>
+<ul>
+  <li>약 7만명이 등록되어있는 KB금융그룹 전체 조직도 DB 통합 및 메신저 연동 서비스 개발</li>
+  <li>DBLink를 활용한 각 계열사, 지주사 조직도 DB를 Oracle DB로 연동</li>
+  <li>7만건 데이터 조직도 테이블에 Merge Query 개발</li>
+  <li>조직별 조회 계층 Query 개발</li>
+  <li>1일 1회 새로운 조직도 연동 작업을 하는 <strong>Batch</strong> 프로그램 개발</li>
+</ul>
+
+<h5 id="kb스타뱅킹-50-고도화-kb국민은행-201709--201711">KB스타뱅킹 5.0 고도화 <small>KB국민은행 (2017.09 ~ 2017.11)</small></h5>
+<ul>
+  <li>KB스타뱅킹 5.0 전체 서비스 UI/UX 개편 및 고도화 프로젝트 공통 업무팀 참여</li>
+  <li><strong>로그인 프로세스</strong> 및 <strong>전체 메뉴 구조</strong> 개선</li>
+  <li>Native 연동 JavaScript 공통 Interface 개발</li>
+  <li>보안매체(보안카드, OTP, 디지털OTP), ARS 인증 <strong>공통 Tag Template</strong> 개발</li>
+</ul>
+
+<h5 id="liiv-20-고도화-kb국민은행-201705--201709">Liiv 2.0 고도화 <small>KB국민은행 (2017.05 ~ 2017.09)</small></h5>
+<ul>
+  <li>Liiv 2.0 전체 서비스 UI/UX 개편 및 고도화 프로젝트 공통 업무팀 참여</li>
+  <li>Native 연동 JavaScript 공통 Interface 개발</li>
+  <li>보안매체(보안카드, OTP, 디지털OTP), ARS 인증 <strong>공통 Tag Template</strong> 개발</li>
+  <li>Main 화면, my Liiv(마이페이지) UI/UX 개발</li>
+  <li><strong>Daum 지도 API</strong> 활용한 영업점 찾기 UI/UX 개발</li>
+</ul>
+
+<h5 id="kb국민은행-fido-생체인증-시스템-구축-kb국민은행-201608--201705">KB국민은행 FIDO 생체인증 시스템 구축 <small>KB국민은행 (2016.08 ~ 2017.05)</small></h5>
+<ul>
+  <li>KB스타뱅킹, KB스타알림, KB스타뱅킹미니, Liiv와 같은 KB국민은행 모든 APP 서비스에 FIDO 생체인증 시스템 신규 개발 프로젝트의 PMO 업무 담당</li>
+  <li>프로젝트 <strong>프로그램 파일 목록</strong>, <strong>업무 흐름도</strong> 등 전체 설계 문서 작성</li>
+  <li>Native 연동 JavaScript 공통 Interface 개발</li>
+</ul>
+
+<hr />
+
+<h3 id="skills">Skills</h3>
+<h4 id="back-end">Back-End</h4>
+<ul>
+  <li>Java, Kotlin</li>
+  <li>Spring Framework, Spring Boot, Spring Security</li>
+  <li>JPA, JOOQ, Hibernate</li>
+  <li>Gradle, Maven</li>
+</ul>
+
+<h4 id="front-end">Front-End</h4>
+<ul>
+  <li>JavaScript ES5, ES6+</li>
+  <li>Vue.js</li>
+  <li>HTML, CSS, jQuery</li>
+</ul>
+
+<h4 id="devops">DevOps</h4>
+<ul>
+  <li>Oracle, MySQL,</li>
+  <li>AWS - EC2, Elastic Cache for Redis, RDS(MariaDB), S3</li>
+  <li>Jenkins, TravisCI, AWS Code Deploy</li>
+  <li>Nginx, Tomcat</li>
+  <li>Linux</li>
+</ul>
+
+<h4 id="dev-tool">Dev-Tool</h4>
+<ul>
+  <li>IntelliJ</li>
+  <li>Eclipse</li>
+</ul>
+:ET
