@@ -2,6 +2,7 @@
 layout: post
 title : Spring Security
 date  : 2021-02-21
+image : spring_security.png
 tags  : back-end spring
 ---
 

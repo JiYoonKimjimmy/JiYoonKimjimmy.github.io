@@ -2,6 +2,7 @@
 layout: post
 title : Spring Unit Test
 date  : 2021-02-21
+image : spring_unit_test.png
 tags  : back-end spring
 ---
 

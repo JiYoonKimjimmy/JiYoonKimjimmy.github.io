@@ -2,6 +2,7 @@
 layout: post
 title : Spring Basic
 date  : 2021-02-20
+image : spring_basic.png
 tags  : back-end spring
 ---
 

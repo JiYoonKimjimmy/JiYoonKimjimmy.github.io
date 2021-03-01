@@ -1,4 +1,4 @@
-I"<h2 id="iocinversion-of-control">IoC(Inversion of Control)</h2>
+I".<h2 id="iocinversion-of-control">IoC(Inversion of Control)</h2>
 <ul>
   <li><strong>제어권 역전</strong>? 의존성을 직접 선언하는 것이 아닌, 어떤 방법을 통해 선언된 객체를 주입받아 사용하는 것</li>
 </ul>
@@ -120,7 +120,7 @@
 <h3 id="psa-예시">PSA 예시</h3>
 <ul>
   <li>Spring Transaction : <strong>@Transactional</strong></li>
-  <li>Cache : <strong>@Cacheable\, @CacheEvict</strong></li>
-  <li>Spring MVC : <strong>@Controller\, @RequestMapping</strong></li>
+  <li>Cache : <strong>@Cacheable</strong>, <strong>@CacheEvict</strong></li>
+  <li>Spring MVC : <strong>@Controller</strong>, <strong>@RequestMapping</strong></li>
 </ul>
 :ET
