@@ -17,7 +17,7 @@
     } ,
   
     {
-      "title"    : "Spring Boot + Travis CI 연동",
+      "title"    : "Spring Boot + Travis CI",
       "category" : "",
       "tags"     : "back-end, spirng, and devOps",
       "url"      : "/2021/02/21/TravisCI/",
@@ -81,7 +81,7 @@
     } ,
   
     {
-      "title"    : "Spring Boot + Social Login(Kakao)",
+      "title"    : "Spring Boot + OAuth 2.0",
       "category" : "",
       "tags"     : "back-end and spring",
       "url"      : "/2021/02/21/SpringBoot_Social_Login/",

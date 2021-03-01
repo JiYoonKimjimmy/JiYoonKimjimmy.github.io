@@ -1,11 +1,11 @@
 ---
 layout: post
-title : Spring Boot + Social Login(Kakao)
+title : Spring Boot + OAuth 2.0
 date  : 2021-02-21
+image : spring_oauth2.png
 tags  : back-end spring
 ---
 
-# Spring Boot + Social Login(Kakao)
 ## OAuth 2.0
 타사의 API 사용하고 싶을 때 권한 획득 및 인증을 위한 Open Standard Protocol
 
