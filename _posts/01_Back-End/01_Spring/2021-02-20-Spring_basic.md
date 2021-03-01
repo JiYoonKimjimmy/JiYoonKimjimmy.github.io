@@ -1,7 +1,7 @@
 ---
 layout: post
 title : Spring Basic
-date  : 2021-02-21
+date  : 2021-02-20
 tags  : back-end spring
 ---
 
@@ -106,5 +106,5 @@ public class LogAspect {
 
 ### PSA 예시
 * Spring Transaction : **@Transactional**
-* Cache : **@Cacheable\, @CacheEvict**
-* Spring MVC : **@Controller\, @RequestMapping**
+* Cache : **@Cacheable**, **@CacheEvict**
+* Spring MVC : **@Controller**, **@RequestMapping**
