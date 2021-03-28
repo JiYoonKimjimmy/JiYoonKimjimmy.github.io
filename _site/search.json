@@ -17,7 +17,7 @@
     } ,
   
     {
-      "title"    : "Spring Boot + Travis CI",
+      "title"    : "Travis CI",
       "category" : "",
       "tags"     : "back-end, spirng, and devOps",
       "url"      : "/2021/02/21/TravisCI/",
@@ -25,7 +25,7 @@
     } ,
   
     {
-      "title"    : "Spring Boot + Redis",
+      "title"    : "Redis 로 Cache 배우기",
       "category" : "",
       "tags"     : "back-end, spirng, and devOps",
       "url"      : "/2021/02/21/Redis/",
@@ -33,7 +33,7 @@
     } ,
   
     {
-      "title"    : "Spring Boot + Nginx",
+      "title"    : "Nginx",
       "category" : "",
       "tags"     : "back-end, spirng, and devOps",
       "url"      : "/2021/02/21/Nginx/",
