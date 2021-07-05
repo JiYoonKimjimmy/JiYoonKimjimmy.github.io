@@ -19,18 +19,18 @@ tags  : back-end spring
 ### JWT의 구조
 ### [Header].[Payload].[Signature]
 #### Header
-```js
+{% highlight js %}
 {
   "typ": "JWT",     // "typ" : token 타입 정의
   "alg": "HS256"    // "alg" : 해싱 알고리즘 지정
 }
 // JSON string을 base 64로 Encoding 처리
-```
+{% endhighlight %}
 
 #### Payload
 Payload 부분은 Token에 담을 정보(Claim)들을 포함
 * Registerd(등록된) Claim : 이미 정해져있는 Token 정보
-```js
+{% highlight js %}
 {
   "iss": "jwttest.com",    // Token 발급자
   "sub": "jwttest",        // Token 제목
@@ -41,40 +41,44 @@ Payload 부분은 Token에 담을 정보(Claim)들을 포함
   "jti": ""                // JWT의 고유 식별자로서 일회용 Token 사용할 때 유용
 }
 // JSON string을 base 64로 Encoding 처리
-```
+{% endhighlight %}
+
 * Public(공개) Claim : 충돌 방지된(Collision-Resistant) 이름 형식인 URL 형식을 자기고 있는 정보
-```js
+{% highlight js %}
 {
   ...
   "https://jwttest.com": true
   ...
 }
 // JSON string을 base 64로 Encoding 처리
-```
+{% endhighlight %}
+
 * Private(비공개) Claim : Registerd 나 Public 이 아닌 정보(충돌 가능)
-```js
+{% highlight js %}
 {
   ...
   "username": "jwtest"
   ...
 }
 // JSON string을 base 64로 Encoding 처리
-```
+{% endhighlight %}
 
 #### Signature
 Header 와 Payload 값을 인코딩한 후 결합하여, 비밀키로 Hash하여 생성한 값
-```js
+{% highlight js %}
 const jwt = base64UrlEncode(header) + "." + base64UrlEncode(payload);
 HMACSHA256(jwt, secret)
-```
+{% endhighlight %}
 
 ## JWT 구현
-### JwtTokenProvider
+#### JwtTokenProvider
 * JWT Token 생성 및 유효성 검증을 위한 Component 역할
-### JwtAuthenticationFilter
+
+#### JwtAuthenticationFilter
 * 요청으로 들어온 Token의 유효성 인증을 위한 Filter 역할
 * Security 설정 시, UsernamePasswordAuthenticationFilter 앞에 설정
-### SecurityConfiguration
+
+#### SecurityConfiguration
 * 서버의 보안 설정을 하는 Configuration 역할
 
 **Resource 접근 제한 표현식**
@@ -92,23 +96,26 @@ HMACSHA256(jwt, secret)
 | fullyAuthenticated | 사용자가 모든 Credential 갖춘 상태에서 인증했는지 확인 |
 
 ## User Service 구현
-### Custom UserDetailsService
+#### Custom UserDetailsService
 * UserDetailsService class 재정의
-### User Entity
+
+#### User Entity
 * UserDetails class 상속 받아 추가 정보 재정의
-### User JPA Repository
+
+#### User JPA Repository
 * findByUid method 추가
-### SignController
+
+#### SignController
 * 인증 성공시, 결과로 JWT token 발급
 * 비밀번호 encoding 을 위해 PasswordEncoder 설정(기본 설정은 bcrypt encoding 사용)
 ***(Main Application class 에 PasswordEncoder Bean 추가)***
-### Swagger Header Field 추가
-```java
+
+#### Swagger Header Field 추가
+{% highlight java %}
 @ApiImplicitParams({
   @ApiImplicitParam(name = "X-AUTH-TOKEN", value = "인증 성공 후 access_token", required = true, dataType = "String", paramType = "header")
 })
-...
-```
+{% endhighlight %}
 
 ---
 
@@ -133,7 +140,8 @@ HMACSHA256(jwt, secret)
 ##### UserDetails Interface
 * Spring Security 에서 사용자의 정보를 담는 Interface
 * User Entity 를 UserDetails 상속을 받아 구현
-```java
+
+{% highlight java %}
 public class User implements UserDetails {
   private String userId;
   private String password;
@@ -157,11 +165,13 @@ public class User implements UserDetails {
   @Override
   public boolean isEnabled() { return true; }
 }
-```
+{% endhighlight %}
+
 ##### UserDetailsService Interface
 * DB 에서 사용자 정보를 조회하는 Interface
 * loadUserByUsername() method 를 통해 UserDetails 형으로 사용자 정보를 저장
-```java
+
+{% highlight java %}
 public class TokenProvider {
   ...
   public Authentication getAuthentication(String userPk) {
@@ -176,13 +186,16 @@ public class TokenProvider {
   }
   ...
 }
-```
+{% endhighlight %}
+
 ##### SimpleGrantedAuthority Class
 * Spring Security 에서 제공하는 권한 관리 Class
 * 권한 명칭만 저장하는 구조로 설계
+
 ##### PasswordEncoder Class
 * 단방향으로 변환하여 Password 를 안전하게 DB에 저장할 수 있는 Interface
-```java
+
+{% highlight java %}
 public class PasswordEncoderTest {
 
   private PasswordEncoder passwordEncoder;
@@ -200,7 +213,7 @@ public class PasswordEncoderTest {
     }
   }
 }
-```
+{% endhighlight %}
 
 ---
 

@@ -17,7 +17,7 @@ tags  : back-end spring
 * AUthorization Server : OAuth 인증 서버
 
 ### OAuth Flow
-![25238637583547EC0A](/assets/25238637583547EC0A.png)
+![25238637583547EC0A](/images/25238637583547EC0A.png)
 <br>
 (A) Client 가 Social Login 요청<br>
 (B) Resource Owner 는 Social Login 할 수 있게 화면 이동<br>
@@ -42,24 +42,26 @@ tags  : back-end spring
 
 **RestTemplate Bean 등록**
 * Main Application Class 에 RestTemplate Class Bean 등록
-```java
+
+{% highlight java %}
 @Bean
 public RestTemplate getRestTemplate() { return new RestTemplate(); }
-```
+{% endhighlight %}
 
 **GSON dependency 추가**
-```groovy
+
+{% highlight groovy %}
 implementation 'com.google.code.gson:gson'
-```
+{% endhighlight %}
 
 **Social Login 관련 설정 추가**
-```properties
+{% highlight properties %}
 spring.social.kakao.client_id=[앱생성시 받은 REST API Key]
 spring.social.kakao.redirect=/social/login/kakao
 spring.social.kakao.url.login=https://kauth.kakao.com/oauth/authorize
 spring.social.kakao.url.token=https://kauth.kakao.com/oauth/token
 spring.social.kakao.url.profile=https://kapi.kakao.com/v2/user/me
-```
+{% endhighlight %}
 
 **Social Login 처리 Controller 추가**
 * Kakao Login 화면으로 Fowording 할 수 있는 Demo 페이지 연동 처리
@@ -67,14 +69,16 @@ spring.social.kakao.url.profile=https://kapi.kakao.com/v2/user/me
 
 **로그인 화면**
 * /resource/templates/social/login.ftl
-```html
+
+{% highlight html %}
 <button onclick="popupKakaoLogin()">KakaoLogin</button>
 <script>
     function popupKakaoLogin() {
         window.open('${loginUrl}', 'popupKakaoLogin', 'width=700,height=500,scrollbars=0,toolbar=0,menubar=no');
     }
 </script>
-```
+{% endhighlight %}
+
 *(만약 View Mapping 안된다면, Freemarker Bean 등록!)*
 
 **User Entity 수정**
@@ -83,13 +87,15 @@ spring.social.kakao.url.profile=https://kapi.kakao.com/v2/user/me
 
 **User JPA Repository 수정**
 * Uid 와 Provider 로 회원 정보 조회하는 Method 추가
-```java
+
+{% highlight java %}
 Optional<User> findByUidAndProvider(String uid, String provider);
-```
+{% endhighlight %}
 
 **Social Login 에 필요한 Model 객체 생성**
 * RetKakaoAuth.java
-```java
+
+{% highlight java %}
 @Getter
 @Setter
 public class RetKakaoAuth {
@@ -99,9 +105,11 @@ public class RetKakaoAuth {
     private long expires_in;
     private String scope;
 }
-```
+{% endhighlight %}
+
 * KakaoProfile.java
-```java
+
+{% highlight java %}
 @Getter
 @Setter
 @ToString
@@ -118,7 +126,7 @@ public class KakaoProfile {
         private String profile_image;
     }
 }
-```
+{% endhighlight %}
 
 **Kakao 연동 Service 생성**
 * Kakao Token 조회 method 구현

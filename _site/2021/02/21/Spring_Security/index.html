@@ -212,65 +212,72 @@
 <h3 id="jwt의-구조">JWT의 구조</h3>
 <h3 id="headerpayloadsignature">[Header].[Payload].[Signature]</h3>
 <h4 id="header">Header</h4>
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">{</span>
   <span class="dl">"</span><span class="s2">typ</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">JWT</span><span class="dl">"</span><span class="p">,</span>     <span class="c1">// "typ" : token 타입 정의</span>
   <span class="dl">"</span><span class="s2">alg</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">HS256</span><span class="dl">"</span>    <span class="c1">// "alg" : 해싱 알고리즘 지정</span>
 <span class="p">}</span>
-<span class="c1">// JSON string을 base 64로 Encoding 처리</span>
-</code></pre></div></div>
+<span class="c1">// JSON string을 base 64로 Encoding 처리</span></code></pre></figure>
 
 <h4 id="payload">Payload</h4>
 <p>Payload 부분은 Token에 담을 정보(Claim)들을 포함</p>
 <ul>
-  <li>Registerd(등록된) Claim : 이미 정해져있는 Token 정보
-    <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
-<span class="dl">"</span><span class="s2">iss</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">jwttest.com</span><span class="dl">"</span><span class="p">,</span>    <span class="c1">// Token 발급자</span>
-<span class="dl">"</span><span class="s2">sub</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">jwttest</span><span class="dl">"</span><span class="p">,</span>        <span class="c1">// Token 제목</span>
-<span class="dl">"</span><span class="s2">aud</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">jwtuser</span><span class="dl">"</span><span class="p">,</span>        <span class="c1">// Token 대상자</span>
-<span class="dl">"</span><span class="s2">exp</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">20200090150630</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// 만료 날짜로서 현재 날짜 이후로 지정 가능(NumericDate)</span>
-<span class="dl">"</span><span class="s2">nbf</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">20200831160000</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// 활성화 날짜로서 해당 날짜가 지나야 Token 처리 가능(NumericDate)</span>
-<span class="dl">"</span><span class="s2">iat</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">20200831150630</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// 발급 날짜(issued at)로서 Token의 age를 판단 가능(NumericDate)</span>
-<span class="dl">"</span><span class="s2">jti</span><span class="dl">"</span><span class="p">:</span> <span class="dl">""</span>                <span class="c1">// JWT의 고유 식별자로서 일회용 Token 사용할 때 유용</span>
-<span class="p">}</span>
-<span class="c1">// JSON string을 base 64로 Encoding 처리</span>
-</code></pre></div>    </div>
-  </li>
-  <li>Public(공개) Claim : 충돌 방지된(Collision-Resistant) 이름 형식인 URL 형식을 자기고 있는 정보
-    <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
-<span class="p">...</span>
-<span class="dl">"</span><span class="s2">https://jwttest.com</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span>
-<span class="p">...</span>
-<span class="p">}</span>
-<span class="c1">// JSON string을 base 64로 Encoding 처리</span>
-</code></pre></div>    </div>
-  </li>
-  <li>Private(비공개) Claim : Registerd 나 Public 이 아닌 정보(충돌 가능)
-    <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
-<span class="p">...</span>
-<span class="dl">"</span><span class="s2">username</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">jwtest</span><span class="dl">"</span>
-<span class="p">...</span>
-<span class="p">}</span>
-<span class="c1">// JSON string을 base 64로 Encoding 처리</span>
-</code></pre></div>    </div>
-  </li>
+  <li>Registerd(등록된) Claim : 이미 정해져있는 Token 정보</li>
 </ul>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">{</span>
+  <span class="dl">"</span><span class="s2">iss</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">jwttest.com</span><span class="dl">"</span><span class="p">,</span>    <span class="c1">// Token 발급자</span>
+  <span class="dl">"</span><span class="s2">sub</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">jwttest</span><span class="dl">"</span><span class="p">,</span>        <span class="c1">// Token 제목</span>
+  <span class="dl">"</span><span class="s2">aud</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">jwtuser</span><span class="dl">"</span><span class="p">,</span>        <span class="c1">// Token 대상자</span>
+  <span class="dl">"</span><span class="s2">exp</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">20200090150630</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// 만료 날짜로서 현재 날짜 이후로 지정 가능(NumericDate)</span>
+  <span class="dl">"</span><span class="s2">nbf</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">20200831160000</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// 활성화 날짜로서 해당 날짜가 지나야 Token 처리 가능(NumericDate)</span>
+  <span class="dl">"</span><span class="s2">iat</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">20200831150630</span><span class="dl">"</span><span class="p">,</span> <span class="c1">// 발급 날짜(issued at)로서 Token의 age를 판단 가능(NumericDate)</span>
+  <span class="dl">"</span><span class="s2">jti</span><span class="dl">"</span><span class="p">:</span> <span class="dl">""</span>                <span class="c1">// JWT의 고유 식별자로서 일회용 Token 사용할 때 유용</span>
+<span class="p">}</span>
+<span class="c1">// JSON string을 base 64로 Encoding 처리</span></code></pre></figure>
+
+<ul>
+  <li>Public(공개) Claim : 충돌 방지된(Collision-Resistant) 이름 형식인 URL 형식을 자기고 있는 정보</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">{</span>
+  <span class="p">...</span>
+  <span class="dl">"</span><span class="s2">https://jwttest.com</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span>
+  <span class="p">...</span>
+<span class="p">}</span>
+<span class="c1">// JSON string을 base 64로 Encoding 처리</span></code></pre></figure>
+
+<ul>
+  <li>Private(비공개) Claim : Registerd 나 Public 이 아닌 정보(충돌 가능)</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="p">{</span>
+  <span class="p">...</span>
+  <span class="dl">"</span><span class="s2">username</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">jwtest</span><span class="dl">"</span>
+  <span class="p">...</span>
+<span class="p">}</span>
+<span class="c1">// JSON string을 base 64로 Encoding 처리</span></code></pre></figure>
 
 <h4 id="signature">Signature</h4>
 <p>Header 와 Payload 값을 인코딩한 후 결합하여, 비밀키로 Hash하여 생성한 값</p>
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">jwt</span> <span class="o">=</span> <span class="nx">base64UrlEncode</span><span class="p">(</span><span class="nx">header</span><span class="p">)</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">.</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">base64UrlEncode</span><span class="p">(</span><span class="nx">payload</span><span class="p">);</span>
-<span class="nx">HMACSHA256</span><span class="p">(</span><span class="nx">jwt</span><span class="p">,</span> <span class="nx">secret</span><span class="p">)</span>
-</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">const</span> <span class="nx">jwt</span> <span class="o">=</span> <span class="nx">base64UrlEncode</span><span class="p">(</span><span class="nx">header</span><span class="p">)</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">.</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">base64UrlEncode</span><span class="p">(</span><span class="nx">payload</span><span class="p">);</span>
+<span class="nx">HMACSHA256</span><span class="p">(</span><span class="nx">jwt</span><span class="p">,</span> <span class="nx">secret</span><span class="p">)</span></code></pre></figure>
 
 <h2 id="jwt-구현">JWT 구현</h2>
-<h3 id="jwttokenprovider">JwtTokenProvider</h3>
+<h4 id="jwttokenprovider">JwtTokenProvider</h4>
 <ul>
-  <li>JWT Token 생성 및 유효성 검증을 위한 Component 역할
-    <h3 id="jwtauthenticationfilter">JwtAuthenticationFilter</h3>
-  </li>
+  <li>JWT Token 생성 및 유효성 검증을 위한 Component 역할</li>
+</ul>
+
+<h4 id="jwtauthenticationfilter">JwtAuthenticationFilter</h4>
+<ul>
   <li>요청으로 들어온 Token의 유효성 인증을 위한 Filter 역할</li>
-  <li>Security 설정 시, UsernamePasswordAuthenticationFilter 앞에 설정
-    <h3 id="securityconfiguration">SecurityConfiguration</h3>
-  </li>
+  <li>Security 설정 시, UsernamePasswordAuthenticationFilter 앞에 설정</li>
+</ul>
+
+<h4 id="securityconfiguration">SecurityConfiguration</h4>
+<ul>
   <li>서버의 보안 설정을 하는 Configuration 역할</li>
 </ul>
 
@@ -324,28 +331,33 @@
 </table>
 
 <h2 id="user-service-구현">User Service 구현</h2>
-<h3 id="custom-userdetailsservice">Custom UserDetailsService</h3>
+<h4 id="custom-userdetailsservice">Custom UserDetailsService</h4>
 <ul>
-  <li>UserDetailsService class 재정의
-    <h3 id="user-entity">User Entity</h3>
-  </li>
-  <li>UserDetails class 상속 받아 추가 정보 재정의
-    <h3 id="user-jpa-repository">User JPA Repository</h3>
-  </li>
-  <li>findByUid method 추가
-    <h3 id="signcontroller">SignController</h3>
-  </li>
+  <li>UserDetailsService class 재정의</li>
+</ul>
+
+<h4 id="user-entity">User Entity</h4>
+<ul>
+  <li>UserDetails class 상속 받아 추가 정보 재정의</li>
+</ul>
+
+<h4 id="user-jpa-repository">User JPA Repository</h4>
+<ul>
+  <li>findByUid method 추가</li>
+</ul>
+
+<h4 id="signcontroller">SignController</h4>
+<ul>
   <li>인증 성공시, 결과로 JWT token 발급</li>
   <li>비밀번호 encoding 을 위해 PasswordEncoder 설정(기본 설정은 bcrypt encoding 사용)
-<strong><em>(Main Application class 에 PasswordEncoder Bean 추가)</em></strong>
-    <h3 id="swagger-header-field-추가">Swagger Header Field 추가</h3>
-    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ApiImplicitParams</span><span class="o">({</span>
-<span class="nd">@ApiImplicitParam</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"X-AUTH-TOKEN"</span><span class="o">,</span> <span class="n">value</span> <span class="o">=</span> <span class="s">"인증 성공 후 access_token"</span><span class="o">,</span> <span class="n">required</span> <span class="o">=</span> <span class="kc">true</span><span class="o">,</span> <span class="n">dataType</span> <span class="o">=</span> <span class="s">"String"</span><span class="o">,</span> <span class="n">paramType</span> <span class="o">=</span> <span class="s">"header"</span><span class="o">)</span>
-<span class="o">})</span>
-<span class="o">...</span>
-</code></pre></div>    </div>
-  </li>
+<strong><em>(Main Application class 에 PasswordEncoder Bean 추가)</em></strong></li>
 </ul>
+
+<h4 id="swagger-header-field-추가">Swagger Header Field 추가</h4>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@ApiImplicitParams</span><span class="o">({</span>
+  <span class="nd">@ApiImplicitParam</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"X-AUTH-TOKEN"</span><span class="o">,</span> <span class="n">value</span> <span class="o">=</span> <span class="s">"인증 성공 후 access_token"</span><span class="o">,</span> <span class="n">required</span> <span class="o">=</span> <span class="kc">true</span><span class="o">,</span> <span class="n">dataType</span> <span class="o">=</span> <span class="s">"String"</span><span class="o">,</span> <span class="n">paramType</span> <span class="o">=</span> <span class="s">"header"</span><span class="o">)</span>
+<span class="o">})</span></code></pre></figure>
 
 <hr />
 
@@ -376,77 +388,82 @@
 <h5 id="userdetails-interface">UserDetails Interface</h5>
 <ul>
   <li>Spring Security 에서 사용자의 정보를 담는 Interface</li>
-  <li>User Entity 를 UserDetails 상속을 받아 구현
-    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="kd">implements</span> <span class="nc">UserDetails</span> <span class="o">{</span>
-<span class="kd">private</span> <span class="nc">String</span> <span class="n">userId</span><span class="o">;</span>
-<span class="kd">private</span> <span class="nc">String</span> <span class="n">password</span><span class="o">;</span>
-<span class="o">...</span>
+  <li>User Entity 를 UserDetails 상속을 받아 구현</li>
+</ul>
 
-<span class="cm">/**
- * Overiding method 들은 Security 환경에서 사용하는 회원 상태값이지만,
- * 사용하지 않기 때문에 모두 "true" 설정
- *
- * - isAccountNonExpired : 계정이 만료 안되었는지
- * - isAccountNonLocked : 계정이 잠긴 상태인지
- * - isCredentialsNonExpired : 계정 비밀번호가 만료된 상태인지
- * - isEnabled : 계정이 사용 가능한 상태인지
- */</span>
-<span class="nd">@Override</span>
-<span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isAccountNonExpired</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="kc">true</span><span class="o">;</span> <span class="o">}</span>
-<span class="nd">@Override</span>
-<span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isAccountNonLocked</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="kc">true</span><span class="o">;</span> <span class="o">}</span>
-<span class="nd">@Override</span>
-<span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isCredentialsNonExpired</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="kc">true</span><span class="o">;</span> <span class="o">}</span>
-<span class="nd">@Override</span>
-<span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEnabled</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="kc">true</span><span class="o">;</span> <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div>    </div>
-    <h5 id="userdetailsservice-interface">UserDetailsService Interface</h5>
-  </li>
-  <li>DB 에서 사용자 정보를 조회하는 Interface</li>
-  <li>loadUserByUsername() method 를 통해 UserDetails 형으로 사용자 정보를 저장
-    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TokenProvider</span> <span class="o">{</span>
-<span class="o">...</span>
-<span class="kd">public</span> <span class="nc">Authentication</span> <span class="nf">getAuthentication</span><span class="o">(</span><span class="nc">String</span> <span class="n">userPk</span><span class="o">)</span> <span class="o">{</span>
-  <span class="nc">UserDetails</span> <span class="n">userDetails</span> <span class="o">=</span> <span class="n">userDetailsService</span><span class="o">.</span><span class="na">loadUserByUsername</span><span class="o">(</span><span class="n">userPk</span><span class="o">);</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="kd">implements</span> <span class="nc">UserDetails</span> <span class="o">{</span>
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">userId</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="nc">String</span> <span class="n">password</span><span class="o">;</span>
+  <span class="o">...</span>
 
   <span class="cm">/**
-   * UsernamePasswordAuthenticationToken.class
-   * - AuthenticationFilter 등록하기 위한 Authentication 을 생성해주는
-   *   Authentication Interface 의 구현체
+   * Overiding method 들은 Security 환경에서 사용하는 회원 상태값이지만,
+   * 사용하지 않기 때문에 모두 "true" 설정
+   *
+   * - isAccountNonExpired : 계정이 만료 안되었는지
+   * - isAccountNonLocked : 계정이 잠긴 상태인지
+   * - isCredentialsNonExpired : 계정 비밀번호가 만료된 상태인지
+   * - isEnabled : 계정이 사용 가능한 상태인지
    */</span>
-  <span class="k">return</span> <span class="k">new</span> <span class="nf">UsernamePasswordAuthenticationToken</span><span class="o">(</span><span class="n">userDetails</span><span class="o">,</span> <span class="s">""</span><span class="o">,</span> <span class="n">userDetails</span><span class="o">.</span><span class="na">getAuthorities</span><span class="o">());</span>
-<span class="o">}</span>
-<span class="o">...</span>
-<span class="o">}</span>
-</code></pre></div>    </div>
-    <h5 id="simplegrantedauthority-class">SimpleGrantedAuthority Class</h5>
-  </li>
-  <li>Spring Security 에서 제공하는 권한 관리 Class</li>
-  <li>권한 명칭만 저장하는 구조로 설계
-    <h5 id="passwordencoder-class">PasswordEncoder Class</h5>
-  </li>
-  <li>단방향으로 변환하여 Password 를 안전하게 DB에 저장할 수 있는 Interface
-    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PasswordEncoderTest</span> <span class="o">{</span>
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isAccountNonExpired</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="kc">true</span><span class="o">;</span> <span class="o">}</span>
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isAccountNonLocked</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="kc">true</span><span class="o">;</span> <span class="o">}</span>
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isCredentialsNonExpired</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="kc">true</span><span class="o">;</span> <span class="o">}</span>
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEnabled</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="kc">true</span><span class="o">;</span> <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
 
-<span class="kd">private</span> <span class="nc">PasswordEncoder</span> <span class="n">passwordEncoder</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="nf">PasswordEncoderTest</span><span class="o">()</span> <span class="o">{</span>
-  <span class="n">passwordEncoder</span> <span class="o">=</span> <span class="nc">PasswordEncoderFactories</span><span class="o">.</span><span class="na">createDelegatingPasswordEncoder</span><span class="o">();</span>
-<span class="o">}</span>
-
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">test</span><span class="o">()</span> <span class="o">{</span>
-  <span class="nc">String</span> <span class="n">password</span> <span class="o">=</span> <span class="s">"password"</span><span class="o">;</span>
-  <span class="nc">String</span> <span class="n">encode</span> <span class="o">=</span> <span class="n">passwordEncoder</span><span class="o">.</span><span class="na">encode</span><span class="o">(</span><span class="n">password</span><span class="o">);</span>
-
-  <span class="k">if</span> <span class="o">(</span><span class="n">passwordEncoder</span><span class="o">.</span><span class="na">matches</span><span class="o">(</span><span class="n">password</span><span class="o">,</span> <span class="n">encode</span><span class="o">))</span> <span class="o">{</span>
-    <span class="c1">// True</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div>    </div>
-  </li>
+<h5 id="userdetailsservice-interface">UserDetailsService Interface</h5>
+<ul>
+  <li>DB 에서 사용자 정보를 조회하는 Interface</li>
+  <li>loadUserByUsername() method 를 통해 UserDetails 형으로 사용자 정보를 저장</li>
 </ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TokenProvider</span> <span class="o">{</span>
+  <span class="o">...</span>
+  <span class="kd">public</span> <span class="nc">Authentication</span> <span class="nf">getAuthentication</span><span class="o">(</span><span class="nc">String</span> <span class="n">userPk</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">UserDetails</span> <span class="n">userDetails</span> <span class="o">=</span> <span class="n">userDetailsService</span><span class="o">.</span><span class="na">loadUserByUsername</span><span class="o">(</span><span class="n">userPk</span><span class="o">);</span>
+
+    <span class="cm">/**
+     * UsernamePasswordAuthenticationToken.class
+     * - AuthenticationFilter 등록하기 위한 Authentication 을 생성해주는
+     *   Authentication Interface 의 구현체
+     */</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nf">UsernamePasswordAuthenticationToken</span><span class="o">(</span><span class="n">userDetails</span><span class="o">,</span> <span class="s">""</span><span class="o">,</span> <span class="n">userDetails</span><span class="o">.</span><span class="na">getAuthorities</span><span class="o">());</span>
+  <span class="o">}</span>
+  <span class="o">...</span>
+<span class="o">}</span></code></pre></figure>
+
+<h5 id="simplegrantedauthority-class">SimpleGrantedAuthority Class</h5>
+<ul>
+  <li>Spring Security 에서 제공하는 권한 관리 Class</li>
+  <li>권한 명칭만 저장하는 구조로 설계</li>
+</ul>
+
+<h5 id="passwordencoder-class">PasswordEncoder Class</h5>
+<ul>
+  <li>단방향으로 변환하여 Password 를 안전하게 DB에 저장할 수 있는 Interface</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PasswordEncoderTest</span> <span class="o">{</span>
+
+  <span class="kd">private</span> <span class="nc">PasswordEncoder</span> <span class="n">passwordEncoder</span><span class="o">;</span>
+
+  <span class="kd">public</span> <span class="nf">PasswordEncoderTest</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">passwordEncoder</span> <span class="o">=</span> <span class="nc">PasswordEncoderFactories</span><span class="o">.</span><span class="na">createDelegatingPasswordEncoder</span><span class="o">();</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nc">String</span> <span class="n">password</span> <span class="o">=</span> <span class="s">"password"</span><span class="o">;</span>
+    <span class="nc">String</span> <span class="n">encode</span> <span class="o">=</span> <span class="n">passwordEncoder</span><span class="o">.</span><span class="na">encode</span><span class="o">(</span><span class="n">password</span><span class="o">);</span>
+
+    <span class="k">if</span> <span class="o">(</span><span class="n">passwordEncoder</span><span class="o">.</span><span class="na">matches</span><span class="o">(</span><span class="n">password</span><span class="o">,</span> <span class="n">encode</span><span class="o">))</span> <span class="o">{</span>
+      <span class="c1">// True</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
 
 <hr />
 
@@ -503,9 +520,11 @@
 @Configuration
 
   해당 Class 를 Bean 구성 Class 로 Spring IOC Container 에 지정
-    @Bean
-  
-  개발자가 직접 ...
+
+
+@Bean
+
+  개발자가 직접 제어가 ...
         
       </p>
     </div>
@@ -524,9 +543,9 @@
       <p class="next__excerpt">
         
           ## Dependency 추가
-```groovy
-testImplementation 'org.springframework.security:spring-security-test'
-testImple...
+
+{% highlight groovy %}
+testImplementation 'org.springframework.security:spring-security-t...
         
       </p>
     </div>

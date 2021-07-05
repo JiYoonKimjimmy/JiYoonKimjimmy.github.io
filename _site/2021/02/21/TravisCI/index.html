@@ -227,7 +227,8 @@
 <h3 id="2-프로젝트-travis-ci-설정">2. 프로젝트 Travis CI 설정</h3>
 <h4 id="travisyml-추가"><code class="language-plaintext highlighter-rouge">travis.yml</code> 추가</h4>
 <p><strong><em>! build.gradle 동일한 위치에 추가 !</em></strong></p>
-<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">language</span><span class="pi">:</span> <span class="s">java</span>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">language</span><span class="pi">:</span> <span class="s">java</span>
 <span class="na">jdk</span><span class="pi">:</span> <span class="s">openjdk8</span>
 
 <span class="c1"># Travis CI 를 어느 branch 가 push 될 때 수행할지 설정</span>
@@ -251,8 +252,7 @@
 <span class="na">notifications</span><span class="pi">:</span>
  <span class="na">email</span><span class="pi">:</span>
    <span class="na">recipients</span><span class="pi">:</span>
-     <span class="pi">-</span> <span class="pi">[</span><span class="nv">메일 주소</span><span class="pi">]</span>
-</code></pre></div></div>
+     <span class="pi">-</span> <span class="pi">[</span><span class="nv">메일 주소</span><span class="pi">]</span></code></pre></figure>
 
 <h3 id="3-travis-ci--aws-s3-연동">3. Travis CI + AWS S3 연동</h3>
 <h4 id="aws-s3">AWS S3?</h4>
@@ -305,7 +305,8 @@
 </ul>
 
 <h4 id="travisyml-수정"><code class="language-plaintext highlighter-rouge">.travis.yml</code> 수정</h4>
-<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">...</span>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="nn">...</span>
 <span class="na">script</span><span class="pi">:</span> <span class="s2">"</span><span class="s">./gradlew</span><span class="nv"> </span><span class="s">clean</span><span class="nv"> </span><span class="s">build"</span>
 
 <span class="c1"># 수정 start</span>
@@ -332,8 +333,7 @@
 <span class="c1"># 수정 end</span>
 
 <span class="na">notifications</span><span class="pi">:</span>
-<span class="nn">...</span>
-</code></pre></div></div>
+<span class="nn">...</span></code></pre></figure>
 
 <h3 id="4-travis-ci--s3--codedeploy">4. Travis CI + S3 + CodeDeploy</h3>
 <h4 id="ec2-에-iam-역할-추가">EC2 에 IAM 역할 추가</h4>
@@ -348,7 +348,8 @@
 </ul>
 
 <p><strong>EC2 에 CodeDeploy agent 설치</strong></p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>aws s3 <span class="nb">cp </span>s3://aws-codedeploy-ap-northeast-2/latest/install ./s3 <span class="nt">--resion</span> ap-northeast-2
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>aws s3 <span class="nb">cp </span>s3://aws-codedeploy-ap-northeast-2/latest/install ./s3 <span class="nt">--resion</span> ap-northeast-2
 <span class="c"># 설치 디렉토리 이동</span>
 <span class="nv">$ </span><span class="nb">cd </span>s3
 <span class="c"># 실행 권한 추가</span>
@@ -356,8 +357,7 @@
 <span class="c"># install 파일 설치</span>
 <span class="nv">$ </span><span class="nb">sudo</span> ./install auto
 <span class="c"># CodeDeploy agent 상태 확인</span>
-<span class="nv">$ </span><span class="nb">sudo </span>service codedeploy-agent status
-</code></pre></div></div>
+<span class="nv">$ </span><span class="nb">sudo </span>service codedeploy-agent status</code></pre></figure>
 
 <h4 id="codedeploy-권한-생성">CodeDeploy 권한 생성</h4>
 <ul>
@@ -413,14 +413,16 @@
 
 <h4 id="연동-설정-파일-추가-및-수정">연동 설정 파일 추가 및 수정</h4>
 <ul>
-  <li>EC2 에 zip 파일 저장 디렉토리 생성
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">mkdir</span> /home/ec2-user/s3/zip/rest-api
-</code></pre></div>    </div>
-  </li>
+  <li>EC2 에 zip 파일 저장 디렉토리 생성</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">mkdir</span> /home/ec2-user/s3/zip/rest-api</code></pre></figure>
+
+<ul>
   <li><code class="language-plaintext highlighter-rouge">appspec.yml</code> 추가</li>
 </ul>
 
-<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">version</span><span class="pi">:</span> <span class="m">0.0</span>
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">version</span><span class="pi">:</span> <span class="m">0.0</span>
 <span class="na">os </span><span class="pi">:</span> <span class="s">linux</span>
 <span class="na">files </span><span class="pi">:</span>
   <span class="c1"># CodeDeploy 에서 전달해준 파일 중 destination 으로 이동시킬 대상 지정</span>
@@ -428,14 +430,13 @@
   <span class="c1"># source 에서 지정된 파일을 저장할 위치</span>
   <span class="na">destination</span><span class="pi">:</span> <span class="s">/home/ec2-user/s3/zip/rest-api/</span>
   <span class="c1"># 덮어쓰기 여부</span>
-  <span class="na">overwrite </span><span class="pi">:</span> <span class="s">yes</span>
-</code></pre></div></div>
+  <span class="na">overwrite </span><span class="pi">:</span> <span class="s">yes</span></code></pre></figure>
 
 <ul>
   <li><code class="language-plaintext highlighter-rouge">.travis.yml</code> 수정</li>
 </ul>
 
-<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">deploy</span><span class="pi">:</span>
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">deploy</span><span class="pi">:</span>
   <span class="s">...</span>
 
   <span class="s">- provider</span><span class="pi">:</span> <span class="s">codedeploy</span>
@@ -448,8 +449,7 @@
     <span class="s">application</span><span class="pi">:</span> <span class="s">rest-api</span>
     <span class="s">deployment_group</span><span class="pi">:</span> <span class="s">rest-api-group</span>
     <span class="s">region</span><span class="pi">:</span> <span class="s">ap-northeast-2</span>
-    <span class="s">wait_until_deployed</span><span class="pi">:</span> <span class="no">true</span>
-</code></pre></div></div>
+    <span class="s">wait_until_deployed</span><span class="pi">:</span> <span class="no">true</span></code></pre></figure>
 
 <ul>
   <li>EC2 에 저장된 zip 디렉토리 확인</li>
@@ -458,7 +458,7 @@
 <h3 id="5-배포-자동화-구성">5. 배포 자동화 구성</h3>
 <h4 id="프로젝트에-deploysh-추가">프로젝트에 <code class="language-plaintext highlighter-rouge">deploy.sh</code> 추가</h4>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># project &gt; scripts &gt; deploy.sh</span>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># project &gt; scripts &gt; deploy.sh</span>
 <span class="c">#!/bin/bash</span>
 
 <span class="nv">REPOSITORY</span><span class="o">=</span>/home/ec2-user/apps
@@ -497,10 +497,11 @@
 
 <span class="nb">rm</span> <span class="nv">$REPOSITORY</span>/<span class="nv">$PROJECT_NAME</span>/nohup.out
 
-<span class="nb">nohup </span>java <span class="nt">-jar</span> <span class="nt">-Dspring</span>.profiles.active<span class="o">=</span>alpha <span class="nt">-Dfile</span>.encoding<span class="o">=</span>UTF-8  <span class="nv">$JAR_NAME</span> <span class="o">&gt;</span> <span class="nv">$REPOSITORY</span>/<span class="nv">$PROJECT_NAME</span>/nohup.out 2&gt;&amp;1 &amp;
-</code></pre></div></div>
+<span class="nb">nohup </span>java <span class="nt">-jar</span> <span class="nt">-Dspring</span>.profiles.active<span class="o">=</span>alpha <span class="nt">-Dfile</span>.encoding<span class="o">=</span>UTF-8  <span class="nv">$JAR_NAME</span> <span class="o">&gt;</span> <span class="nv">$REPOSITORY</span>/<span class="nv">$PROJECT_NAME</span>/nohup.out 2&gt;&amp;1 &amp;</code></pre></figure>
+
 <h4 id="travisyml-수정-1"><code class="language-plaintext highlighter-rouge">.travis.yml</code> 수정</h4>
-<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">language</span><span class="pi">:</span> <span class="s">java</span>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">language</span><span class="pi">:</span> <span class="s">java</span>
 <span class="na">jdk</span><span class="pi">:</span>
   <span class="pi">-</span> <span class="s">openjdk8</span>
 
@@ -551,11 +552,11 @@
     <span class="na">wait-until-deployed</span><span class="pi">:</span> <span class="no">true</span>
 
 <span class="na">notifications</span><span class="pi">:</span>
-  <span class="na">slack</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">slack accesss key</span><span class="pi">]</span>
-</code></pre></div></div>
+  <span class="na">slack</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">slack accesss key</span><span class="pi">]</span></code></pre></figure>
 
 <h4 id="appspecyml-수정"><code class="language-plaintext highlighter-rouge">appspec.yml</code> 수정</h4>
-<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">version</span><span class="pi">:</span> <span class="m">0.0</span>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">version</span><span class="pi">:</span> <span class="m">0.0</span>
 <span class="na">os </span><span class="pi">:</span> <span class="s">linux</span>
 <span class="na">files </span><span class="pi">:</span>
   <span class="pi">-</span> <span class="na">source </span><span class="pi">:</span> <span class="s">/</span>
@@ -575,19 +576,18 @@
   <span class="na">ApplicationStart</span><span class="pi">:</span>
     <span class="pi">-</span> <span class="na">location</span><span class="pi">:</span> <span class="s">deploy.sh</span>
       <span class="na">timeout</span><span class="pi">:</span> <span class="m">60</span>
-      <span class="na">runas</span><span class="pi">:</span> <span class="s">ec2-user</span>
-</code></pre></div></div>
+      <span class="na">runas</span><span class="pi">:</span> <span class="s">ec2-user</span></code></pre></figure>
 
 <h4 id="배포-log-확인-방법">배포 Log 확인 방법</h4>
 <h5 id="codedeploy-관련-log">CodeDeploy 관련 Log</h5>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> /opt/codedeploy-agent/deploayment-root/
-<span class="nv">$ </span>vi ./deployment-logs
-</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">cd</span> /opt/codedeploy-agent/deploayment-root/
+<span class="nv">$ </span>vi ./deployment-logs</code></pre></figure>
 
 <h5 id="프로젝트-관련-log">프로젝트 관련 Log</h5>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> ~/apps/rest-api/
-<span class="nv">$ </span>vi ./nohup.out
-</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">cd</span> ~/apps/rest-api/
+<span class="nv">$ </span>vi ./nohup.out</code></pre></figure>
 
 <hr />
 

@@ -235,26 +235,25 @@
 <h3 id="의존성-주입받는-방법">의존성 주입받는 방법</h3>
 <h4 id="1-autowired-or-inject">1. @Autowired or @Inject</h4>
 <ul>
-  <li>생성자 &amp; 필드 &amp; Setter 에 <strong>@Autowired</strong> 를 추가하면 Bean 의존성 주입 가능
-    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RestController</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ApiController</span> <span class="o">{</span>
-<span class="nd">@Autowired</span>
-<span class="kd">private</span> <span class="kd">final</span> <span class="nc">ApiService</span> <span class="n">apiService</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div>    </div>
-  </li>
+  <li>생성자 &amp; 필드 &amp; Setter 에 <strong>@Autowired</strong> 를 추가하면 Bean 의존성 주입 가능</li>
 </ul>
 
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@RestController</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ApiController</span> <span class="o">{</span>
+  <span class="nd">@Autowired</span>
+  <span class="kd">private</span> <span class="kd">final</span> <span class="nc">ApiService</span> <span class="n">apiService</span><span class="o">;</span>
+<span class="o">}</span></code></pre></figure>
+
 <h4 id="2-생성자의-인자값으로-bean-등록된-class-일-경우-의존성-주입-가능">2. 생성자의 인자값으로 Bean 등록된 Class 일 경우 의존성 주입 가능</h4>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RestController</span>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@RestController</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ApiController</span> <span class="o">{</span>
   <span class="kd">private</span> <span class="kd">final</span> <span class="nc">ApiService</span> <span class="n">apiService</span><span class="o">;</span>
 
   <span class="kd">public</span> <span class="nf">ApiController</span><span class="o">(</span><span class="nc">ApiService</span> <span class="n">apiService</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">this</span><span class="o">.</span><span class="na">apiService</span> <span class="o">=</span> <span class="n">apiService</span><span class="o">;</span>
   <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
+<span class="o">}</span></code></pre></figure>
 
 <hr />
 
@@ -271,39 +270,40 @@
 
 <h4 id="예제">예제</h4>
 <ul>
-  <li>LogExecutionTime : Annotation 역할
-    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Target</span><span class="o">(</span><span class="nc">ElementType</span><span class="o">.</span><span class="na">METHOD</span><span class="o">)</span>
+  <li>LogExecutionTime : Annotation 역할</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Target</span><span class="o">(</span><span class="nc">ElementType</span><span class="o">.</span><span class="na">METHOD</span><span class="o">)</span>
 <span class="nd">@Retention</span><span class="o">(</span><span class="nc">RetentionPolicy</span><span class="o">.</span><span class="na">RUNTIME</span><span class="o">)</span>
 <span class="kd">public</span> <span class="nd">@interface</span> <span class="nc">LogExecutionTime</span> <span class="o">{</span>
-<span class="c1">// Annotation 역할</span>
-<span class="o">}</span>
-</code></pre></div>    </div>
-  </li>
-  <li>LogAspect : 실제 Annotation 구현체
-    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+  <span class="c1">// Annotation 역할</span>
+<span class="o">}</span></code></pre></figure>
+
+<ul>
+  <li>LogAspect : 실제 Annotation 구현체</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Component</span>
 <span class="nd">@Aspect</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">LogAspect</span> <span class="o">{</span>
 
-  <span class="nc">Logger</span> <span class="n">logger</span> <span class="o">=</span> <span class="nc">LoggerFactory</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="nc">LogAspect</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="nc">Logger</span> <span class="n">logger</span> <span class="o">=</span> <span class="nc">LoggerFactory</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="nc">LogAspect</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
 
-  <span class="nd">@Around</span><span class="o">(</span><span class="s">"@annotation(LogExecutionTime)"</span><span class="o">)</span>
-  <span class="kd">public</span> <span class="nc">Object</span> <span class="nf">LogExecutionTime</span><span class="o">(</span><span class="nc">ProceedingJoinPoint</span> <span class="n">joinPoint</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Throwable</span> <span class="o">{</span>
-      <span class="nc">StopWatch</span> <span class="n">stopWatch</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StopWatch</span><span class="o">();</span>
+    <span class="nd">@Around</span><span class="o">(</span><span class="s">"@annotation(LogExecutionTime)"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">Object</span> <span class="nf">LogExecutionTime</span><span class="o">(</span><span class="nc">ProceedingJoinPoint</span> <span class="n">joinPoint</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Throwable</span> <span class="o">{</span>
+        <span class="nc">StopWatch</span> <span class="n">stopWatch</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StopWatch</span><span class="o">();</span>
 
-      <span class="n">stopWatch</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+        <span class="n">stopWatch</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
 
-      <span class="nc">Object</span> <span class="n">proceed</span> <span class="o">=</span> <span class="n">joinPoint</span><span class="o">.</span><span class="na">proceed</span><span class="o">();</span>
+        <span class="nc">Object</span> <span class="n">proceed</span> <span class="o">=</span> <span class="n">joinPoint</span><span class="o">.</span><span class="na">proceed</span><span class="o">();</span>
 
-      <span class="n">stopWatch</span><span class="o">.</span><span class="na">stop</span><span class="o">();</span>
+        <span class="n">stopWatch</span><span class="o">.</span><span class="na">stop</span><span class="o">();</span>
 
-      <span class="n">logger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="n">stopWatch</span><span class="o">.</span><span class="na">prettyPrint</span><span class="o">());</span>
+        <span class="n">logger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="n">stopWatch</span><span class="o">.</span><span class="na">prettyPrint</span><span class="o">());</span>
 
-      <span class="k">return</span> <span class="n">proceed</span><span class="o">;</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div>    </div>
-  </li>
-</ul>
+        <span class="k">return</span> <span class="n">proceed</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
 
 <p><strong><em>! 필요한 Method 위에 @LogExecutionTime 추가하면 Log 확인 가능 !</em></strong></p>
 

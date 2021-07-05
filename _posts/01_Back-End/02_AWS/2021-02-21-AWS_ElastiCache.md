@@ -10,6 +10,7 @@ tags  : back-end AWS
 
 ### AWS ElastiCache for Redis Cluster 생성
 자세한 방법은 [AWS ElastiCache 가이드 참고](https://docs.aws.amazon.com/ko_kr/AmazonElastiCache/latest/red-ug/GettingStarted.CreateCluster.html).
+
 #### 요약
 1. VPC Subnet Group 생성
 2. Redis Cache Cluster 생성
@@ -17,20 +18,24 @@ tags  : back-end AWS
 
 ### Spring Boot + Redis 연동 설정
 #### Redis 관련 의존성 추가
-```groovy
+
+{% highlight groovy %}
 implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 compile group: 'redis.clients', name: 'jedis', version: '3.3.0'
-```
+{% endhighlight %}
+
 #### application.yml 수정
-```yml
+
+{% highlight yaml %}
 spring:
   redis:
     host: [AWS ElastiCache End-Point Host url]
     port: 6379
-```
+{% endhighlight %}
 
 #### Redis Config 추가
-```java
+
+{% highlight java %}
 @RequiredArgsConstructor
 @EnableRedisRepositories
 @Configuration
@@ -87,33 +92,37 @@ public class RedisConfiguration {
     }
 
 }
-```
+{% endhighlight %}
 
 ### Entity Redis 설정
 #### Caching 객체 Serializable
 ##### Caching 객체 Serializable 하는 이유
 * `Redis`에 객체를 저장하면 내부적으로 직렬화하여 저장
 * `Entity`에 `Serializable`을 선언하지 않으면 오류 발생 가능
-```java
+
+{% highlight java %}
 @Entity
 public class Board implements Serializable {
   ...
 }
-```
+{% endhighlight %}
+
 #### Lazy Loading False
 ##### Lazy Loading false 처리 하는 이유
 * Entity 객체내에서 연관관계 Mapping에 의해 Lazy(지연) Loading 되는 경우 오류 발생 가능
-```java
+
+{% highlight java %}
 @Proxy(lazy = false)
 public class User implements Serializable {
   ...
 }
-```
+{% endhighlight %}
 
 ### CRUD Methods Caching 처리
 **Caching 처리 관련 Annotation**
+
 | Annotation | 설명 |
-| :---: | --- |
+| :--- | --- |
 | `@Cacheable` | `Cache`가 존재하면 요청된 `Method`를 실행하지 않고 `Cache`데이터를 반환 처리 |
 | `@CachePut` | `Cache`에 데이터를 넣거나 수정시 사용. `Method`의 반환값이 `Cache`에 없으면 저장하고, 있는 경우엔 갱신 처리 |
 | `@CacheEvict` | `Cache` 삭제 |
@@ -133,7 +142,7 @@ public class User implements Serializable {
 
 ### Custom Key Generator
 #### CustomKeyGenerator.java
-```java
+{% highlight java %}
 public class CustomKeyGenerator {
     public static Object create(Object o1) {
         return "FRONT:" + o1;
@@ -142,12 +151,13 @@ public class CustomKeyGenerator {
         return "FRONT:" + o1 + ":" + o2;
     }
 }
-```
+{% endhighlight %}
 
 #### CustomKeyGenerator 이용한 Caching
-```java
+
+{% highlight java %}
 @Cacheable(value = CacheKey.BOARD, key = "T(com.demo.restapi.config.redis.CustomKeyGenerator).create(#id)", unless = "#result == null")
-```
+{% endhighlight %}
 
 ---
 

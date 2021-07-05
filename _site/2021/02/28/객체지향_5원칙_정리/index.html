@@ -218,7 +218,7 @@
 <p>변경 없이 새로운 기능을 추가하거나 수정하는 작업은 자주 변경되는 기능은 수정하기 쉽게 설계하고, 변경되지 않는 기능은 영향을 받지 않게 하는 것이다.
 <code class="language-plaintext highlighter-rouge">Java</code> 에서는 <code class="language-plaintext highlighter-rouge">Interface</code> 를 통해서 <code class="language-plaintext highlighter-rouge">OCP</code> 원칙을 적용할 수 있을 것이다.</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// OCP example-1</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// OCP example-1</span>
 <span class="kd">class</span> <span class="nc">Order</span> <span class="o">{</span>
   <span class="kt">void</span> <span class="nf">pay</span><span class="o">()</span> <span class="o">{</span>
     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"pay by card"</span><span class="o">);</span>
@@ -230,14 +230,14 @@
       <span class="nc">Order</span> <span class="n">order</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Order</span><span class="o">();</span>
       <span class="n">order</span><span class="o">.</span><span class="na">pay</span><span class="o">();</span>
   <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
+<span class="o">}</span></code></pre></figure>
+
 <p><code class="language-plaintext highlighter-rouge">OCP example-1</code> 는 주문<code class="language-plaintext highlighter-rouge">Order</code>에 대한 결제 방식<code class="language-plaintext highlighter-rouge">pay()</code>을 정의하고 있다.
 하지만, 주문의 결제 방식이 달라진다고 하면, <code class="language-plaintext highlighter-rouge">Order</code>클래스의 <code class="language-plaintext highlighter-rouge">pay</code>함수를 수정해야할 것이다. <strong>이는 <code class="language-plaintext highlighter-rouge">OCP</code> 원칙에 위배된다.</strong></p>
 
 <p><code class="language-plaintext highlighter-rouge">OCP</code> 원칙을 만족하기 위해선, <code class="language-plaintext highlighter-rouge">pay</code>함수를 쉽게 변경할 수 있게 <code class="language-plaintext highlighter-rouge">Interface</code>로 분리시킬 수 있다.</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// OCP example-2</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// OCP example-2</span>
 <span class="kd">interface</span> <span class="nc">PayOrder</span> <span class="o">{</span>
   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">pay</span><span class="o">();</span>
 <span class="o">}</span>
@@ -254,10 +254,9 @@
   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">pay</span><span class="o">()</span> <span class="o">{</span>
     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"pay by cash"</span><span class="o">);</span>
   <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
+<span class="o">}</span></code></pre></figure>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// OCP example-3</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// OCP example-3</span>
 <span class="kd">class</span> <span class="nc">Order</span> <span class="o">{</span>
   <span class="kd">private</span> <span class="nc">PayOrder</span> <span class="n">type</span><span class="o">;</span>
 
@@ -279,8 +278,7 @@
       <span class="n">order</span><span class="o">.</span><span class="na">setType</span><span class="o">(</span><span class="k">new</span> <span class="nc">Cash</span><span class="o">());</span>
       <span class="n">order</span><span class="o">.</span><span class="na">pay</span><span class="o">();</span>    <span class="c1">// log : "pay by cash"</span>
   <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
+<span class="o">}</span></code></pre></figure>
 
 <p><code class="language-plaintext highlighter-rouge">OCP example-2</code>에서 <code class="language-plaintext highlighter-rouge">PayOrder</code> 인터페이스를 통해서 각 결제 수단 클래스의 <code class="language-plaintext highlighter-rouge">pay</code>함수를 재정의하도록 설계하였고,
 <code class="language-plaintext highlighter-rouge">OCP example-3</code>에서 <code class="language-plaintext highlighter-rouge">Order</code>클래스의 <code class="language-plaintext highlighter-rouge">type</code>을 통해 결제 수단 객체를 지정하여 각 <code class="language-plaintext highlighter-rouge">pay</code> 함수를 호출하였을 때, 영향이 받지 않도록 하였다.

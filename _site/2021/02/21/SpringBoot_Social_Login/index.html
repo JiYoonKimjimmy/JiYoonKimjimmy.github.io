@@ -208,7 +208,7 @@
 </ul>
 
 <h3 id="oauth-flow">OAuth Flow</h3>
-<p><img src="/assets/25238637583547EC0A.png" alt="25238637583547EC0A" />
+<p><img src="/images/25238637583547EC0A.png" alt="25238637583547EC0A" />
 <br />
 (A) Client 가 Social Login 요청<br />
 (B) Resource Owner 는 Social Login 할 수 있게 화면 이동<br />
@@ -237,24 +237,23 @@
 
 <p><strong>RestTemplate Bean 등록</strong></p>
 <ul>
-  <li>Main Application Class 에 RestTemplate Class Bean 등록
-    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
-<span class="kd">public</span> <span class="nc">RestTemplate</span> <span class="nf">getRestTemplate</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="k">new</span> <span class="nc">RestTemplate</span><span class="o">();</span> <span class="o">}</span>
-</code></pre></div>    </div>
-  </li>
+  <li>Main Application Class 에 RestTemplate Class Bean 등록</li>
 </ul>
 
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Bean</span>
+<span class="kd">public</span> <span class="nc">RestTemplate</span> <span class="nf">getRestTemplate</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="k">new</span> <span class="nc">RestTemplate</span><span class="o">();</span> <span class="o">}</span></code></pre></figure>
+
 <p><strong>GSON dependency 추가</strong></p>
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">implementation</span> <span class="s1">'com.google.code.gson:gson'</span>
-</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">implementation</span> <span class="s1">'com.google.code.gson:gson'</span></code></pre></figure>
 
 <p><strong>Social Login 관련 설정 추가</strong></p>
-<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">spring.social.kakao.client_id</span><span class="p">=</span><span class="s">[앱생성시 받은 REST API Key]</span>
+
+<figure class="highlight"><pre><code class="language-properties" data-lang="properties"><span class="py">spring.social.kakao.client_id</span><span class="p">=</span><span class="s">[앱생성시 받은 REST API Key]</span>
 <span class="py">spring.social.kakao.redirect</span><span class="p">=</span><span class="s">/social/login/kakao</span>
 <span class="py">spring.social.kakao.url.login</span><span class="p">=</span><span class="s">https://kauth.kakao.com/oauth/authorize</span>
 <span class="py">spring.social.kakao.url.token</span><span class="p">=</span><span class="s">https://kauth.kakao.com/oauth/token</span>
-<span class="py">spring.social.kakao.url.profile</span><span class="p">=</span><span class="s">https://kapi.kakao.com/v2/user/me</span>
-</code></pre></div></div>
+<span class="py">spring.social.kakao.url.profile</span><span class="p">=</span><span class="s">https://kapi.kakao.com/v2/user/me</span></code></pre></figure>
 
 <p><strong>Social Login 처리 Controller 추가</strong></p>
 <ul>
@@ -264,17 +263,17 @@
 
 <p><strong>로그인 화면</strong></p>
 <ul>
-  <li>/resource/templates/social/login.ftl
-    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;button</span> <span class="na">onclick=</span><span class="s">"popupKakaoLogin()"</span><span class="nt">&gt;</span>KakaoLogin<span class="nt">&lt;/button&gt;</span>
-<span class="nt">&lt;script&gt;</span>
-  <span class="kd">function</span> <span class="nx">popupKakaoLogin</span><span class="p">()</span> <span class="p">{</span>
-      <span class="nb">window</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="dl">'</span><span class="s1">${loginUrl}</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">popupKakaoLogin</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">width=700,height=500,scrollbars=0,toolbar=0,menubar=no</span><span class="dl">'</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="nt">&lt;/script&gt;</span>
-</code></pre></div>    </div>
-    <p><em>(만약 View Mapping 안된다면, Freemarker Bean 등록!)</em></p>
-  </li>
+  <li>/resource/templates/social/login.ftl</li>
 </ul>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;button</span> <span class="na">onclick=</span><span class="s">"popupKakaoLogin()"</span><span class="nt">&gt;</span>KakaoLogin<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+    <span class="kd">function</span> <span class="nx">popupKakaoLogin</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nb">window</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="dl">'</span><span class="s1">${loginUrl}</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">popupKakaoLogin</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">width=700,height=500,scrollbars=0,toolbar=0,menubar=no</span><span class="dl">'</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="nt">&lt;/script&gt;</span></code></pre></figure>
+
+<p><em>(만약 View Mapping 안된다면, Freemarker Bean 등록!)</em></p>
 
 <p><strong>User Entity 수정</strong></p>
 <ul>
@@ -284,46 +283,46 @@
 
 <p><strong>User JPA Repository 수정</strong></p>
 <ul>
-  <li>Uid 와 Provider 로 회원 정보 조회하는 Method 추가
-    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="nf">findByUidAndProvider</span><span class="o">(</span><span class="nc">String</span> <span class="n">uid</span><span class="o">,</span> <span class="nc">String</span> <span class="n">provider</span><span class="o">);</span>
-</code></pre></div>    </div>
-  </li>
+  <li>Uid 와 Provider 로 회원 정보 조회하는 Method 추가</li>
 </ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="nf">findByUidAndProvider</span><span class="o">(</span><span class="nc">String</span> <span class="n">uid</span><span class="o">,</span> <span class="nc">String</span> <span class="n">provider</span><span class="o">);</span></code></pre></figure>
 
 <p><strong>Social Login 에 필요한 Model 객체 생성</strong></p>
 <ul>
-  <li>RetKakaoAuth.java
-    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Getter</span>
+  <li>RetKakaoAuth.java</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Getter</span>
 <span class="nd">@Setter</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">RetKakaoAuth</span> <span class="o">{</span>
-  <span class="kd">private</span> <span class="nc">String</span> <span class="n">access_token</span><span class="o">;</span>
-  <span class="kd">private</span> <span class="nc">String</span> <span class="n">token_type</span><span class="o">;</span>
-  <span class="kd">private</span> <span class="nc">String</span> <span class="n">refresh_token</span><span class="o">;</span>
-  <span class="kd">private</span> <span class="kt">long</span> <span class="n">expires_in</span><span class="o">;</span>
-  <span class="kd">private</span> <span class="nc">String</span> <span class="n">scope</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div>    </div>
-  </li>
-  <li>KakaoProfile.java
-    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Getter</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">access_token</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">token_type</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">refresh_token</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">long</span> <span class="n">expires_in</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">scope</span><span class="o">;</span>
+<span class="o">}</span></code></pre></figure>
+
+<ul>
+  <li>KakaoProfile.java</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Getter</span>
 <span class="nd">@Setter</span>
 <span class="nd">@ToString</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">KakaoProfile</span> <span class="o">{</span>
-  <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
-  <span class="kd">private</span> <span class="nc">Properties</span> <span class="n">properties</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Properties</span> <span class="n">properties</span><span class="o">;</span>
 
-  <span class="nd">@Getter</span>
-  <span class="nd">@Setter</span>
-  <span class="nd">@ToString</span>
-  <span class="kd">private</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">Properties</span> <span class="o">{</span>
-      <span class="kd">private</span> <span class="nc">String</span> <span class="n">nickname</span><span class="o">;</span>
-      <span class="kd">private</span> <span class="nc">String</span> <span class="n">thumbnail_image</span><span class="o">;</span>
-      <span class="kd">private</span> <span class="nc">String</span> <span class="n">profile_image</span><span class="o">;</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div>    </div>
-  </li>
-</ul>
+    <span class="nd">@Getter</span>
+    <span class="nd">@Setter</span>
+    <span class="nd">@ToString</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">Properties</span> <span class="o">{</span>
+        <span class="kd">private</span> <span class="nc">String</span> <span class="n">nickname</span><span class="o">;</span>
+        <span class="kd">private</span> <span class="nc">String</span> <span class="n">thumbnail_image</span><span class="o">;</span>
+        <span class="kd">private</span> <span class="nc">String</span> <span class="n">profile_image</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
 
 <p><strong>Kakao 연동 Service 생성</strong></p>
 <ul>
@@ -444,8 +443,9 @@ Appl...
           ## Spring 설정 관련
 ### @Configuration
 * 해당 Class 를 Bean 구성 Class 로 Spring IOC Container 에 지정
+
 ### @Bean
-* 개발자가 ...
+* 개발자가...
         
       </p>
     </div>

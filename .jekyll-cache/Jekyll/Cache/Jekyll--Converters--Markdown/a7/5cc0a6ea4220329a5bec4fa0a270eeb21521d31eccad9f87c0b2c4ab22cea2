@@ -1,4 +1,4 @@
-I"U%<h2 id="oauth-20">OAuth 2.0</h2>
+I"�$<h2 id="oauth-20">OAuth 2.0</h2>
 <p>타사의 API 사용하고 싶을 때 권한 획득 및 인증을 위한 Open Standard Protocol</p>
 
 <h2 id="oauth-구조">OAuth 구조</h2>
@@ -11,7 +11,7 @@
 </ul>
 
 <h3 id="oauth-flow">OAuth Flow</h3>
-<p><img src="/assets/25238637583547EC0A.png" alt="25238637583547EC0A" />
+<p><img src="/images/25238637583547EC0A.png" alt="25238637583547EC0A" />
 <br />
 (A) Client 가 Social Login 요청<br />
 (B) Resource Owner 는 Social Login 할 수 있게 화면 이동<br />
@@ -40,24 +40,23 @@
 
 <p><strong>RestTemplate Bean 등록</strong></p>
 <ul>
-  <li>Main Application Class 에 RestTemplate Class Bean 등록
-    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Bean</span>
-<span class="kd">public</span> <span class="nc">RestTemplate</span> <span class="nf">getRestTemplate</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="k">new</span> <span class="nc">RestTemplate</span><span class="o">();</span> <span class="o">}</span>
-</code></pre></div>    </div>
-  </li>
+  <li>Main Application Class 에 RestTemplate Class Bean 등록</li>
 </ul>
 
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Bean</span>
+<span class="kd">public</span> <span class="nc">RestTemplate</span> <span class="nf">getRestTemplate</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="k">new</span> <span class="nc">RestTemplate</span><span class="o">();</span> <span class="o">}</span></code></pre></figure>
+
 <p><strong>GSON dependency 추가</strong></p>
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">implementation</span> <span class="s1">'com.google.code.gson:gson'</span>
-</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">implementation</span> <span class="s1">'com.google.code.gson:gson'</span></code></pre></figure>
 
 <p><strong>Social Login 관련 설정 추가</strong></p>
-<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">spring.social.kakao.client_id</span><span class="p">=</span><span class="s">[앱생성시 받은 REST API Key]</span>
+
+<figure class="highlight"><pre><code class="language-properties" data-lang="properties"><span class="py">spring.social.kakao.client_id</span><span class="p">=</span><span class="s">[앱생성시 받은 REST API Key]</span>
 <span class="py">spring.social.kakao.redirect</span><span class="p">=</span><span class="s">/social/login/kakao</span>
 <span class="py">spring.social.kakao.url.login</span><span class="p">=</span><span class="s">https://kauth.kakao.com/oauth/authorize</span>
 <span class="py">spring.social.kakao.url.token</span><span class="p">=</span><span class="s">https://kauth.kakao.com/oauth/token</span>
-<span class="py">spring.social.kakao.url.profile</span><span class="p">=</span><span class="s">https://kapi.kakao.com/v2/user/me</span>
-</code></pre></div></div>
+<span class="py">spring.social.kakao.url.profile</span><span class="p">=</span><span class="s">https://kapi.kakao.com/v2/user/me</span></code></pre></figure>
 
 <p><strong>Social Login 처리 Controller 추가</strong></p>
 <ul>
@@ -67,17 +66,17 @@
 
 <p><strong>로그인 화면</strong></p>
 <ul>
-  <li>/resource/templates/social/login.ftl
-    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;button</span> <span class="na">onclick=</span><span class="s">"popupKakaoLogin()"</span><span class="nt">&gt;</span>KakaoLogin<span class="nt">&lt;/button&gt;</span>
-<span class="nt">&lt;script&gt;</span>
-  <span class="kd">function</span> <span class="nx">popupKakaoLogin</span><span class="p">()</span> <span class="p">{</span>
-      <span class="nb">window</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="dl">'</span><span class="s1">${loginUrl}</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">popupKakaoLogin</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">width=700,height=500,scrollbars=0,toolbar=0,menubar=no</span><span class="dl">'</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="nt">&lt;/script&gt;</span>
-</code></pre></div>    </div>
-    <p><em>(만약 View Mapping 안된다면, Freemarker Bean 등록!)</em></p>
-  </li>
+  <li>/resource/templates/social/login.ftl</li>
 </ul>
+
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;button</span> <span class="na">onclick=</span><span class="s">"popupKakaoLogin()"</span><span class="nt">&gt;</span>KakaoLogin<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+    <span class="kd">function</span> <span class="nx">popupKakaoLogin</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nb">window</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="dl">'</span><span class="s1">${loginUrl}</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">popupKakaoLogin</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">width=700,height=500,scrollbars=0,toolbar=0,menubar=no</span><span class="dl">'</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="nt">&lt;/script&gt;</span></code></pre></figure>
+
+<p><em>(만약 View Mapping 안된다면, Freemarker Bean 등록!)</em></p>
 
 <p><strong>User Entity 수정</strong></p>
 <ul>

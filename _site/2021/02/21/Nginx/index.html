@@ -240,10 +240,10 @@ Client 가 Server 로 요청한 경우, Proxy 서버 <strong><em>(NGINX)</em></s
 
 <h3 id="1-nginx-설치-및-spring-boot-연동">1. Nginx 설치 및 Spring Boot 연동</h3>
 <h4 id="ec2-에-nginx-설치">EC2 에 Nginx 설치</h4>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>yum <span class="nb">install </span>nginx
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">sudo </span>yum <span class="nb">install </span>nginx
 <span class="c"># nginx 실행</span>
-<span class="nv">$ </span><span class="nb">sudo </span>service nginx start
-</code></pre></div></div>
+<span class="nv">$ </span><span class="nb">sudo </span>service nginx start</code></pre></figure>
 
 <h4 id="보안-그룹-추가">보안 그룹 추가</h4>
 <ul>
@@ -253,7 +253,8 @@ Client 가 Server 로 요청한 경우, Proxy 서버 <strong><em>(NGINX)</em></s
 
 <h4 id="spring-boot--nginx">Spring Boot + Nginx</h4>
 <p><strong><code class="language-plaintext highlighter-rouge">/etc/nginx/nginx.conf</code> 수정</strong></p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">...
 server <span class="o">{</span>
   ...
   location <span class="se">\ </span><span class="o">{</span>
@@ -266,12 +267,11 @@ server <span class="o">{</span>
   <span class="o">}</span>
   ...
 <span class="o">}</span>
-...
-</code></pre></div></div>
+...</code></pre></figure>
 
 <p><strong>Nginx 재시작</strong></p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>service nginx restart
-</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">sudo </span>service nginx restart</code></pre></figure>
 
 <p><strong>Spring Boot 연동 확인</strong></p>
 <ul>
@@ -280,76 +280,73 @@ server <span class="o">{</span>
 
 <h3 id="2-profile-api-추가">2. Profile API 추가</h3>
 <ul>
-  <li>실행중인 profile 조회하기 위한 API
-    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RequiredArgsConstructor</span>
+  <li>실행중인 profile 조회하기 위한 API</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@RequiredArgsConstructor</span>
 <span class="nd">@RestController</span>
 <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">"/profile"</span><span class="o">)</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProfileController</span> <span class="o">{</span>
 
-  <span class="kd">private</span> <span class="kd">final</span> <span class="nc">Environment</span> <span class="n">environment</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">Environment</span> <span class="n">environment</span><span class="o">;</span>
 
-  <span class="nd">@GetMapping</span>
-  <span class="kd">public</span> <span class="nc">String</span> <span class="nf">profile</span><span class="o">()</span> <span class="o">{</span>
-      <span class="c1">// .getActiveProfiles() : 현재 실행 중인 Active Profile 목록 조회</span>
-      <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">profiles</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">environment</span><span class="o">.</span><span class="na">getActiveProfiles</span><span class="o">());</span>
-      <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">realProfiles</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"real"</span><span class="o">,</span> <span class="s">"real1"</span><span class="o">,</span> <span class="s">"real2"</span><span class="o">);</span>
+    <span class="nd">@GetMapping</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">profile</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// .getActiveProfiles() : 현재 실행 중인 Active Profile 목록 조회</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">profiles</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">environment</span><span class="o">.</span><span class="na">getActiveProfiles</span><span class="o">());</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">realProfiles</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">"real"</span><span class="o">,</span> <span class="s">"real1"</span><span class="o">,</span> <span class="s">"real2"</span><span class="o">);</span>
 
-      <span class="nc">String</span> <span class="n">defaultProfile</span> <span class="o">=</span> <span class="n">profiles</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()</span> <span class="o">?</span> <span class="s">"default"</span> <span class="o">:</span> <span class="n">profiles</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+        <span class="nc">String</span> <span class="n">defaultProfile</span> <span class="o">=</span> <span class="n">profiles</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()</span> <span class="o">?</span> <span class="s">"default"</span> <span class="o">:</span> <span class="n">profiles</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
 
-      <span class="k">return</span> <span class="n">profiles</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
-              <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="nl">realProfiles:</span><span class="o">:</span><span class="n">contains</span><span class="o">)</span>
-              <span class="o">.</span><span class="na">findAny</span><span class="o">()</span>
-              <span class="o">.</span><span class="na">orElse</span><span class="o">(</span><span class="n">defaultProfile</span><span class="o">);</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div>    </div>
-  </li>
-</ul>
+        <span class="k">return</span> <span class="n">profiles</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="nl">realProfiles:</span><span class="o">:</span><span class="n">contains</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">findAny</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">orElse</span><span class="o">(</span><span class="n">defaultProfile</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
 
 <h4 id="securityconfigurationjava-수정">SecurityConfiguration.java 수정</h4>
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">/profile</code> API security permission 승인 처리
-    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">...</span>
-<span class="o">.</span><span class="na">antMatchers</span><span class="o">(</span><span class="s">"/*/sign/**"</span><span class="o">,</span> <span class="s">"/*/sign/*/**"</span><span class="o">,</span> <span class="s">"/social/**"</span><span class="o">,</span> <span class="s">"/profile"</span><span class="o">).</span><span class="na">permitAll</span><span class="o">()</span>
-<span class="o">...</span>
-</code></pre></div>    </div>
-  </li>
+  <li><code class="language-plaintext highlighter-rouge">/profile</code> API security permission 승인 처리</li>
 </ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="o">...</span>
+<span class="o">.</span><span class="na">antMatchers</span><span class="o">(</span><span class="s">"/*/sign/**"</span><span class="o">,</span> <span class="s">"/*/sign/*/**"</span><span class="o">,</span> <span class="s">"/social/**"</span><span class="o">,</span> <span class="s">"/profile"</span><span class="o">).</span><span class="na">permitAll</span><span class="o">()</span>
+<span class="o">...</span></code></pre></figure>
 
 <h3 id="3-profile-파일-추가-생성">3. Profile 파일 추가 생성</h3>
 <ul>
-  <li>real1, real2 각각 profile yml 생성
-```yml
-    <h1 id="application-real1yml-application-real2yml">application-real1.yml, application-real2.yml</h1>
-    <p>server:
-port: 8081        # real2 인 경우, 8082</p>
-  </li>
+  <li>real1, real2 각각 profile yml 생성</li>
 </ul>
 
-<p>spring:
-  profiles: real1   # real2 인 경우, real2
-  url:
-    base: [Application Domain]</p>
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="c1"># application-real1.yml, application-real2.yml</span>
+<span class="na">server</span><span class="pi">:</span>
+  <span class="na">port</span><span class="pi">:</span> <span class="m">8081</span>        <span class="c1"># real2 인 경우, 8082</span>
 
-<p>logging:
-  level:
-    root: warn
-    com.demo.restapi: info
-  file:
-    path: /home/ec2-user/logs/rest-api
-    max-history: 7</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-### 4. Nginx 설정 수정
-#### `/etc/nginx/conf.d/service-url.inc` 생성
-```bash
-$ sudo vi /etc/nginx/conf.d/service-url.inc
+<span class="na">spring</span><span class="pi">:</span>
+  <span class="na">profiles</span><span class="pi">:</span> <span class="s">real1</span>   <span class="c1"># real2 인 경우, real2</span>
+  <span class="na">url</span><span class="pi">:</span>
+    <span class="na">base</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">Application Domain</span><span class="pi">]</span>
 
-# service=url.inc
-set $service_url http://127.0.0.1:8080;
-</code></pre></div></div>
+<span class="na">logging</span><span class="pi">:</span>
+  <span class="na">level</span><span class="pi">:</span>
+    <span class="na">root</span><span class="pi">:</span> <span class="s">warn</span>
+    <span class="s">com.demo.restapi</span><span class="pi">:</span> <span class="s">info</span>
+  <span class="na">file</span><span class="pi">:</span>
+    <span class="na">path</span><span class="pi">:</span> <span class="s">/home/ec2-user/logs/rest-api</span>
+    <span class="na">max-history</span><span class="pi">:</span> <span class="s">7</span></code></pre></figure>
+
+<h3 id="4-nginx-설정-수정">4. Nginx 설정 수정</h3>
+<h4 id="etcnginxconfdservice-urlinc-생성"><code class="language-plaintext highlighter-rouge">/etc/nginx/conf.d/service-url.inc</code> 생성</h4>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">sudo </span>vi /etc/nginx/conf.d/service-url.inc
+
+<span class="c"># service=url.inc</span>
+<span class="nb">set</span> <span class="nv">$service_url</span> http://127.0.0.1:8080<span class="p">;</span></code></pre></figure>
 
 <h4 id="etcnginxnginxconf-수정"><code class="language-plaintext highlighter-rouge">/etc/nginx/nginx.conf</code> 수정</h4>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">...
 server <span class="o">{</span>
   ...
   location <span class="se">\ </span><span class="o">{</span>
@@ -364,12 +361,11 @@ server <span class="o">{</span>
   <span class="o">}</span>
   ...
 <span class="o">}</span>
-...
-</code></pre></div></div>
+...</code></pre></figure>
 
 <p><strong>Nginx 재시작</strong></p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>service nginx restart
-</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">sudo </span>service nginx restart</code></pre></figure>
 
 <h3 id="5-deploy-script-추가">5. Deploy Script 추가</h3>
 <h4 id="추가할-scrpit-목록">추가할 Scrpit 목록</h4>
@@ -382,7 +378,8 @@ server <span class="o">{</span>
 | <code class="language-plaintext highlighter-rouge">switch.sh</code> | Nginx 의 Spring Boot 를 최신 profile 버전으로 변경 |</p>
 
 <h4 id="appspecyml-수정"><code class="language-plaintext highlighter-rouge">appspec.yml</code> 수정</h4>
-<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">hooks</span><span class="pi">:</span>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">hooks</span><span class="pi">:</span>
   <span class="c1"># Nginx 와 연동된 Spring Boot 프로젝트 종료</span>
   <span class="na">AfterInstall</span><span class="pi">:</span>
     <span class="pi">-</span> <span class="na">location</span><span class="pi">:</span> <span class="s">stop.sh</span>
@@ -397,11 +394,11 @@ server <span class="o">{</span>
   <span class="na">ValidateService</span><span class="pi">:</span>
     <span class="pi">-</span> <span class="na">location</span><span class="pi">:</span> <span class="s">health.sh</span>
       <span class="na">timeout</span><span class="pi">:</span> <span class="m">60</span>
-      <span class="na">runas</span><span class="pi">:</span> <span class="s">ec2-user</span>
-</code></pre></div></div>
+      <span class="na">runas</span><span class="pi">:</span> <span class="s">ec2-user</span></code></pre></figure>
 
 <h4 id="profilesh"><code class="language-plaintext highlighter-rouge">profile.sh</code></h4>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/env bash</span>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#!/usr/bin/env bash</span>
 
 <span class="c"># 쉬고 있는 profile 찾기</span>
 <span class="k">function </span>find_idle_profile<span class="o">()</span> <span class="o">{</span>
@@ -437,11 +434,11 @@ server <span class="o">{</span>
   <span class="k">else
     </span><span class="nb">echo</span> <span class="s2">"8082"</span>
   <span class="k">fi</span>
-<span class="o">}</span>
-</code></pre></div></div>
+<span class="o">}</span></code></pre></figure>
 
 <h4 id="stopsh"><code class="language-plaintext highlighter-rouge">stop.sh</code></h4>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/env bash</span>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#!/usr/bin/env bash</span>
 
 <span class="nv">ABSPATH</span><span class="o">=</span><span class="si">$(</span><span class="nb">readlink</span> <span class="nt">-f</span> <span class="nv">$0</span><span class="si">)</span>
 <span class="nv">ABSDIR</span><span class="o">=</span><span class="si">$(</span><span class="nb">dirname</span> <span class="nv">$ABSPATH</span><span class="si">)</span>
@@ -459,11 +456,11 @@ server <span class="o">{</span>
   </span><span class="nb">echo</span> <span class="s2">"&gt; kill -15 </span><span class="nv">$IDLE_PID</span><span class="s2">"</span>
   <span class="nb">kill</span> <span class="nt">-15</span> <span class="k">${</span><span class="nv">IDLE_PID</span><span class="k">}</span>
   <span class="nb">sleep </span>5
-<span class="k">fi</span>
-</code></pre></div></div>
+<span class="k">fi</span></code></pre></figure>
 
 <h4 id="startsh"><code class="language-plaintext highlighter-rouge">start.sh</code></h4>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/env bash</span>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#!/usr/bin/env bash</span>
 
 <span class="nv">ABSPATH</span><span class="o">=</span><span class="si">$(</span><span class="nb">readlink</span> <span class="nt">-f</span> <span class="nv">$0</span><span class="si">)</span>
 <span class="nv">ABSDIR</span><span class="o">=</span><span class="si">$(</span><span class="nb">dirname</span> <span class="nv">$ABSPATH</span><span class="si">)</span>
@@ -495,11 +492,11 @@ server <span class="o">{</span>
     <span class="nt">-Dspring</span>.config.location<span class="o">=</span>classpath:/application.yml,classpath:/application-<span class="nv">$IDLE_PROFILE</span>.yml,/home/ec2-user/apps/config/application-db.yml <span class="se">\</span>
     <span class="nt">-Dspring</span>.profiles.active<span class="o">=</span><span class="nv">$IDLE_PROFILE</span> <span class="se">\</span>
     <span class="nt">-Dfile</span>.encoding<span class="o">=</span>UTF-8 <span class="se">\</span>
-    <span class="nv">$JAR_NAME</span> <span class="o">&gt;</span> <span class="nv">$REPOSITORY</span>/<span class="nv">$PROJECT_NAME</span>/nohup.out 2&gt;&amp;1 &amp;
-</code></pre></div></div>
+    <span class="nv">$JAR_NAME</span> <span class="o">&gt;</span> <span class="nv">$REPOSITORY</span>/<span class="nv">$PROJECT_NAME</span>/nohup.out 2&gt;&amp;1 &amp;</code></pre></figure>
 
 <h4 id="healthsh"><code class="language-plaintext highlighter-rouge">health.sh</code></h4>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/env bash</span>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#!/usr/bin/env bash</span>
 
 <span class="nv">ABSPATH</span><span class="o">=</span><span class="si">$(</span><span class="nb">readlink</span> <span class="nt">-f</span> <span class="nv">$0</span><span class="si">)</span>
 <span class="nv">ABSDIR</span><span class="o">=</span><span class="si">$(</span><span class="nb">dirname</span> <span class="nv">$ABSPATH</span><span class="si">)</span>
@@ -538,11 +535,11 @@ server <span class="o">{</span>
 
   </span><span class="nb">echo</span> <span class="s2">"&gt; Health check 연결 실패. 재시도..."</span>
   <span class="nb">sleep </span>10
-<span class="k">done</span>
-</code></pre></div></div>
+<span class="k">done</span></code></pre></figure>
 
 <h4 id="switchsh"><code class="language-plaintext highlighter-rouge">switch.sh</code></h4>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/env bash</span>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#!/usr/bin/env bash</span>
 
 <span class="nv">ABSPATH</span><span class="o">=</span><span class="si">$(</span><span class="nb">readlink</span> <span class="nt">-f</span> <span class="nv">$0</span><span class="si">)</span>
 <span class="nv">ABSDIR</span><span class="o">=</span><span class="si">$(</span><span class="nb">dirname</span> <span class="nv">$ABSPATH</span><span class="si">)</span>
@@ -561,22 +558,21 @@ server <span class="o">{</span>
 
   <span class="c"># Nginx 설정 reload(끊김 없이 다시 불러옴)</span>
   <span class="nb">sudo </span>service nginx reload
-<span class="o">}</span>
-</code></pre></div></div>
+<span class="o">}</span></code></pre></figure>
 
 <h3 id="무중단-배포-확인">무중단 배포 확인</h3>
 <h4 id="buildgradle-수정"><code class="language-plaintext highlighter-rouge">build.gradle</code> 수정</h4>
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">version</span> <span class="o">=</span> <span class="s1">'0.0.1-SNAPSHOT-'</span> <span class="o">+</span> <span class="k">new</span> <span class="n">Date</span><span class="o">().</span><span class="na">format</span><span class="o">(</span><span class="s2">"yyyyMMddHHmmss"</span><span class="o">)</span>
-</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">version</span> <span class="o">=</span> <span class="s1">'0.0.1-SNAPSHOT-'</span> <span class="o">+</span> <span class="k">new</span> <span class="n">Date</span><span class="o">().</span><span class="na">format</span><span class="o">(</span><span class="s2">"yyyyMMddHHmmss"</span><span class="o">)</span></code></pre></figure>
 
 <h4 id="log-확인">Log 확인</h4>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># CodeDeploy Log</span>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># CodeDeploy Log</span>
 <span class="nv">$ </span>vi /opt/codedeploy-agent/deploayment-root/deployment-logs
 <span class="c"># Spring Boot log</span>
 <span class="nv">$ </span>vi nohup.out
 <span class="c"># Java application 실행 여부 확인</span>
-<span class="nv">$ </span>ps <span class="nt">-ef</span> | <span class="nb">grep </span>java
-</code></pre></div></div>
+<span class="nv">$ </span>ps <span class="nt">-ef</span> | <span class="nb">grep </span>java</code></pre></figure>
 
 <hr />
 

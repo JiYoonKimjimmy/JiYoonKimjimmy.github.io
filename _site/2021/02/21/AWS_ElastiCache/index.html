@@ -199,6 +199,7 @@
 
 <h3 id="aws-elasticache-for-redis-cluster-생성">AWS ElastiCache for Redis Cluster 생성</h3>
 <p>자세한 방법은 <a href="https://docs.aws.amazon.com/ko_kr/AmazonElastiCache/latest/red-ug/GettingStarted.CreateCluster.html">AWS ElastiCache 가이드 참고</a>.</p>
+
 <h4 id="요약">요약</h4>
 <ol>
   <li>VPC Subnet Group 생성</li>
@@ -208,18 +209,20 @@
 
 <h3 id="spring-boot--redis-연동-설정">Spring Boot + Redis 연동 설정</h3>
 <h4 id="redis-관련-의존성-추가">Redis 관련 의존성 추가</h4>
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">implementation</span> <span class="s1">'org.springframework.boot:spring-boot-starter-data-redis'</span>
-<span class="n">compile</span> <span class="nl">group:</span> <span class="s1">'redis.clients'</span><span class="o">,</span> <span class="nl">name:</span> <span class="s1">'jedis'</span><span class="o">,</span> <span class="nl">version:</span> <span class="s1">'3.3.0'</span>
-</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">implementation</span> <span class="s1">'org.springframework.boot:spring-boot-starter-data-redis'</span>
+<span class="n">compile</span> <span class="nl">group:</span> <span class="s1">'redis.clients'</span><span class="o">,</span> <span class="nl">name:</span> <span class="s1">'jedis'</span><span class="o">,</span> <span class="nl">version:</span> <span class="s1">'3.3.0'</span></code></pre></figure>
+
 <h4 id="applicationyml-수정">application.yml 수정</h4>
-<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">spring</span><span class="pi">:</span>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">spring</span><span class="pi">:</span>
   <span class="na">redis</span><span class="pi">:</span>
     <span class="na">host</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">AWS ElastiCache End-Point Host url</span><span class="pi">]</span>
-    <span class="na">port</span><span class="pi">:</span> <span class="m">6379</span>
-</code></pre></div></div>
+    <span class="na">port</span><span class="pi">:</span> <span class="s">6379</span></code></pre></figure>
 
 <h4 id="redis-config-추가">Redis Config 추가</h4>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RequiredArgsConstructor</span>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@RequiredArgsConstructor</span>
 <span class="nd">@EnableRedisRepositories</span>
 <span class="nd">@Configuration</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">RedisConfiguration</span> <span class="o">{</span>
@@ -274,40 +277,61 @@
 
     <span class="o">}</span>
 
-<span class="o">}</span>
-</code></pre></div></div>
+<span class="o">}</span></code></pre></figure>
 
 <h3 id="entity-redis-설정">Entity Redis 설정</h3>
 <h4 id="caching-객체-serializable">Caching 객체 Serializable</h4>
 <h5 id="caching-객체-serializable-하는-이유">Caching 객체 Serializable 하는 이유</h5>
 <ul>
   <li><code class="language-plaintext highlighter-rouge">Redis</code>에 객체를 저장하면 내부적으로 직렬화하여 저장</li>
-  <li><code class="language-plaintext highlighter-rouge">Entity</code>에 <code class="language-plaintext highlighter-rouge">Serializable</code>을 선언하지 않으면 오류 발생 가능
-    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Board</span> <span class="kd">implements</span> <span class="nc">Serializable</span> <span class="o">{</span>
-<span class="o">...</span>
-<span class="o">}</span>
-</code></pre></div>    </div>
-    <h4 id="lazy-loading-false">Lazy Loading False</h4>
-    <h5 id="lazy-loading-false-처리-하는-이유">Lazy Loading false 처리 하는 이유</h5>
-  </li>
-  <li>Entity 객체내에서 연관관계 Mapping에 의해 Lazy(지연) Loading 되는 경우 오류 발생 가능
-    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Proxy</span><span class="o">(</span><span class="n">lazy</span> <span class="o">=</span> <span class="kc">false</span><span class="o">)</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="kd">implements</span> <span class="nc">Serializable</span> <span class="o">{</span>
-<span class="o">...</span>
-<span class="o">}</span>
-</code></pre></div>    </div>
-  </li>
+  <li><code class="language-plaintext highlighter-rouge">Entity</code>에 <code class="language-plaintext highlighter-rouge">Serializable</code>을 선언하지 않으면 오류 발생 가능</li>
 </ul>
 
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Board</span> <span class="kd">implements</span> <span class="nc">Serializable</span> <span class="o">{</span>
+  <span class="o">...</span>
+<span class="o">}</span></code></pre></figure>
+
+<h4 id="lazy-loading-false">Lazy Loading False</h4>
+<h5 id="lazy-loading-false-처리-하는-이유">Lazy Loading false 처리 하는 이유</h5>
+<ul>
+  <li>Entity 객체내에서 연관관계 Mapping에 의해 Lazy(지연) Loading 되는 경우 오류 발생 가능</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Proxy</span><span class="o">(</span><span class="n">lazy</span> <span class="o">=</span> <span class="kc">false</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="kd">implements</span> <span class="nc">Serializable</span> <span class="o">{</span>
+  <span class="o">...</span>
+<span class="o">}</span></code></pre></figure>
+
 <h3 id="crud-methods-caching-처리">CRUD Methods Caching 처리</h3>
-<p><strong>Caching 처리 관련 Annotation</strong>
-| Annotation | 설명 |
-| :—: | — |
-| <code class="language-plaintext highlighter-rouge">@Cacheable</code> | <code class="language-plaintext highlighter-rouge">Cache</code>가 존재하면 요청된 <code class="language-plaintext highlighter-rouge">Method</code>를 실행하지 않고 <code class="language-plaintext highlighter-rouge">Cache</code>데이터를 반환 처리 |
-| <code class="language-plaintext highlighter-rouge">@CachePut</code> | <code class="language-plaintext highlighter-rouge">Cache</code>에 데이터를 넣거나 수정시 사용. <code class="language-plaintext highlighter-rouge">Method</code>의 반환값이 <code class="language-plaintext highlighter-rouge">Cache</code>에 없으면 저장하고, 있는 경우엔 갱신 처리 |
-| <code class="language-plaintext highlighter-rouge">@CacheEvict</code> | <code class="language-plaintext highlighter-rouge">Cache</code> 삭제 |
-| <code class="language-plaintext highlighter-rouge">@Caching</code> | 여러개의 <code class="language-plaintext highlighter-rouge">Cache Annotation</code>을 실행되어야 할 때 사용 |</p>
+<p><strong>Caching 처리 관련 Annotation</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Annotation</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">@Cacheable</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Cache</code>가 존재하면 요청된 <code class="language-plaintext highlighter-rouge">Method</code>를 실행하지 않고 <code class="language-plaintext highlighter-rouge">Cache</code>데이터를 반환 처리</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">@CachePut</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Cache</code>에 데이터를 넣거나 수정시 사용. <code class="language-plaintext highlighter-rouge">Method</code>의 반환값이 <code class="language-plaintext highlighter-rouge">Cache</code>에 없으면 저장하고, 있는 경우엔 갱신 처리</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">@CacheEvict</code></td>
+      <td><code class="language-plaintext highlighter-rouge">Cache</code> 삭제</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">@Caching</code></td>
+      <td>여러개의 <code class="language-plaintext highlighter-rouge">Cache Annotation</code>을 실행되어야 할 때 사용</td>
+    </tr>
+  </tbody>
+</table>
 
 <h5 id="annotation-옵션-설명">Annotation 옵션 설명</h5>
 <ul>
@@ -330,19 +354,19 @@
 
 <h3 id="custom-key-generator">Custom Key Generator</h3>
 <h4 id="customkeygeneratorjava">CustomKeyGenerator.java</h4>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CustomKeyGenerator</span> <span class="o">{</span>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CustomKeyGenerator</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Object</span> <span class="nf">create</span><span class="o">(</span><span class="nc">Object</span> <span class="n">o1</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">return</span> <span class="s">"FRONT:"</span> <span class="o">+</span> <span class="n">o1</span><span class="o">;</span>
     <span class="o">}</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Object</span> <span class="nf">create</span><span class="o">(</span><span class="nc">Object</span> <span class="n">o1</span><span class="o">,</span> <span class="nc">Object</span> <span class="n">o2</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">return</span> <span class="s">"FRONT:"</span> <span class="o">+</span> <span class="n">o1</span> <span class="o">+</span> <span class="s">":"</span> <span class="o">+</span> <span class="n">o2</span><span class="o">;</span>
     <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
+<span class="o">}</span></code></pre></figure>
 
 <h4 id="customkeygenerator-이용한-caching">CustomKeyGenerator 이용한 Caching</h4>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Cacheable</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="nc">CacheKey</span><span class="o">.</span><span class="na">BOARD</span><span class="o">,</span> <span class="n">key</span> <span class="o">=</span> <span class="s">"T(com.demo.restapi.config.redis.CustomKeyGenerator).create(#id)"</span><span class="o">,</span> <span class="n">unless</span> <span class="o">=</span> <span class="s">"#result == null"</span><span class="o">)</span>
-</code></pre></div></div>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Cacheable</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="nc">CacheKey</span><span class="o">.</span><span class="na">BOARD</span><span class="o">,</span> <span class="n">key</span> <span class="o">=</span> <span class="s">"T(com.demo.restapi.config.redis.CustomKeyGenerator).create(#id)"</span><span class="o">,</span> <span class="n">unless</span> <span class="o">=</span> <span class="s">"#result == null"</span><span class="o">)</span></code></pre></figure>
 
 <hr />
 
@@ -399,8 +423,9 @@
       <p class="prev__excerpt">
         
           Dependency 추가
+
 testImplementation 'org.springframework.security:spring-security-test'
-testImplementation 'or...
+testImplementation 'o...
         
       </p>
     </div>

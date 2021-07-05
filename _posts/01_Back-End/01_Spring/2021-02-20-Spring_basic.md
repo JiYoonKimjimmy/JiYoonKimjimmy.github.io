@@ -34,16 +34,16 @@ tags  : back-end spring
 ### 의존성 주입받는 방법
 #### 1. @Autowired or @Inject
 * 생성자 & 필드 & Setter 에 **@Autowired** 를 추가하면 Bean 의존성 주입 가능
-```java
+{% highlight java %}
 @RestController
 public class ApiController {
   @Autowired
   private final ApiService apiService;
 }
-```
+{% endhighlight %}
 
 #### 2. 생성자의 인자값으로 Bean 등록된 Class 일 경우 의존성 주입 가능
-```java
+{% highlight java %}
 @RestController
 public class ApiController {
   private final ApiService apiService;
@@ -52,7 +52,7 @@ public class ApiController {
     this.apiService = apiService;
   }
 }
-```
+{% endhighlight %}
 
 ---
 
@@ -65,16 +65,16 @@ public class ApiController {
 
 #### 예제
 * LogExecutionTime : Annotation 역할
-```java
+{% highlight java %}
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface LogExecutionTime {
   // Annotation 역할
 }
-```
+{% endhighlight %}
 
 * LogAspect : 실제 Annotation 구현체
-```java
+{% highlight java %}
 @Component
 @Aspect
 public class LogAspect {
@@ -96,7 +96,7 @@ public class LogAspect {
         return proceed;
     }
 }
-```
+{% endhighlight %}
 
 ***! 필요한 Method 위에 @LogExecutionTime 추가하면 Log 확인 가능 !***
 
