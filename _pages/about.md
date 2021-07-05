@@ -22,16 +22,33 @@ image: about.jpg
 * Spring Boot 기반의 API 서버 개발
 
 #### Projects
-##### 휴면 회원 정책 적용 프로젝트 <small>2021.01 ~ 2021.02</small>
-* 코나카드 전체 회원 1년 이상 미사용자 휴면 전환 정책 적용
-* 1일 1회 휴면 전환 실행 Batch 시스템 개발
-* 회원 가입, Login, JWT Token 갱신 등 휴면 회원 여부 확인 API 개발
-* 회원 본인 인증을 통한 휴면 해제 API 개발
+##### 부산 지역화폐 동백전 이관 프로젝트 <small>2021.02 ~ 2021.05</samll>
+* 부산 지역화폐 KT 동백전 사업 이관 프로젝트 수행
+* 회원 정보, 잔액 정보, 거래 내역 포함한 모든 KT 동백전 Database Migration
+* 신규 회원 가입 & KT 동백전 회원 정보 연동 처리
+* KT 동백전 지역 화폐 잔액 및 캐시백 정보 이관 처리
+* 하나/BC 체크 카드 정보 Migration
+* 체크 카드 BIN 정보 코나 선불 카드 연동 처리
 
-##### 회원 관리 API Component 관리 <small>2020.11 ~ 현재</small>
+##### 휴면 회원 정책 적용 프로젝트 <small>2021.01 ~ 2021.03</small>
+* 코나카드 전체 회원 1년 이상 미사용자 휴면 전환 정책 적용
+* 1일 1회 휴면 전환 예정 안내/전환 실행 Batch 시스템 개발
+* 회원 가입, Login, JWT Token 갱신 등 휴면 회원 여부 확인 API 개발
+* 회원 본인 인증 및 거래(카드 사용, 충전 등)를 통한 휴면 해제 API 개발
+* 휴면 전환/해제 History 관리
+
+##### 담당 Server Core Component 관리 <small>2020.11 ~ 현재</small>
+###### 회원 관리 Core Component
 * 코나카드 전체 시스템 회원 관리 API 신규 개발 및 유지 보수
 * Spring Boot 기반의 REST API 제공
 * JPA, Oracle DB 개발 및 관리
+
+###### 부산 동백전 지역화폐 이관 Core Component
+* 부산 KT 동백전 지역화폐 이관 관리 API 신규 개발 및 유지 보수
+* 동백전 지역화폐 회원 연동 및 잔액 이관 처리
+* Spring Boot 2.X 기반 REST API 제공
+* KT 동백전 원본 DB 보관 및 관리
+* 신규 DB 모델링 설계 및 유지 보수
 
 ---
 
