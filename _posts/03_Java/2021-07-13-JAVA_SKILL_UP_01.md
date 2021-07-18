@@ -2,7 +2,7 @@
 layout: post
 title : Java Skill UP 을 하자! step.1
 date  : 2021-02-28
-image : java_solid.jpg
+image : java_01.png
 tags  : java oop
 ---
 

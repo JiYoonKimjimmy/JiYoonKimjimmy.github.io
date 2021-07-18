@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "Java Skill UP 을 하자! step.1",
+      "category" : "",
+      "tags"     : "java and oop",
+      "url"      : "/2021/02/28/JAVA_SKILL_UP_01/",
+      "date"     : "28 Feb, 2021"
+    } ,
+  
+    {
       "title"    : "Java SOLID 원칙",
       "category" : "",
       "tags"     : "java and oop",
