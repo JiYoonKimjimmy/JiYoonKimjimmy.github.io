@@ -196,11 +196,13 @@
 
       <div class="post__content">
         <h2 id="java-skill-up--step1">Java Skill UP !! step.1</h2>
-<h4 id="단계">단계</h4>
+<p><code class="language-plaintext highlighter-rouge">Java</code> 를 개발하면서 최근에는 <code class="language-plaintext highlighter-rouge">Stream</code>, <code class="language-plaintext highlighter-rouge">Optional</code> 등 <code class="language-plaintext highlighter-rouge">Lambda</code> 표현식으로 개발하는 경우를 많이 볼 수 있다. <code class="language-plaintext highlighter-rouge">JavaScript</code> 를 개발하면서 어느정도 <code class="language-plaintext highlighter-rouge">Lambda</code> 를 사용한 개발 방식이 익숙하다고 생각 했지만, 다른 언어인 만큼 문법적인 정리가 필요하고, 과연 <code class="language-plaintext highlighter-rouge">Java</code> 에서는 어떻게 <code class="language-plaintext highlighter-rouge">Lambda</code> 표현식을 구현하였는지 알아볼 필요가 있다고 생각하였다.<br />
+최종 목표는 <code class="language-plaintext highlighter-rouge">Reactive Programming</code> 이란 무엇이고, 왜 <code class="language-plaintext highlighter-rouge">Spring Webflux</code> 가 나왔는지 살펴볼 예정이다.<br />
+먼저 아래와 같은 개념을 살펴보자.</p>
+
 <ul>
   <li>Functional Programming</li>
   <li>Lambda</li>
-  <li>Reactive Programming</li>
 </ul>
 
 <hr />
@@ -295,10 +297,59 @@
   <li>매개변수 없이 반환값만을 가지는 함수형 인터페이스</li>
 </ul>
 
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nc">Supplier</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">supplier</span> <span class="o">=</span> <span class="o">()</span> <span class="o">-&gt;</span> <span class="err">'</span><span class="nc">Hello</span> <span class="n">world</span><span class="err">'</span><span class="o">;</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nc">Supplier</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">supplier</span> <span class="o">=</span> <span class="o">()</span> <span class="o">-&gt;</span> <span class="s">"Hello world"</span><span class="o">;</span>
 <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">supplier</span><span class="o">.</span><span class="na">get</span><span class="o">());</span> <span class="c1">// out : Hello world</span></code></pre></figure>
 
 <h4 id="cunsumert"><code class="language-plaintext highlighter-rouge">Cunsumer&lt;T&gt;</code></h4>
+<ul>
+  <li>매개변수 <code class="language-plaintext highlighter-rouge">T</code> 객체를 받아 소비하는 함수형 인터페이스</li>
+  <li><code class="language-plaintext highlighter-rouge">accept()</code> 추상메소드를 가지고 있지만, 추가적으로 <code class="language-plaintext highlighter-rouge">andThen()</code> 함수를 가지고 있어서, <code class="language-plaintext highlighter-rouge">accept()</code> 처리 후에 추가적인 처리 가능</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nc">Consumer</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">consumer</span> <span class="o">=</span> <span class="n">s</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s</span> <span class="o">+</span> <span class="s">" World"</span><span class="o">);</span>
+<span class="n">consumer</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="s">"Hello"</span><span class="o">);</span> <span class="c1">// out : Hello World</span>
+
+<span class="n">consumer</span> <span class="o">=</span> <span class="n">s</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">" "</span><span class="o">)[</span><span class="mi">0</span><span class="o">]);</span>
+<span class="n">consumer</span>
+  <span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="s">"Hello World"</span><span class="o">)</span>          <span class="c1">// out : Hello</span>
+  <span class="o">.</span><span class="na">andThen</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>  <span class="c1">// out : Hello World</span></code></pre></figure>
+
+<h4 id="functiont-r"><code class="language-plaintext highlighter-rouge">Function&lt;T, R&gt;</code></h4>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">T</code> 객체로 매개변수받아 <code class="language-plaintext highlighter-rouge">R</code> 객체로 반환하는 함수형 인터페이스</li>
+  <li><code class="language-plaintext highlighter-rouge">apply()</code> 추상메소드에서 처리하고, <code class="language-plaintext highlighter-rouge">andThen()</code> 함수도 있지만, 첫번째 함수 실행 이전에 먼저 함수를 실행하여 처리해주는 <code class="language-plaintext highlighter-rouge">compose()</code> 함수를 포함</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nc">Function</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">function</span> <span class="o">=</span> <span class="n">s</span> <span class="o">-&gt;</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+<span class="n">function</span><span class="o">.</span><span class="na">apply</span><span class="o">(</span><span class="s">"Hello world"</span><span class="o">);</span>  <span class="c1">// out : 11</span></code></pre></figure>
+
+<h4 id="predicatet"><code class="language-plaintext highlighter-rouge">Predicate&lt;T&gt;</code></h4>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">T</code> 객체를 받아 처리후 <code class="language-plaintext highlighter-rouge">Boolean</code> 타입으로 반환 처리</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nc">Predicate</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">predicate</span> <span class="o">=</span> <span class="o">(</span><span class="n">str</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">str</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"Hello World"</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">predicate</span><span class="o">.</span><span class="na">test</span><span class="o">(</span><span class="s">"Hello World"</span><span class="o">));</span>  <span class="c1">// out : true</span></code></pre></figure>
+
+<h4 id="operatort"><code class="language-plaintext highlighter-rouge">Operator&lt;T&gt;</code></h4>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Function&lt;T, R&gt;</code> 인터페이스와 동일한 <code class="language-plaintext highlighter-rouge">apply()</code> 추상메소드를 처리하지만, 입력받은 인자와 동일한 타입을 반환</li>
+  <li><code class="language-plaintext highlighter-rouge">Function&lt;T, R&gt;</code> 인터페이스는 상속받고 있고, 다양한 형태의 <code class="language-plaintext highlighter-rouge">Operator&lt;T&gt;</code> 인터페이스를 제공</li>
+</ul>
+
+<h5 id="unaryoperatort"><code class="language-plaintext highlighter-rouge">UnaryOperator&lt;T&gt;</code></h5>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// ArrayList.replaceAll + UnaryOperator interface</span>
+<span class="nc">UnaryOperator</span> <span class="n">operator</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">*</span> <span class="mi">2</span><span class="o">;</span>
+<span class="nc">ArrayList</span> <span class="n">list</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
+<span class="n">list</span><span class="o">.</span><span class="na">replaceAll</span><span class="o">(</span><span class="n">operator</span><span class="o">);</span>  <span class="c1">// list : (1, 2) -&gt; (2, 4)</span></code></pre></figure>
+
+<h5 id="binaryoperatort-u-r"><code class="language-plaintext highlighter-rouge">BinaryOperator&lt;T, U, R&gt;</code></h5>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nc">BinaryOperator</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">operator</span> <span class="o">=</span> <span class="o">(</span><span class="n">first</span><span class="o">,</span> <span class="n">second</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">first</span> <span class="o">+</span> <span class="n">second</span><span class="o">;</span>
+<span class="nc">Stream</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">integerStream</span> <span class="o">=</span> <span class="nc">Stream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">);</span>
+<span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">reduce</span> <span class="o">=</span> <span class="n">integerStream</span><span class="o">.</span><span class="na">reduce</span><span class="o">(</span><span class="n">operator</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">reduce</span><span class="o">.</span><span class="na">get</span><span class="o">());</span>   <span class="c1">// out : 6</span></code></pre></figure>
 
 <hr />
 

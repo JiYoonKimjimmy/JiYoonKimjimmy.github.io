@@ -7,10 +7,12 @@ tags  : java oop
 ---
 
 ## Java Skill UP !! step.1
-#### 단계
+`Java` 를 개발하면서 최근에는 `Stream`, `Optional` 등 `Lambda` 표현식으로 개발하는 경우를 많이 볼 수 있다. `JavaScript` 를 개발하면서 어느정도 `Lambda` 를 사용한 개발 방식이 익숙하다고 생각 했지만, 다른 언어인 만큼 문법적인 정리가 필요하고, 과연 `Java` 에서는 어떻게 `Lambda` 표현식을 구현하였는지 알아볼 필요가 있다고 생각하였다.<br>
+최종 목표는 `Reactive Programming` 이란 무엇이고, 왜 `Spring Webflux` 가 나왔는지 살펴볼 예정이다.<br>
+먼저 아래와 같은 개념을 살펴보자.
+
 - Functional Programming
 - Lambda
-- Reactive Programming
 
 ---
 
@@ -96,13 +98,60 @@ public class Lambda {
 - 매개변수 없이 반환값만을 가지는 함수형 인터페이스
 
 {% highlight java %}
-Supplier<String> supplier = () -> 'Hello world';
+Supplier<String> supplier = () -> "Hello world";
 System.out.println(supplier.get()); // out : Hello world
 {% endhighlight %}
 
 #### `Cunsumer<T>`
+- 매개변수 `T` 객체를 받아 소비하는 함수형 인터페이스
+- `accept()` 추상메소드를 가지고 있지만, 추가적으로 `andThen()` 함수를 가지고 있어서, `accept()` 처리 후에 추가적인 처리 가능
 
+{% highlight java %}
+Consumer<String> consumer = s -> System.out.println(s + " World");
+consumer.accept("Hello"); // out : Hello World
 
+consumer = s -> System.out.println(s.split(" ")[0]);
+consumer
+  .accept("Hello World")          // out : Hello
+  .andThen(System.out::println);  // out : Hello World
+{% endhighlight %}
+
+#### `Function<T, R>`
+- `T` 객체로 매개변수받아 `R` 객체로 반환하는 함수형 인터페이스
+- `apply()` 추상메소드에서 처리하고, `andThen()` 함수도 있지만, 첫번째 함수 실행 이전에 먼저 함수를 실행하여 처리해주는 `compose()` 함수를 포함
+
+{% highlight java %}
+Function<String, Integer> function = s -> s.length();
+function.apply("Hello world");  // out : 11
+{% endhighlight %}
+
+#### `Predicate<T>`
+- `T` 객체를 받아 처리후 `Boolean` 타입으로 반환 처리
+
+{% highlight java %}
+Predicate<String> predicate = (str) -> str.equals("Hello World");
+System.out.println(predicate.test("Hello World"));  // out : true
+{% endhighlight %}
+
+#### `Operator<T>`
+- `Function<T, R>` 인터페이스와 동일한 `apply()` 추상메소드를 처리하지만, 입력받은 인자와 동일한 타입을 반환
+- `Function<T, R>` 인터페이스는 상속받고 있고, 다양한 형태의 `Operator<T>` 인터페이스를 제공
+
+##### `UnaryOperator<T>`
+{% highlight java %}
+// ArrayList.replaceAll + UnaryOperator interface
+UnaryOperator operator = i -> i * 2;
+ArrayList list = Arrays.asList(1, 2);
+list.replaceAll(operator);  // list : (1, 2) -> (2, 4)
+{% endhighlight %}
+
+##### `BinaryOperator<T, U, R>`
+{% highlight java %}
+BinaryOperator<Integer> operator = (first, second) -> first + second;
+Stream<Integer> integerStream = Stream.of(1, 2, 3);
+Optional<Integer> reduce = integerStream.reduce(operator);
+System.out.println(reduce.get());   // out : 6
+{% endhighlight %}
 
 ---
 
