@@ -14,51 +14,71 @@ image: about.jpg
 
 ---
 
-### Experience
+## Experience
 
-#### <strong>코나아이(Konai)</strong> <small>2020.11 ~ 현재</small>
-##### 기술연구소 Server Developer
-* 코나카드, 지역 화폐 등 서비스 개발/운영
-* Spring Boot 기반의 API 서버 개발
+### <strong>코나아이(Konai)</strong> <small>2020.11 ~ 현재</small>
+#### 기술연구소 Server Developer
+* 코나카드 서비스 개발/운영
+* 지자체 지역화폐 서비스 개발/운영
+* MSA 구조의 Core Server System 개발/운영
+* Spring Boot 기반 Rest API Core Sever 개발
+
 
 #### Projects
 ##### 부산 지역화폐 동백전 이관 프로젝트 <small>2021.02 ~ 2021.05</samll>
-* 부산 지역화폐 KT 동백전 사업 이관 프로젝트 수행
-* 회원 정보, 잔액 정보, 거래 내역 포함한 모든 KT 동백전 Database Migration
-* 신규 회원 가입 & KT 동백전 회원 정보 연동 처리
-* KT 동백전 지역 화폐 잔액 및 캐시백 정보 이관 처리
-* 하나/BC 체크 카드 정보 Migration
-* 체크 카드 BIN 정보 코나 선불 카드 연동 처리
+* 기존 부산 지역화폐 사업 이관 프로젝트 수행
+* 회원 정보, 잔액 정보, 거래 내역 포함한 모든 Database Migration 처리
+* 신규 회원 가입 or 기존 부산 지역화폐 사용 회원 정보 연동 처리
+* `AS-IS` 부산 지역화폐 잔액 및 캐시백 정보 이관 처리
+* 지역화폐 연동 체크 카드 정보 Migration 처리
+* 체크 카드 BIN 정보를 코나 선불 카드와 연동 처리
+* 1일 1회 체크 카드사 결제 취소 전문 파일 수신 및 회원 잔액 충전 Batch 시스템 개발
 
 ##### 휴면 회원 정책 적용 프로젝트 <small>2021.01 ~ 2021.03</small>
 * 코나카드 전체 회원 1년 이상 미사용자 휴면 전환 정책 적용
 * 1일 1회 휴면 전환 예정 안내/전환 실행 Batch 시스템 개발
-* 회원 가입, Login, JWT Token 갱신 등 휴면 회원 여부 확인 API 개발
-* 회원 본인 인증 및 거래(카드 사용, 충전 등)를 통한 휴면 해제 API 개발
+* 회원 가입, Login, JWT Token 갱신 등 휴면 회원 여부 확인 API 수정 개발
+* 회원 본인 인증 및 거래(카드 사용, 충전 등)를 통한 휴면 해제 API 신규 개발
 * 휴면 전환/해제 History 관리
 
 ##### 담당 Server Core Component 관리 <small>2020.11 ~ 현재</small>
-###### 회원 관리 Core Component
-* 코나카드 전체 시스템 회원 관리 API 신규 개발 및 유지 보수
-* Spring Boot 기반의 REST API 제공
-* JPA, Oracle DB 개발 및 관리
+##### 회원 관리 Server Core Component
+* 코나카드 전체 시스템 회원 관리 Rest API 신규/운영 개발
 
-###### 부산 동백전 지역화폐 이관 Core Component
-* 부산 KT 동백전 지역화폐 이관 관리 API 신규 개발 및 유지 보수
-* 동백전 지역화폐 회원 연동 및 잔액 이관 처리
-* Spring Boot 2.X 기반 REST API 제공
-* KT 동백전 원본 DB 보관 및 관리
-* 신규 DB 모델링 설계 및 유지 보수
+###### Project Specs
+* Spring Boot
+* JPA
+* QueryDSL
+* Oracle
+* Redis
+* RabbitMQ
+* Gradle
+* Jenkins
+
+##### 부산 지역화폐 이관 Sever Core Component
+* AS-IS 부산 지역화폐 이관 관리 Rest API 신규/운영 개발
+* 부산 지역화폐 기존 회원 정보 연동
+* 부산 지역화폐 기존 회원 잔액 이관 처리
+* KT 구동백전 원본 DB 보관 및 관리
+* 신규 DB 모델링 설계/운영
+
+###### Project Specs
+* Spring Boot
+* Spring Batch
+* JPA
+* Oracle
+* Gradle
+* Jenkins
 
 ---
 
-#### 아톤(ATON) <small>2016.03 ~ 2020.10</small>
+### 아톤(ATON) <small>2016.03 ~ 2020.10</small>
 ##### 금융 플랫폼 Server Developer
 * KB국민은행, IBK기업은행, KEB하나은행 제1금융권 프로젝트 참여
 * 자회사 아톤모빌리 중고차 유통 플랫폼 시스템 고도화 프로젝트 참여
 * HTML, JavaScript, jQuery, Vue.js 를 활용한 Web Front-End 개발 경험
 * Java, Spring Framework, JPA 등 Java 기반의 Back-End 개발 경험
-* 각각 다른 협력사의 개발 환경에 맞춰 다양한 플랫폼 및 서비스 개발 경험
+* 각각 다른 협력사의 개발 환경에 맞춰 다양한 플랫폼 및 서비스 개발 경험
 * 대형 프로젝트의 개발 프로세스 경험
 
 #### Projects
@@ -124,8 +144,8 @@ image: about.jpg
 ### Skills
 #### Back-End
 * Java, Kotlin
-* Spring Framework, Spring Boot, Spring Security
-* JPA, JOOQ, Hibernate
+* Spring Framework, Spring Boot, Spring Security, Spring Batch
+* JPA, JOOQ
 * Gradle, Maven
 
 #### Front-End
@@ -134,7 +154,7 @@ image: about.jpg
 * HTML, CSS, jQuery
 
 #### DevOps
-* Oracle, MySQL,
+* Oracle, MySQL
 * AWS - EC2, Elastic Cache for Redis, RDS(MariaDB), S3
 * Jenkins, TravisCI, AWS Code Deploy
 * Nginx, Tomcat
