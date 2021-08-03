@@ -6,10 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Page not found</title>
+  <title>Java Skill UP 을 하자! step.1</title>
   <meta name='description' content='The NEW Jimmyberg's blog.'>
 
-  <link rel="canonical" href="/404.html">
+  <link rel="canonical" href="/2021/07/13/JAVA_SKILL_UP_01/">
   <link rel="alternate" type="application/rss+xml" title="" href="/feed.xml">
 
   <!-- Fonts -->
@@ -166,37 +166,317 @@
   <!-- begin content -->
   <main class="content" aria-label="Content">
     <div class="container">
-	<div class="page-title-box">
-		<div class="row">
-			<div class="col col-10 push-2 col-11 push-t-1 col-m-12 push-m-0">
-				<h1 class="page-title">Page not found</h1>
-			</div>
-		</div>
-	</div>
+  <div class="post-title-box">
+    <div class="row">
+      <div class="col col-10 push-2 col-11 push-t-1 col-m-12 push-m-0">
+        <span class="post__date">
+          <time datetime="2021-07-13T00:00:00+09:00">Jul 13, 2021</time>
+        </span>
 
-	
-	<div class="page__head">
-		<div class="page-image" style="background-image: url(/images/07.jpg)"></div>
-	</div>
-	
-</div>
+        <h1 class="post-title">Java Skill UP 을 하자! step.1</h1>
+
+        <div class="post__info">
+          <div class="post__author">
+            <span>By</span>
+            <a href="/about/" class="author-name">Jimmyberg</a>
+          </div>
+
+          
+          <div class="post__tags">
+            
+              <a href="/tag/java" class="post__tags-tag">java</a>
+            
+              <a href="/tag/oop" class="post__tags-tag">oop</a>
+            
+              <a href="/tag/FunctionalProgramming" class="post__tags-tag">FunctionalProgramming</a>
+            
+              <a href="/tag/Lambda" class="post__tags-tag">Lambda</a>
+            
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  
+    <div class="post__head">
+      <div class="post-image" style="background-image: url(/images/java_01.png)"></div>
+    </div>
+  
+
+  </div>
 
 
-<div class="container">
-	<div class="row">
-		<!-- begin page -->
-		<article class="page col col-8 col-t-10 col-m-12">
-			<div class="page__content">
-				<div class="page-box">
-  <h2>404</h2>
-  <p>The requested page could not be found.</p>
-  <p class="back-arrow"><i class="ion ion-md-arrow-back"></i> <a href="/">Back to the blog</a></p>
+  <div class="container">
+  <div class="row">
+    <!-- begin post -->
+    <article class="post  col col-8 col-t-10 col-m-12">
+
+      <div class="post__content">
+        <h2 id="java-skill-up--step1">Java Skill UP !! step.1</h2>
+<p><code class="language-plaintext highlighter-rouge">Java</code> 를 개발하면서 최근에는 <code class="language-plaintext highlighter-rouge">Stream</code>, <code class="language-plaintext highlighter-rouge">Optional</code> 등 <code class="language-plaintext highlighter-rouge">Lambda</code> 표현식으로 개발하는 경우를 많이 볼 수 있다. <code class="language-plaintext highlighter-rouge">JavaScript</code> 를 개발하면서 어느정도 <code class="language-plaintext highlighter-rouge">Lambda</code> 를 사용한 개발 방식이 익숙하다고 생각 했지만, 다른 언어인 만큼 문법적인 정리가 필요하고, 과연 <code class="language-plaintext highlighter-rouge">Java</code> 에서는 어떻게 <code class="language-plaintext highlighter-rouge">Lambda</code> 표현식을 구현하였는지 알아볼 필요가 있다고 생각하였다.<br />
+최종 목표는 <code class="language-plaintext highlighter-rouge">Reactive Programming</code> 이란 무엇이고, 왜 <code class="language-plaintext highlighter-rouge">Spring Webflux</code> 가 나왔는지 살펴볼 예정이다.<br />
+먼저 아래와 같은 개념을 살펴보자.</p>
+
+<ul>
+  <li>Functional Programming</li>
+  <li>Lambda</li>
+</ul>
+
+<hr />
+
+<h3 id="functional-programming-함수형-프로그래밍">Functional Programming <small>함수형 프로그래밍</small></h3>
+<p>함수형 프로그래밍은 명령형이 아닌 선언적 방식으로 구현하여 흐름 제어를 명시적으로 기술하지 않고 프로그램 로직을 표현을 의미한다.</p>
+
+<ul>
+  <li>선언적 프로그램 : 흐름 제어를 추상화하고 데이터 흐름을 설명하는 코드 사용하는 것으로, 데이터의 입력이 주어지고 데이터를 다루는 과정(흐름)을 정의하는 방식</li>
+</ul>
+
+<h4 id="first-object-first-class-citizen-1급-객체">First Object, First Class Citizen <small>1급 객체</small></h4>
+<h5 id="1급-객체-조건">1급 객체 조건</h5>
+<ul>
+  <li>변수나 데이터안으로 삽입 가능</li>
+  <li>파라미터 전달 가능</li>
+  <li>동적 프로퍼티 할당 가능</li>
+  <li>반환값으로 사용 가능</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Java</code> 에서는 함수는 <em>1급 객체</em> 에 포함될 수 없지만, 함수도 객체로 구분되는 <code class="language-plaintext highlighter-rouge">JavaScript</code> 에서는 <strong>함수도 1급 객체가 될 수 있다.</strong><br />
+<code class="language-plaintext highlighter-rouge">Java</code> 의 경우 <strong><em>함수형 인터페이스</em></strong> 를 통해 구현 가능하다.</p>
+
+<h5 id="함수형-프로그래밍-조건-3가지">함수형 프로그래밍 조건 3가지</h5>
+<h6 id="순수-함수">순수 함수</h6>
+<ul>
+  <li>같은 입력에 대해서는 같은 출력을 반환하는 함수</li>
+  <li>부작용(다른 요인에 대한 결과 변경)이 없는 함수</li>
+</ul>
+
+<h6 id="고차함수">고차함수</h6>
+<ul>
+  <li>함수의 인자로 함수를 전달 가능</li>
+  <li>함수를 함수의 반환값으로 사용 가능</li>
+</ul>
+
+<h6 id="익명-함수">익명 함수</h6>
+<ul>
+  <li>람다식으로 표현되는 함수</li>
+</ul>
+
+<hr />
+
+<h3 id="lambda-람다small">Lambda <samll>람다&lt;/small&gt;</samll></h3>
+<p>람다식(Lambda Expression) 이란 함수를 하나의 식(Expression) 으로 표현하는 것이다. 함수를 람다식으로 표현하면 함수명 없이 <strong>익명의 함수</strong> 로 사용 가능하다.<br />
+<code class="language-plaintext highlighter-rouge">Java</code> 에서 <em>Stream</em> 함수들은 함수형 인터페이스를 받도록 되어있으며, 람다식은 반환값으로 함수형 인터페이스를 반환하고 있다.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="o">(</span> <span class="n">parameters</span> <span class="o">)</span> <span class="o">-&gt;</span> <span class="n">expression</span> <span class="n">body</span>       <span class="c1">// 인자가 여러개 이고 하나의 문장으로 구성</span>
+<span class="o">(</span> <span class="n">parameters</span> <span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span> <span class="n">expression</span> <span class="n">body</span> <span class="o">}</span>   <span class="c1">// 인자가 여러개 이고 여러 문장으로 구성</span>
+<span class="o">()</span> <span class="o">-&gt;</span> <span class="o">{</span> <span class="n">expression</span> <span class="n">body</span> <span class="o">}</span>               <span class="c1">// 인자가 없고 여러 문장으로 구성</span>
+<span class="o">()</span> <span class="o">-&gt;</span> <span class="n">expression</span> <span class="n">body</span>                   <span class="c1">// 인자가 없고 하나의 문장으로 구성</span></code></pre></figure>
+
+<h4 id="lambda--functional-programming">Lambda + Functional Programming</h4>
+<h5 id="기존-익명-함수">기존 익명 함수</h5>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Lambda</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="nc">MyLambdaFunction</span><span class="o">()</span> <span class="o">{</span>
+      <span class="kd">public</span> <span class="kt">int</span> <span class="nf">max</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">retrun</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span> <span class="o">?</span> <span class="n">a</span> <span class="o">:</span> <span class="n">b</span><span class="o">;</span>
+      <span class="o">}</span>
+    <span class="o">});</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<h5 id="functional-interface-익명-함수">Functional Interface 익명 함수</h5>
+<p><code class="language-plaintext highlighter-rouge">Java</code> 에서는 <code class="language-plaintext highlighter-rouge">@FunctionalInterface</code> 라는 Annotation 을 통해 1개 뿐인 abstract 함수를 선언하고 함수형 인터페이스를 생성할 수 있다.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@FunctionalInterface</span>
+<span class="kd">interface</span> <span class="nc">MyLambdaFunction</span> <span class="o">{</span>
+  <span class="kt">int</span> <span class="nf">max</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Lambda</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">MyLambdaFunction</span> <span class="n">myLambdaFunction</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span> <span class="o">?</span> <span class="n">a</span> <span class="o">:</span> <span class="n">b</span><span class="o">;</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">myLambdaFunction</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">5</span><span class="o">));</span> <span class="c1">// out : 5</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<h6 id="주의-사항">주의 사항</h6>
+<ul>
+  <li>Lambda 식으로 생성된 순수 함수는 함수형 인터페이스로만 사용 가능</li>
+  <li>함수형 인터페이스는 1개의 함수만을 갖도록 제한</li>
+</ul>
+
+<hr />
+
+<h3 id="java에서-제공하는-함수형-인터페이스"><code class="language-plaintext highlighter-rouge">Java</code>에서 제공하는 함수형 인터페이스</h3>
+<h4 id="suppliert"><code class="language-plaintext highlighter-rouge">Supplier&lt;T&gt;</code></h4>
+<ul>
+  <li>매개변수 없이 반환값만을 가지는 함수형 인터페이스</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nc">Supplier</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">supplier</span> <span class="o">=</span> <span class="o">()</span> <span class="o">-&gt;</span> <span class="s">"Hello world"</span><span class="o">;</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">supplier</span><span class="o">.</span><span class="na">get</span><span class="o">());</span> <span class="c1">// out : Hello world</span></code></pre></figure>
+
+<h4 id="cunsumert"><code class="language-plaintext highlighter-rouge">Cunsumer&lt;T&gt;</code></h4>
+<ul>
+  <li>매개변수 <code class="language-plaintext highlighter-rouge">T</code> 객체를 받아 소비하는 함수형 인터페이스</li>
+  <li><code class="language-plaintext highlighter-rouge">accept()</code> 추상메소드를 가지고 있지만, 추가적으로 <code class="language-plaintext highlighter-rouge">andThen()</code> 함수를 가지고 있어서, <code class="language-plaintext highlighter-rouge">accept()</code> 처리 후에 추가적인 처리 가능</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nc">Consumer</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">consumer</span> <span class="o">=</span> <span class="n">s</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s</span> <span class="o">+</span> <span class="s">" World"</span><span class="o">);</span>
+<span class="n">consumer</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="s">"Hello"</span><span class="o">);</span> <span class="c1">// out : Hello World</span>
+
+<span class="n">consumer</span> <span class="o">=</span> <span class="n">s</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">" "</span><span class="o">)[</span><span class="mi">0</span><span class="o">]);</span>
+<span class="n">consumer</span>
+  <span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="s">"Hello World"</span><span class="o">)</span>          <span class="c1">// out : Hello</span>
+  <span class="o">.</span><span class="na">andThen</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>  <span class="c1">// out : Hello World</span></code></pre></figure>
+
+<h4 id="functiont-r"><code class="language-plaintext highlighter-rouge">Function&lt;T, R&gt;</code></h4>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">T</code> 객체로 매개변수받아 <code class="language-plaintext highlighter-rouge">R</code> 객체로 반환하는 함수형 인터페이스</li>
+  <li><code class="language-plaintext highlighter-rouge">apply()</code> 추상메소드에서 처리하고, <code class="language-plaintext highlighter-rouge">andThen()</code> 함수도 있지만, 첫번째 함수 실행 이전에 먼저 함수를 실행하여 처리해주는 <code class="language-plaintext highlighter-rouge">compose()</code> 함수를 포함</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nc">Function</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">function</span> <span class="o">=</span> <span class="n">s</span> <span class="o">-&gt;</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+<span class="n">function</span><span class="o">.</span><span class="na">apply</span><span class="o">(</span><span class="s">"Hello world"</span><span class="o">);</span>  <span class="c1">// out : 11</span></code></pre></figure>
+
+<h4 id="predicatet"><code class="language-plaintext highlighter-rouge">Predicate&lt;T&gt;</code></h4>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">T</code> 객체를 받아 처리후 <code class="language-plaintext highlighter-rouge">Boolean</code> 타입으로 반환 처리</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nc">Predicate</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">predicate</span> <span class="o">=</span> <span class="o">(</span><span class="n">str</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">str</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">"Hello World"</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">predicate</span><span class="o">.</span><span class="na">test</span><span class="o">(</span><span class="s">"Hello World"</span><span class="o">));</span>  <span class="c1">// out : true</span></code></pre></figure>
+
+<h4 id="operatort"><code class="language-plaintext highlighter-rouge">Operator&lt;T&gt;</code></h4>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Function&lt;T, R&gt;</code> 인터페이스와 동일한 <code class="language-plaintext highlighter-rouge">apply()</code> 추상메소드를 처리하지만, 입력받은 인자와 동일한 타입을 반환</li>
+  <li><code class="language-plaintext highlighter-rouge">Function&lt;T, R&gt;</code> 인터페이스는 상속받고 있고, 다양한 형태의 <code class="language-plaintext highlighter-rouge">Operator&lt;T&gt;</code> 인터페이스를 제공</li>
+</ul>
+
+<h5 id="unaryoperatort"><code class="language-plaintext highlighter-rouge">UnaryOperator&lt;T&gt;</code></h5>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// ArrayList.replaceAll + UnaryOperator interface</span>
+<span class="nc">UnaryOperator</span> <span class="n">operator</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">*</span> <span class="mi">2</span><span class="o">;</span>
+<span class="nc">ArrayList</span> <span class="n">list</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
+<span class="n">list</span><span class="o">.</span><span class="na">replaceAll</span><span class="o">(</span><span class="n">operator</span><span class="o">);</span>  <span class="c1">// list : (1, 2) -&gt; (2, 4)</span></code></pre></figure>
+
+<h5 id="binaryoperatort-u-r"><code class="language-plaintext highlighter-rouge">BinaryOperator&lt;T, U, R&gt;</code></h5>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nc">BinaryOperator</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">operator</span> <span class="o">=</span> <span class="o">(</span><span class="n">first</span><span class="o">,</span> <span class="n">second</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">first</span> <span class="o">+</span> <span class="n">second</span><span class="o">;</span>
+<span class="nc">Stream</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">integerStream</span> <span class="o">=</span> <span class="nc">Stream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">);</span>
+<span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">reduce</span> <span class="o">=</span> <span class="n">integerStream</span><span class="o">.</span><span class="na">reduce</span><span class="o">(</span><span class="n">operator</span><span class="o">);</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">reduce</span><span class="o">.</span><span class="na">get</span><span class="o">());</span>   <span class="c1">// out : 6</span></code></pre></figure>
+
+<hr />
+
+<h4 id="출처">출처</h4>
+<ul>
+  <li><a href="https://dinfree.com/lecture/language/112_java_9.html#m1">짧굵배 9. 함수형 프로그래밍과 람다</a></li>
+  <li><a href="https://mangkyu.tistory.com/113">망나니개발자 [Java] 람다식(Lambda Expression)과 함수형 인터페이스(Functional Interface) (2/5)</a></li>
+</ul>
+
+      </div>
+
+      <div class="post__share">
+        <span class="share__title">Share this article:</span>
+        <ul class="share__list list-reset">
+          <li class="share__item">
+            <a class="share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=/2021/07/13/JAVA_SKILL_UP_01/"
+              onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+              title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i></a>
+          </li>
+
+          <li class="share__item">
+            <a class="share__twitter" href="https://twitter.com/intent/tweet?text=Java%20Skill%20UP%20%EC%9D%84%20%ED%95%98%EC%9E%90!%20step.1&url=/2021/07/13/JAVA_SKILL_UP_01/"
+              onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+              title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i></a>
+          </li>
+
+          <li class="share__item">
+            <a class="share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=/2021/07/13/JAVA_SKILL_UP_01/&title=Java%20Skill%20UP%20%EC%9D%84%20%ED%95%98%EC%9E%90!%20step.1&summary=&source="
+              onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="ion ion-logo-linkedin"></i></a>
+          </li>
+
+          <li class="share__item">
+            <a class="share__pinterest" href="http://pinterest.com/pin/create/button/?url=/2021/07/13/JAVA_SKILL_UP_01/&amp;media=/images/java_01.png&amp;description=Java%20Skill%20UP%20%EC%9D%84%20%ED%95%98%EC%9E%90!%20step.1"
+              onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;" title="Share on Pinterest"
+              rel="nofollow"><i class="ion ion-logo-pinterest"></i></a>
+          </li>
+        </ul>
+      </div>
+    </article>
+    <!-- end post -->
+    </div>
+  </div>
+
+  <div class="container">
+  <div class="post__navigation">
+    
+    <div class="prev">
+      
+      <a class="post__nav__image" href="/2021/02/28/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC_5%E1%84%8B%E1%85%AF%E1%86%AB%E1%84%8E%E1%85%B5%E1%86%A8_%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5/" style="background-image: url(/images/java_solid.jpg)"></a>
+      
+      <h2 class="post__nav__title">
+        <i class="ion ion-md-arrow-back"></i>
+        <a href="/2021/02/28/%E1%84%80%E1%85%A2%E1%86%A8%E1%84%8E%E1%85%A6%E1%84%8C%E1%85%B5%E1%84%92%E1%85%A3%E1%86%BC_5%E1%84%8B%E1%85%AF%E1%86%AB%E1%84%8E%E1%85%B5%E1%86%A8_%E1%84%8C%E1%85%A5%E1%86%BC%E1%84%85%E1%85%B5/">Java SOLID 원칙</a>
+      </h2>
+      <p class="prev__excerpt">
+        
+          객체 지향 5대 원칙
+
+객체 지향 프로그래밍의 5대 원칙?
+
+  SRP(단일 책임 원칙)
+  OCP(개방-폐쇄 원칙)
+  LSP(리스코프 치환 원칙)
+  DIP(의존성 역전 원칙)
+  ISP(...
+        
+      </p>
+    </div>
+    
+
+    
+    <div class="next">
+      
+      <a class="post__nav__image" href="/2021/07/21/JAVA_SKILL_UP_02/" style="background-image: url(/images/springwebflux.png)">
+      </a>
+      
+      <h2 class="post__nav__title">
+        <a href="/2021/07/21/JAVA_SKILL_UP_02/">Java Skill UP 을 하자! step.2</a>
+        <i class="ion ion-md-arrow-forward"></i>
+      </h2>
+      <p class="next__excerpt">
+        
+          ## Java Skill UP !! step.2
+`Functional Programming` 을 통해서 함수형 프로그래밍이 무엇인지 알겠는데, 최종적으로 알고 싶은 `Reactive` 는 무엇...
+        
+      </p>
+    </div>
+    
+  </div>
+
+   <!-- begin comments -->
+<div class="comments">
+  <div id="disqus_thread"></div>
+  <script>
+    (function () {
+      var d = document, s = d.createElement('script');
+      s.src = '//mr-brown.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
 </div>
-			</div>
-		</article>
-		<!-- end page -->
-	</div>
-</div>
+<!-- end comments --> 
+  </div>
 
   </main>
   <!-- end content -->
