@@ -32,7 +32,7 @@ tags  : java oop reactive webflux
 ---
 
 ### Reactive Programming
-`Reactive`라는 의미는 변화에 대한 반응 중심의 프로그래밍 방식이다. 
+`Reactive`라는 의미는 변화에 대한 반응 중심의 프로그래밍 방식이다.
 
 ---
 
