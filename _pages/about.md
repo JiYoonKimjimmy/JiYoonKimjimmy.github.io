@@ -1,11 +1,9 @@
 ---
 layout: page
-title: About
+title: Jimmyberg's 개발 소개서
 permalink: /about/
 image: about.jpg
 ---
-
-# Jimmyberg's 개발 소개서
 
 금융 Hybrid App Application 개발 프로젝트를 통해 **Web UI/UX Front-End 개발**과 **Java 기반의 Back-End 개발**을 기반으로, 현재는 서비스의 인프라 구축과 시스템 아키텍처에 대한 관심으로 **Back-End 개발자**로서 일하고 있습니다.<br>
 *지금까지의 경험과 꾸준한 노력을 바탕으로 주체적으로 가지고 있는 기술력을 활용하여 생활 속의 불편함을 찾아 해결하고, 조그만한 변화로 세상을 바꿀 수 있는 서비스의 개발자가 되는 꿈을 가지고 있습니다.*
@@ -41,34 +39,34 @@ image: about.jpg
 * 회원 본인 인증 및 거래(카드 사용, 충전 등)를 통한 휴면 해제 API 신규 개발
 * 휴면 전환/해제 History 관리
 
-##### 담당 Server Core Component 관리 <small>2020.11 ~ 현재</small>
+#### 담당 Server Core Component 관리 <small>2020.11 ~ 현재</small>
 ##### 회원 관리 Server Core Component
 * 코나카드 전체 시스템 회원 관리 Rest API 신규/운영 개발
+<br><br>
+**Project Specs**
+  * Spring Boot
+  * JPA
+  * QueryDSL
+  * Oracle
+  * Redis
+  * RabbitMQ
+  * Gradle
+  * Jenkins
 
-###### Project Specs
-* Spring Boot
-* JPA
-* QueryDSL
-* Oracle
-* Redis
-* RabbitMQ
-* Gradle
-* Jenkins
-
-##### 부산 지역화폐 이관 Sever Core Component
+##### 부산 지역화폐 관리 Sever Core Component
 * AS-IS 부산 지역화폐 이관 관리 Rest API 신규/운영 개발
 * 부산 지역화폐 기존 회원 정보 연동
 * 부산 지역화폐 기존 회원 잔액 이관 처리
 * KT 구동백전 원본 DB 보관 및 관리
 * 신규 DB 모델링 설계/운영
-
-###### Project Specs
-* Spring Boot
-* Spring Batch
-* JPA
-* Oracle
-* Gradle
-* Jenkins
+<br><br>
+**Project Specs**
+  * Spring Boot
+  * Spring Batch
+  * JPA
+  * Oracle
+  * Gradle
+  * Jenkins
 
 ---
 
