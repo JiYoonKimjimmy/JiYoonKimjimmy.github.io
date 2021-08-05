@@ -13,7 +13,7 @@ tags  : java oop reactive webflux
 `Reactive` 를 알기 위해선 또 먼저 `Async(비동기)` 와 `Non-blocking(논블로킹)` 의 이해가 필요하다. 그래서 이번에는 `Async & Non-blocking` 부터 `Reactive Programming` 까지 살펴볼 계획이다.
 
 - Async & Non-blocking
-- Reactive Programming `Spring Webflux`
+- Reactive Programming (with `RxJava`)
 
 ---
 
@@ -32,10 +32,14 @@ tags  : java oop reactive webflux
 ---
 
 ### Reactive Programming
-`Reactive`라는 의미는 변화에 대한 반응 중심의 프로그래밍 방식이다.
+`Reactive`라는 의미는 변화에 대한 반응 중심의 프로그래밍은 *데이터의 흐름을 먼저 정의하고 데이터가 변경되었을 때 연관된 작업을 실행* 하는 방식의 프로그래밍이다.
+기능을 직접 정해서 실행하는 것이 아니라, 이벤트가 발생하였을 때 기능이 실행되어 처리되는 것이다.
+
+### [RxJava](https://4z7l.github.io/2020/12/01/rxjava-1.html)
 
 ---
 
 #### 출처
 - [토리맘의 한글라이즈 프로젝트 Spring Web on Reactive Stack](https://godekdls.github.io/Reactive%20Spring/contents/)
 - [DevEric 동기/비동기와 블로킹/논블로킹](https://deveric.tistory.com/99)
+- [HERSTORY [RxJava] RxJava 이해하기 - 1. Reactive Programming 이란](https://4z7l.github.io/2020/12/01/rxjava-1.html)
