@@ -40,9 +40,52 @@ tags  : java oop reactive webflux
 <br>
 `Java` 에서는 `Reactive` 방식의 프로그래밍을 위해서는 함수형 프로그래밍이 필요하다. `Call-back` 과 `Observer` 패턴은 서버가 1개이거나 단일 Thread 환경일 경우 적합하지만, Multi-Thread 환경일 경우에는 `Dead-lock` 또는 동기화 문제가 발생할 수 있다.
 <br>
-함수형 프로그래밍은 순수 함수를 지향하기 때문에 Multi-Thread 환경에서도 안전하다. 
+그에 반해, 함수형 프로그래밍은 **순수 함수를 지향하기 때문에** Multi-Thread 환경에서도 안전하다. 그래서 `Java` 에서 `Reactive Programming` 을 하기 위해선 함수형 프로그래밍의 지원이 필요하다.
+
+---
 
 ### RxJava
+`RxJava` 는 2013년 `Neflex` 넷플릭스사의 기술 블로그에서 처음 소개되었다. 넷플릭스에서 `RxJava` 를 개발하게 된 이유로 3가지를 밝혔는데,
+
+- 동시성을 적극적으로 끌어안을 필요가 있다. (Embrace Concurrency)
+  - 서비스 계층에서 동시성 처리를 위해 `client` 의 요청을 처리할 때, 다수의 비동기 실행 흐름을 생성하고 결과를 취합하여 최종 응답 처리하는 방식
+- 자바 `Future` 를 조합하기 어렵다는 점을 해결해야 한다. (Java Futures are Expensive to Compose)
+  - 2013년 당시 `Java8` 에는 `CompletableFuture` 같은 class 가 지원되지 않았기 때문에 비동기 흐름을 조합할 방법을 찾기 위한 `RxJava` 의 `Operator` 라는 리액티브 연산자를 개발
+- `Callback` 방식의 문제점을 개선해야 한다. (Callbacks Have Their Own Problems)
+  - `Callback hell` 의 문제를 해결하기 위해 `Callback` 사용하지 않는 방향으로 설계
+
+##### RxJava 살짝 맛보기
+{% highlight groovy %}
+implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
+{% endhighlight %}
+
+{% highlight java %}
+public static void main(String[] args) {
+    emit();
+}
+
+public static void emit() {
+    /*
+     * Observable.class : 데이터의 변화가 발생하는 data source
+     * just() : 기본적인 Observable 선언 방식으로, data source 에 String 정보 2개를 발행
+     * subscribe() : Observable 를 구독하며 발행된 데이터를 소비
+     */
+    Observable
+            .just("Hello", "RxJava")
+            .subscribe(System.out::println);
+}
+{% endhighlight %}
+
+##### RxJava 학습 단계
+1. `Observable` Class 이해
+  - `Hot Observable` 과 `Cold Observable` 의 개념 차이
+2. `map()`, `filter()`, `reduce()`, `flatMap()` 함수의 사용법
+3. 생성 연산자, 결합 연산자, 변환 연산자 등 카테고리별 주요 함수 이해
+4. 스케줄러의 의미, `subscribeOn()` 과 `observeOn()` 함수의 차이를 알아둔다.
+5. 그 밖의 디버깅, 흐름 제어 함수 이해
+
+#### Observable
+`Observable` class 는 `Observer` 디자인 패턴을 구현한다. 옵저버 패턴은 객체의 상태 변화를 관찰자 목록에 객체를 등록하고, **상태 변화 발생할때마다 함수를 호출하여 옵저버의 상태 변경에 대한 알림을 전달한다.**<br>
 
 
 ---
@@ -51,3 +94,4 @@ tags  : java oop reactive webflux
 - [토리맘의 한글라이즈 프로젝트 Spring Web on Reactive Stack](https://godekdls.github.io/Reactive%20Spring/contents/)
 - [DevEric 동기/비동기와 블로킹/논블로킹](https://deveric.tistory.com/99)
 - [HERSTORY [RxJava] RxJava 이해하기 - 1. Reactive Programming 이란](https://4z7l.github.io/2020/12/01/rxjava-1.html)
+- [길은 가면, 뒤에 있다. - [RxJava] RxJava 프로그래밍(1) - 리액티브 프로그래밍](https://12bme.tistory.com/570)
