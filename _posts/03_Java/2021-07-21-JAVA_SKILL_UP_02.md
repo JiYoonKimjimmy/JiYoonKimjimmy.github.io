@@ -3,10 +3,8 @@ layout: post
 title : Java Skill UP 을 하자! step.2
 date  : 2021-07-21
 image : springwebflux.png
-tags  : java oop reactive webflux
+tags  : java oop reactive rxjava async nonblocking
 ---
-
-
 
 ## Java Skill UP !! step.2
 `Functional Programming` 을 통해서 함수형 프로그래밍이 무엇인지 알겠는데, 최종적으로 알고 싶은 `Reactive` 는 무엇일까.<br>
@@ -87,6 +85,8 @@ public static void emit() {
 #### Observable
 `Observable` class 는 `Observer` 디자인 패턴을 구현한다. 옵저버 패턴은 객체의 상태 변화를 관찰자 목록에 객체를 등록하고, **상태 변화 발생할때마다 함수를 호출하여 옵저버의 상태 변경에 대한 알림을 전달한다.**<br>
 
+##### Hot Observable vs Cold Observable
+- `Hot Observable` : 구독자의 존재 여부와 상관없이 데이터를 발행하는 `Observable`
 
 ---
 
