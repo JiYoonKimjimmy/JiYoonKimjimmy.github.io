@@ -82,12 +82,6 @@ public static void emit() {
 4. 스케줄러의 의미, `subscribeOn()` 과 `observeOn()` 함수의 차이를 알아둔다.
 5. 그 밖의 디버깅, 흐름 제어 함수 이해
 
-#### Observable
-`Observable` class 는 `Observer` 디자인 패턴을 구현한다. 옵저버 패턴은 객체의 상태 변화를 관찰자 목록에 객체를 등록하고, **상태 변화 발생할때마다 함수를 호출하여 옵저버의 상태 변경에 대한 알림을 전달한다.**<br>
-
-##### Hot Observable vs Cold Observable
-- `Hot Observable` : 구독자의 존재 여부와 상관없이 데이터를 발행하는 `Observable`
-
 ---
 
 #### 출처
