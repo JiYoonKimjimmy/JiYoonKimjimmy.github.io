@@ -3,7 +3,7 @@ layout: post
 title : RxJava Observable
 date  : 2021-08-22
 image : rxjava.png
-tags  : java oop reactive rxjava
+tags  : java reactive rxjava
 ---
 
 ## RxJava Observable
