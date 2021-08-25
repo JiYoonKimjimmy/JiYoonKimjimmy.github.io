@@ -7,7 +7,14 @@ tags  : java reactive rxjava
 ---
 
 ## RxJava Observable
-`Observable` class 는 `Observer` 디자인 패턴을 구현한다. 옵저버 패턴은 객체의 상태 변화를 관찰자 목록에 객체를 등록하고, **상태 변화 발생할때마다 함수를 호출하여 옵저버의 상태 변경에 대한 알림을 전달한다.**<br>
+`Observable` class 는 `Observer` 디자인 패턴을 구현한다. 옵저버 패턴은 객체의 상태 변화를 관찰자 목록에 객체를 등록하고, **상태 변화 발생할때마다 함수를 호출하여 옵저버의 상태 변경에 대한 알림을 전달한다.**
+
+### Observable 종류
+- `Observable` : 가장 기본적인 형태로서, 0 ~ N 개의 데이터 발행 (BackPressure 없음)
+- `Single` : 단 1개의 데이터 발행 및 구독 처리
+- `Maybe` : 0개 or 1개 데이터 발행 및 구독, `success` or `fail` or `complete` 결과 처리
+- `Completable` : `success` or `fail` 결과만 발행
+- `Flowable` : 0 ~ N 개 데이터 발행 (BackPressure 있음)
 
 ### Hot Observable vs Cold Observable
 - `Hot Observable` : 구독자의 존재 여부와 상관없이 데이터를 발행하는 `Observable`
@@ -23,6 +30,7 @@ tags  : java reactive rxjava
 ### `RxJava` 의 주요 `Subject` Class
 #### `AsyncSubject`
 - `Observable` 에서 발행한 마지막 데이터 구독
+- `onComplete()` 함수가 호출되는 순간 마지막 데이터 발행 및 구독 처리
 ![AsyncSubject](/images/asyncsubject.png)
 
 {% highlight java %}
