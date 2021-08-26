@@ -85,7 +85,6 @@ public static void emit() {
 ---
 
 #### 출처
-- [토리맘의 한글라이즈 프로젝트 Spring Web on Reactive Stack](https://godekdls.github.io/Reactive%20Spring/contents/)
 - [DevEric 동기/비동기와 블로킹/논블로킹](https://deveric.tistory.com/99)
 - [HERSTORY [RxJava] RxJava 이해하기 - 1. Reactive Programming 이란](https://4z7l.github.io/2020/12/01/rxjava-1.html)
 - [길은 가면, 뒤에 있다. - [RxJava] RxJava 프로그래밍(1) - 리액티브 프로그래밍](https://12bme.tistory.com/570)
