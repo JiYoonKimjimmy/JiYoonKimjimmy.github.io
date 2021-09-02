@@ -2,7 +2,7 @@
 layout: post
 title : Java Skill UP 을 하자! step.2
 date  : 2021-07-21
-image : springwebflux.png
+image : java_02.jpg
 tags  : java oop reactive rxjava async nonblocking
 ---
 
