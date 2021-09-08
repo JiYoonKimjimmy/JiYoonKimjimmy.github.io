@@ -45,7 +45,7 @@ tags  : java oop FunctionalProgramming Lambda
 
 ---
 
-### Lambda <samll>람다</small>
+### Lambda <small>람다</small>
 람다식(Lambda Expression) 이란 함수를 하나의 식(Expression) 으로 표현하는 것이다. 함수를 람다식으로 표현하면 함수명 없이 **익명의 함수** 로 사용 가능하다.<br>
 `Java` 에서 *Stream* 함수들은 함수형 인터페이스를 받도록 되어있으며, 람다식은 반환값으로 함수형 인터페이스를 반환하고 있다.
 
