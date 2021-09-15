@@ -75,7 +75,7 @@ public static void emit() {
 {% endhighlight %}
 
 ##### RxJava 학습 단계
-1. `Observable` Class 이해
+1. [`Observable` Class 이해](/2021/08/22/RxJava_Observable/)
   - `Hot Observable` 과 `Cold Observable` 의 개념 차이
 2. `map()`, `filter()`, `reduce()`, `flatMap()` 함수의 사용법
 3. 생성 연산자, 결합 연산자, 변환 연산자 등 카테고리별 주요 함수 이해
