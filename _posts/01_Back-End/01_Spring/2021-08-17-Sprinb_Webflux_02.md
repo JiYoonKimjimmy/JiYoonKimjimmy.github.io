@@ -77,8 +77,7 @@ tags  : java spring webflux
 ---
 
 ## DispatcherHandler
-**Webflux** 도 **WebMvc** 와 비슷한 `Front Controller Pattern` 구조를 가지고 있다. 중앙 `WebHandler` 가 요청을 받고 실제 처리를 위한 각 `Component` 객체의 역할을 위임하는 패턴 구조이다. 
-
+**Webflux** 도 **WebMvc** 와 비슷한 `Front Controller Pattern` 구조를 가지고 있다. 중앙 `WebHandler` 가 요청을 받고 실제 처리를 위한 각 `Component` 객체의 역할을 위임하는 패턴 구조이다.
 
 ---
 
