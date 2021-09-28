@@ -45,7 +45,7 @@ tags  : java spring webflux
 **WebFilter** 를 사용하면, 다른 `Filter Chain` 과 함께 `WebHandler` 전후로 요청을 가로채 원하는 로직을 처리할 수 있다. `Filter` 등록은 `Bean` 으로 생성하여 등록 가능하다.
 
 ### Exceptions
-**WebExceptionHandler** 는 로직상 발생하는 에러를 처리해주며, `Bean` 생성하고 등록하여 사용 가능하다.
+**WebExceptionHandler** 는 로직상 발생하는 에러를 처리해주며, `Bean` 생성하고 등록하여 사용 가능하다.
 
 ### Codecs
 `Spring-web`, `Spring-core` 를 활용하면 `Reactive Non-blocking` 방식으로 바이트 컨텐츠를 고수준의 객체로 변환(직렬화, 역직렬화)시킬 수 있다.
@@ -83,6 +83,7 @@ tags  : java spring webflux
 **Webflux** 의 `DispatcherHandler` 가 요청을 처리하고 그에 맞는 응답을 생성할 때 사용하는 `Bean` 들이 있다. 이 `Special Bean` 이란, **Webflux** 를 동작하는데 필요하고, **Spring** 이 관리하는 `Object` 객체들이다.
 
 #### Special Beans
+
 | Bean | 내용 |
 | :---: | --- |
 | `HandlerMapping` | 요청을 `Handler` 에 맞게 `Mapping` 한다. `HanlderMapping` 구현체마다 다르긴 하지만, 주로 `@RequestMapping` 을 선언한 함수를 찾는 `RequestMappingHandlerMapping` 객체, 함수형 End-Point 를 Rounting 해주는 `RouterFunctionMapping` 객체, URI path 패턴으로 `WebHandler` 를 찾는 `SimpleUrlHandlerMapping` 등이 있다. |
@@ -100,6 +101,7 @@ tags  : java spring webflux
 `HandlerAdapter` 에서 `Handler` 실행을 완료하면, 결과와 `Context` 정보를 감싸고 있는 `HandlerResult` 를 반환한다. `HandlerResult` 는 `HandlerResultHandler` 가 받아서 요청의 응답을 처리 완료한다.
 
 #### `HandlerResultHandler` 구현체
+
 | Result Handler Type | Return Values | 비고 |
 | :---: | --- | --- |
 | `ResponseEnityResultHandler` | `ResponseEntity` | `@Controller` 에서 주로 사용 |
@@ -118,5 +120,5 @@ tags  : java spring webflux
 ---
 
 #### 출처
-- [Spring Webflux 공식 레퍼런스](https://docs.spring.io/spring-framework/docs/5.2.6.RELEASE/spring-framework-reference/web-reactive.html)
+- [Spring Webflux 공식 레퍼런스 - Web on Reactive Stack](https://docs.spring.io/spring-framework/docs/5.2.6.RELEASE/spring-framework-reference/web-reactive.html)
 - [토리맘의 한글라이즈 프로젝트 - Spring Web on Reactive Stack](https://godekdls.github.io/Reactive%20Spring/springwebflux/)
