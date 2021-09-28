@@ -3,7 +3,7 @@ layout: post
 title : Spring Webflux step.2
 date  : 2021-09-17
 image : springwebflux_02.png
-tags  : java spring webflux
+tags  : java spring webflux reactive-core dispatcherhandler
 ---
 
 > [Spring Webflux step.1](/2021/08/31/Spring_Webflux_01)
