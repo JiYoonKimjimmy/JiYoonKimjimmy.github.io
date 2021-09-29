@@ -1,6 +1,6 @@
 ---
 layout: post
-title : Spring Webflux step.2
+title : Spring Webflux step.2 - Reactive Core
 date  : 2021-09-17
 image : springwebflux_02.png
 tags  : java spring webflux reactive-core dispatcherhandler
