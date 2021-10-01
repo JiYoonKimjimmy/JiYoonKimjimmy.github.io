@@ -54,14 +54,14 @@ tags  : java spring webflux reactive-core dispatcherhandler
 - `HttpMessageReader`, `HttpMessageWriter` - HTTP 메시지를 encoding, decoding 처리
 - `EncoderHttpMessageWriter`, `DecoderHttpMessageReader` - `Encoder`, `Decoder` 를 감싸고 있는 `Web Application` 에서 사용하는 객체
 
-#### `Spring-core` 구현체 Module
+#### Spring-core 구현체 Module
 - `byte[]`
 - `ByteBuffer`
 - `DataBuffer`
 - `Resource`
 - `String`
 
-#### `Spring-web` 구현체 Module
+#### Spring-web 구현체 Module
 - `Jackson JSON`
 - `Jackson Smile`
 - `JAXB2`
@@ -83,27 +83,27 @@ tags  : java spring webflux reactive-core dispatcherhandler
 **Webflux** 의 `DispatcherHandler` 가 요청을 처리하고 그에 맞는 응답을 생성할 때 사용하는 `Bean` 들이 있다. 이 `Special Bean` 이란, **Webflux** 를 동작하는데 필요하고, **Spring** 이 관리하는 `Object` 객체들이다.
 
 #### Special Beans
-
-| Bean | 내용 |
-| :---: | --- |
-| `HandlerMapping` | 요청을 `Handler` 에 맞게 `Mapping` 한다. `HanlderMapping` 구현체마다 다르긴 하지만, 주로 `@RequestMapping` 을 선언한 함수를 찾는 `RequestMappingHandlerMapping` 객체, 함수형 End-Point 를 Rounting 해주는 `RouterFunctionMapping` 객체, URI path 패턴으로 `WebHandler` 를 찾는 `SimpleUrlHandlerMapping` 등이 있다. |
-| `HandlerAdapter` | `DispatcherHandler` 가 어떤 `Handler` 를 받든지 실행할 수 있도록 도와주는 역할을 하고 있다. |
-| `HandlerResultHandler` | `Handler` 로부터 받은 결과를 처리하고 응답을 종료한다. |
+- `HandlerMapping`: 요청을 `Handler` 에 맞게 매핑 처리.
+  - `@RequestMapping` 을 선언한 함수를 찾는 `RequestMappingHandlerMapping` 객체
+  - **Functional Endpoints** 를 라우팅해주는 `RouterFunctionMapping` 객체
+  - URI path 패턴으로 `WebHandler` 를 찾는 `SimpleUrlHandlerMapping` 등
+- `HandlerAdapter` : `DispatcherHandler` 가 어떤 `Handler` 를 받든지 실행 처리
+- `HandlerResultHandler` : `Handler` 로부터 받은 결과를 처리하고 응답 처리후 종료
 
 ### Processing
 `DispatcherHandler` 가 요청을 처리하는 방식은,
 
-1. `HandlerMapping` 에서 요청에 `Mapping` 되는 `Handler` 를 찾는다. 제일 첫 번째로 일치한 `Handler` 를 사용한다.
+1. `HandlerMapping` 에서 요청에 매핑되는 `Handler` 를 찾는다. 제일 첫 번째로 일치한 `Handler` 를 사용한다.
 1. `Handler` 를 찾으면 적당한 `HandlerAdapter` 를 사용해서 `Handler` 를 실행하고, `HandlerResult` 를 반환 받는다.
 1. `HandlerResult` 를 적절한 `HandlerResultHandler` 에 전달하고, 응답 처리를 완료한다.
 
 ### Result Handling
-`HandlerAdapter` 에서 `Handler` 실행을 완료하면, 결과와 `Context` 정보를 감싸고 있는 `HandlerResult` 를 반환한다. `HandlerResult` 는 `HandlerResultHandler` 가 받아서 요청의 응답을 처리 완료한다.
+`HandlerAdapter` 에서 `Handler` 실행을 완료하면, 결과와 *Context* 정보를 감싸고 있는 `HandlerResult` 를 반환한다. `HandlerResult` 는 `HandlerResultHandler` 가 받아서 요청의 응답을 처리 완료한다.
 
-#### `HandlerResultHandler` 구현체
+#### HandlerResultHandler 구현체
 
 | Result Handler Type | Return Values | 비고 |
-| :---: | --- | --- |
+| :---: | :---: | --- |
 | `ResponseEnityResultHandler` | `ResponseEntity` | `@Controller` 에서 주로 사용 |
 | `ServerResponseResultHandler` | `ServerResponse` | 함수형 End-Point 에서 주로 사용 |
 | `ResponseBodyResultHandler` | `@ResponseBody` | `@RestController` 에서 주로 사용 |

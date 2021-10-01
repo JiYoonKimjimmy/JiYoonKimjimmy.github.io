@@ -35,4 +35,11 @@ li > {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+  border: 1px solid #c2c6cc;
+}
+
+th, td {
+  border: 1px solid #c2c6cc;
+  padding: 3px;
+  font-size: 0.9em;
 }

@@ -238,13 +238,13 @@ private static void noBackPressure() throws Exception {
 #### BackPressure Strategy
 - `Flowable` 구현일지라도 배압 제어를 통해 `MissingBackpressureException` 을 방지 필수
 
-| Field | | 내용 |
-| :---: | --- | :--- |
-| MISSION | |  배압 전략 없음 |
-| ERROR | | 배압 현상 발생시 `MissingBackpressureException` 발생 |
-| BUFFER | | 데이터를 소비할 때까지 데이터를 Buffer 에 저장. 하지만 `OutOfMemoryError` 발생 가능 |
-| DROP | | 배압 현상이 발생한 경우 발행되는 데이터 모두 버림 |
-| LATEST | | 구독자가 새로운 데이터 구독 준비될 때까지 최신 데이터만 유지하고 나머지는 버림 |
+| Field | 내용 |
+| :---: | :--- |
+| MISSION |  배압 전략 없음 |
+| ERROR | 배압 현상 발생시 `MissingBackpressureException` 발생 |
+| BUFFER | 데이터를 소비할 때까지 데이터를 Buffer 에 저장. 하지만 `OutOfMemoryError` 발생 가능 |
+| DROP | 배압 현상이 발생한 경우 발행되는 데이터 모두 버림 |
+| LATEST | 구독자가 새로운 데이터 구독 준비될 때까지 최신 데이터만 유지하고 나머지는 버림 |
 
 #### `Flowable` BackPressure Strategy 3가지 연산자
   - `onBackPressureBuffer()`
