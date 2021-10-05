@@ -1,15 +1,14 @@
 ---
 layout: post
-title : Java Skill UP 을 하자! step.1
+title : Java Skill UP 을 하자! step.1 - Functional Programmings
 date  : 2021-07-13
-image : java_01.png
-tags  : java oop FunctionalProgramming Lambda
+image : funcational_programming.png
+tags  : java functional-programming lambda
 ---
 
-## Java Skill UP !! step.1
-`Java` 를 개발하면서 최근에는 `Stream`, `Optional` 등 `Lambda` 표현식으로 개발하는 경우를 많이 볼 수 있다. `JavaScript` 를 개발하면서 어느정도 `Lambda` 를 사용한 개발 방식이 익숙하다고 생각 했지만, 다른 언어인 만큼 문법적인 정리가 필요하고, 과연 `Java` 에서는 어떻게 `Lambda` 표현식을 구현하였는지 알아볼 필요가 있다고 생각하였다.<br>
-최종 목표는 `Reactive Programming` 이란 무엇이고, 왜 `Spring Webflux` 가 나왔는지 살펴볼 예정이다.<br>
-먼저 아래와 같은 개념을 살펴보자.
+`Java` 를 개발하면서 최근에는 `Stream`, `Optional` 등 `Lambda` 표현식으로 개발하는 경우를 많이 볼 수 있다. 이전에 `JavaScript` 를 개발하면서 어느정도 `Lambda` 를 사용한 개발 방식이 익숙하다고 생각했지만, `Java` 와는 다른 언어인 만큼 문법적인 정리가 필요하고, 과연 `Java` 에서는 어떻게 `Lambda` 표현식과 같은 **Functional Programming** 을 구현하였는지 알아볼 필요가 있다고 생각하였다.<br>
+최종 목표는 `Reactive Programming` 이란 무엇이고, 왜 `Spring Webflux` 가 나왔는지 살펴볼 계획이다.<br>
+먼저 `Reactive Programming` 을 학습하기 이전에, 아래와 같은 기초 개념들부터 살펴보자.
 
 - Functional Programming
 - Lambda
@@ -19,35 +18,60 @@ tags  : java oop FunctionalProgramming Lambda
 ### Functional Programming <small>함수형 프로그래밍</small>
 함수형 프로그래밍은 명령형이 아닌 선언적 방식으로 구현하여 흐름 제어를 명시적으로 기술하지 않고 프로그램 로직을 표현을 의미한다.
 
-- 선언적 프로그램 : 흐름 제어를 추상화하고 데이터 흐름을 설명하는 코드 사용하는 것으로, 데이터의 입력이 주어지고 데이터를 다루는 과정(흐름)을 정의하는 방식
+#### 선언적 프로그래밍 vs 함수형 프로그래밍
+- 선언적 프로그래밍
+  - 흐름 제어를 추상화하고 데이터 흐름을 설명하는 코드 사용하는 것으로, 데이터의 입력이 주어지고 데이터를 다루는 과정(흐름)을 정의하는 방식
+- 함수형 프로그래밍
+  - 함수에만 집중하고 적극 활용한 코드로, 변경 가능한 상태를 불변의 상태로 만들어 에러를 최소화하고, 코드의 간결성으로 가독성을 높이고, 동시성 작업의 효율화를 도모하는 방식
 
-#### First Object, First Class Citizen <small>1급 객체</small>
+함수형 프로그래밍은 **First Class Citizen, First Class Object (1급 시민, 1급 객체)** 의 개념으로부터 시작되어, **Lambda 표헌식** 으로 구현 가능하다.
+
+#### First Class Citizen, First Object <small>1급 시민, 1급 객체</small>
+**First Class Object 1급 객체** 는 1급 시민 조건을 충족하는 *Object* 객체이다.
+
 ##### 1급 객체 조건
 - 변수나 데이터안으로 삽입 가능
+
+{% highlight javascript %}
+var add = function(a, b) { return a + b; }
+var add2 = add;
+{% endhighlight %}
+
 - 파라미터 전달 가능
-- 동적 프로퍼티 할당 가능
+
+{% highlight javascript %}
+var add = function(func) { return func(); }
+{% endhighlight %}
+
 - 반환값으로 사용 가능
 
-`Java` 에서는 함수는 *1급 객체* 에 포함될 수 없지만, 함수도 객체로 구분되는 `JavaScript` 에서는 **함수도 1급 객체가 될 수 있다.**<br>
-`Java` 의 경우 ***함수형 인터페이스*** 를 통해 구현 가능하다.
+{% highlight javascript %}
+var add = function(func) { return func(); }
+add(function(a, b, c) { return a + b + c; });
+{% endhighlight %}
 
-##### 함수형 프로그래밍 조건 3가지
-###### 순수 함수
+*함수형 프로그래밍* 은 이런 *1급 객체* 개념을 활용하여 함수를 매개변수로 전달하고, 반환받는 방식의 프로그래밍 기법이다.<br>
+`Java` 의 함수는 *1급 객체* 에 포함될 수 없지만, 함수도 객체로 구분되는 `JavaScript` 에서는 **함수도 1급 객체가 될 수 있다.**<br>
+`Java` 의 경우 ***함수형 인터페이스*** 를 통해 **1급 객체** 구현 가능하고, 그 기반으로 **함수형 프로그래밍** 이 가능하다.<br>
+함수형 프로그래밍에는 또 아래와 같은 3가지의 조건이 있다.
+
+#### 함수형 프로그래밍 조건 3가지
+##### 순수 함수
 - 같은 입력에 대해서는 같은 출력을 반환하는 함수
 - 부작용(다른 요인에 대한 결과 변경)이 없는 함수
 
-###### 고차함수
+##### 고차함수
 - 함수의 인자로 함수를 전달 가능
 - 함수를 함수의 반환값으로 사용 가능
 
-###### 익명 함수
-- 람다식으로 표현되는 함수
+##### 익명 함수
+- 이름이 없는 함수를 뜻하며, 람다식으로 표현되는 함수
 
 ---
 
 ### Lambda <small>람다</small>
-람다식(Lambda Expression) 이란 함수를 하나의 식(Expression) 으로 표현하는 것이다. 함수를 람다식으로 표현하면 함수명 없이 **익명의 함수** 로 사용 가능하다.<br>
-`Java` 에서 *Stream* 함수들은 함수형 인터페이스를 받도록 되어있으며, 람다식은 반환값으로 함수형 인터페이스를 반환하고 있다.
+람다식(Lambda Expression) 이란 함수를 하나의 식(Expression) 으로 표현하는 것이다. 함수를 람다식으로 표현하면 함수명 없이 **익명 함수** 로 사용 가능하다.<br>
+`Java` 에서 `->` 와 같은 화살표 형태의 기호를 이용해서 매개 변수를 함수로 전달하는 형태로 구현하고 있다.
 
 {% highlight java %}
 ( parameters ) -> expression body       // 인자가 여러개 이고 하나의 문장으로 구성
@@ -87,13 +111,17 @@ public class Lambda {
 }
 {% endhighlight %}
 
-###### 주의 사항
-- Lambda 식으로 생성된 순수 함수는 함수형 인터페이스로만 사용 가능
-- 함수형 인터페이스는 1개의 함수만을 갖도록 제한
+> `@FunctionalInterface` 은 명시적으로 익명 함수를 표현할 뿐이므로 생략 가능하다.
+
+###### 주의 사항
+- `Lambda` 식으로 생성된 순수 함수는 함수형 인터페이스로만 사용 가능하다.
+- 함수형 인터페이스는 1개의 함수만을 갖도록 제한된다.
+
+> 함수형 인터페이스? 단일 추상 메서도를 가지는 인터페이스를 뜻한다.
 
 ---
 
-### `Java`에서 제공하는 함수형 인터페이스
+### `Java` 에서 제공하는 함수형 인터페이스
 #### `Supplier<T>`
 - 매개변수 없이 반환값만을 가지는 함수형 인터페이스
 
