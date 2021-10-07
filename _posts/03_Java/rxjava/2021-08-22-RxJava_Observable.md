@@ -239,7 +239,7 @@ private static void noBackPressure() throws Exception {
 - `Flowable` 구현일지라도 배압 제어를 통해 `MissingBackpressureException` 을 방지 필수
 
 | Field | 내용 |
-| :---: | :--- |
+| :---: | --- |
 | MISSION |  배압 전략 없음 |
 | ERROR | 배압 현상 발생시 `MissingBackpressureException` 발생 |
 | BUFFER | 데이터를 소비할 때까지 데이터를 Buffer 에 저장. 하지만 `OutOfMemoryError` 발생 가능 |
