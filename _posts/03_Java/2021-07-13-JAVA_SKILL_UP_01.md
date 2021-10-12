@@ -31,27 +31,28 @@ tags  : java functional-programming lambda
 
 ##### 1급 객체 조건
 - 변수나 데이터안으로 삽입 가능
-
-{% highlight javascript %}
-var add = function(a, b) { return a + b; }
-var add2 = add;
-{% endhighlight %}
-
 - 파라미터 전달 가능
-
-{% highlight javascript %}
-var add = function(func) { return func(); }
-{% endhighlight %}
-
 - 반환값으로 사용 가능
 
-{% highlight javascript %}
-var add = function(func) { return func(); }
-add(function(a, b, c) { return a + b + c; });
+{% highlight kotlin %}
+fun main() {
+    // 1. 변수 또는 데이터안으로 저장 가능
+    val test: () -> Unit = { println("Hello Kotlin") }
+    var func = test
+
+    // 2. 파라미터 전달 가능
+    invokeFunction(test)		// out: Hello Kotlin
+
+    // 3. 반환값으로 사용 가능
+    func = returnFunction()
+    func.invoke()				// out: This is Return Function
+}
+fun invokeFunction(f: () -> Unit) = f.invoke()
+fun returnFunction(): () -> Unit = { println("This is Return Function") }
 {% endhighlight %}
 
-*함수형 프로그래밍* 은 이런 *1급 객체* 개념을 활용하여 함수를 매개변수로 전달하고, 반환받는 방식의 프로그래밍 기법이다.<br>
-`Java` 의 함수는 *1급 객체* 에 포함될 수 없지만, 함수도 객체로 구분되는 `JavaScript` 에서는 **함수도 1급 객체가 될 수 있다.**<br>
+**함수형 프로그래밍** 은 이런 **1급 객체** 개념을 활용하여 함수를 매개변수로 전달하고, 반환받는 방식의 프로그래밍 기법이다.<br>
+`Java` 의 함수는 1급 객체에 포함될 수 없지만, 함수도 객체로 구분되는 `JavaScript` 에서는 **함수도 1급 객체가 될 수 있다.**<br>
 `Java` 의 경우 ***함수형 인터페이스*** 를 통해 **1급 객체** 구현 가능하고, 그 기반으로 **함수형 프로그래밍** 이 가능하다.<br>
 함수형 프로그래밍에는 또 아래와 같은 3가지의 조건이 있다.
 

@@ -15,8 +15,8 @@ tags  : java async non-blocking reactive-programming rxjava
 ---
 
 ### Synchronous vs Asynchronous
-*동기식 (Sync) 작업* 은 서로 다른 2개의 작업 주체가 각자의 작업 스케쥴에 따라 영향을 받는 방식인 반면에,<br>
-*비동기식 (Async) 작업* 은 2개의 작업 주체가 서로의 작업 시작/종료 여부와 관계없이 각자만의 시작/종료 시간을 가질 수 있는 방식이다.
+**동기식 (Sync) 작업** 은 서로 다른 2개의 작업 주체가 각자의 작업 스케쥴에 따라 영향을 받는 방식인 반면에,<br>
+**비동기식 (Async) 작업** 은 2개의 작업 주체가 서로의 작업 시작/종료 여부와 관계없이 각자만의 시작/종료 시간을 가질 수 있는 방식이다.
 <br>
 ![sync vs async](/images/syncvsasync.jpeg)
 
