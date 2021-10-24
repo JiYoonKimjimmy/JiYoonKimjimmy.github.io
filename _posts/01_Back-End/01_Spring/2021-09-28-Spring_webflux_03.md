@@ -18,3 +18,29 @@ tags  : java spring webflux functional-endpoints
 `Webflux` 에서 경량화된 함수형 프로그래밍 모델인 **Webflux.fn** 을 지원한다. **Webflux.fn** 모델은 요청을 함수로 라우팅하고, 핸들링하기 때문에 불변성(immutablitity)를 보장한다.<br>
 <br>
 **Webflux.fn** 모델에서는 요청으로 `ServerRequest` 객치를 받아 비동기 `ServerResponse` 를 반환하는 구조이며, `RouterFunction` 에서 요청에 대한 처리를 위해 `HandlerFuction` 에 라우팅한다. (`RouterFunction` 이 `@RequestMapping` 과 동일한 역할)
+
+#### Functional Endpoints 맛보기
+{% highlight kotlin %}
+package com.ems.core.router
+
+import com.ems.core.handler.StudentsHandler
+import org.springframework.context.annotation.Bean
+import org.springframework.stereotype.Component
+import org.springframework.web.reactive.function.server.RequestPredicates.path
+import org.springframework.web.reactive.function.server.RouterFunctions.nest
+import org.springframework.web.reactive.function.server.router
+
+@Component
+class StudentsRouter(private val handler: StudentsHandler) {
+    @Bean
+    fun routerFunction() = nest(path("/api"),
+        router {
+            listOf(
+                POST("/student", handler::getOne),
+                POST("/students", handler::save),
+                GET("/students", handler::getAll)
+            )
+        }
+    )
+}
+{% endhighlight %}
