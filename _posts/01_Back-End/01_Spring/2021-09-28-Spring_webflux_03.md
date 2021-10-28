@@ -20,16 +20,10 @@ tags  : java spring webflux functional-endpoints
 **Webflux.fn** 모델에서는 요청으로 `ServerRequest` 객치를 받아 비동기 `ServerResponse` 를 반환하는 구조이며, `RouterFunction` 에서 요청에 대한 처리를 위해 `HandlerFuction` 에 라우팅한다. (`RouterFunction` 이 `@RequestMapping` 과 동일한 역할)
 
 #### Functional Endpoints 맛보기
+
+##### Router Class
+
 {% highlight kotlin %}
-package com.ems.core.router
-
-import com.ems.core.handler.StudentsHandler
-import org.springframework.context.annotation.Bean
-import org.springframework.stereotype.Component
-import org.springframework.web.reactive.function.server.RequestPredicates.path
-import org.springframework.web.reactive.function.server.RouterFunctions.nest
-import org.springframework.web.reactive.function.server.router
-
 @Component
 class StudentsRouter(private val handler: StudentsHandler) {
     @Bean
@@ -44,3 +38,26 @@ class StudentsRouter(private val handler: StudentsHandler) {
     )
 }
 {% endhighlight %}
+
+##### Handler Class
+
+{% highlight kotlin %}
+@Component
+class StudentsHandler(private val repository: StudentsRepository) {
+
+    fun getOne(request: ServerRequest): Mono<ServerResponse> =
+        repository.findById(request.bodyToMono<Students>().mapNotNull { it.id }).flatMap { ok().body(fromValue(it)) }
+
+    fun getAll(request: ServerRequest): Mono<ServerResponse> =
+        repository.findAll().collect(toList()).flatMap { ok().body(fromValue(it)) }
+
+    fun save(request: ServerRequest): Mono<ServerResponse> =
+        repository.saveAll(request.bodyToMono<Students>()).flatMap { created(URI.create("/students")).build() }.next()
+
+}
+{% endhighlight %}
+
+---
+
+#### 출처
+- [Spring Webflux 공식 레퍼런스 - Web on Reactive Stack](https://docs.spring.io/spring-framework/docs/5.2.6.RELEASE/spring-framework-reference/web-reactive.html)
