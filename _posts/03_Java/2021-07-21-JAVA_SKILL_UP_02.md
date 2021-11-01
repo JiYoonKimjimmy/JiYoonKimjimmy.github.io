@@ -44,21 +44,29 @@ tags  : java async non-blocking reactive-programming rxjava
 <br>
 그에 반해, 함수형 프로그래밍은 **순수 함수를 지향하기 때문에** Multi-Thread 환경에서도 안전하다. 그래서 `Java` 에서 `Reactive Programming` 을 하기 위해선 함수형 프로그래밍의 지원이 필요하다.
 
-#### Reactive Programming 의 `Thread` 관리 방식
-Reactive Programming 는 **단일 `Thread`** 방식으로 관리가 된다. 단일 `Thread` 방식이라고 하지만 `Core`수대로 `Thread` 를 가지고 있다.
-<br>
-먼저, 멀티 `Thread` 방식이 아닌 이유는 데이터의 변경을 감지하고 동작하는 함수형 프로그래밍에서는 멀티 `Thread` 일 경우, 데이터가 공유되어 잘못된 결과가 처리될 수 있는 위험성이 있기 때문이다. 이런 현상을 부수 효과, **Side effect** 라고 한다.
-<br>
-같은 자원을 여러 `Thread` 에서 경쟁 조건(Race condition)에 빠지게 되면 결과가 꼬이고, 디버깅에도 어려움을 겪게 된다.
-<br>
-함수형 프로그래밍에서 **순수 함수** 가 조건에 해당되는 이유가 위와 같은 에러 상황을 방지하기 위함이다.
-<br>
-그럼 어떻게 Reactive Programming 은 단일 `Thread` 를 활요해서 고성능 프로그램을 구현할 수 있는지 알아보면, **Event Loop** 모델 방식이 있다.
+#### Thread Pool vs Event Loop
+`Java` 에서의 `Thead` 관리 방식은 보통 `Thread Pool` 방식으로 많이 사용하고 있을 것이다.
 
-##### Event Loop
+![Blocking Thread Pool](/images/blocking-thread-pool.jpg)
+
+> `Thread Pool` 관련 좋은 블로그 : [https://www.wrapuppro.com/programing/view/jAuG3VNBCbGnQWU](https://www.wrapuppro.com/programing/view/jAuG3VNBCbGnQWU)
+
+`Thread Pool` 의 관리 방식으로 많은 어플리케이션이 `Thread` 생성하는 부하를 줄이고, 성능을 높일 수 있었지만, `blocking I/O` 를 사용한다는 점에서 미세한 성능 차이가 일어날 수 있다.
+
+##### Reactive Programming 의 `Thread` 관리 방식
+Reactive Programming 는 **단일 `Thread`** 방식으로 관리가 된다. (단일 `Thread` 방식이라고 하지만 `Core`수대로 `Thread` 를 가지고 있다.)
+
+**먼저, 멀티 `Thread` 방식이 아닌 이유는** 데이터의 변경을 감지하고 동작하는 함수형 프로그래밍에서는 멀티 `Thread` 일 경우, 데이터가 공유되어 잘못된 결과가 처리될 수 있는 위험성이 있기 때문이다. 이런 현상을 부수 효과 **Side effect** 라고 한다.
+
+같은 자원을 여러 `Thread` 에서 경쟁 조건(Race condition)에 빠지게 되면 결과가 꼬이고, 디버깅에도 어려움을 겪게 된다. 함수형 프로그래밍에서 **순수 함수** 가 조건에 해당되는 이유가 위와 같은 에러 상황을 방지하기 위함이다.
+
+단일 `Thread` 조건인 Reactive Programming 이 고성능 프로그램을 구현하기 위해 **Event Loop** 모델 방식을 도입하게 되었다.
+
 **Event Loop** 모델 방식은 *요청(Event)* 를 *Event Queue* 에 적재를 하고, *Event Loop* 의 알고리즘에 의해 함수 호출/처리 후 `Callback` 응답 처리한다.
 
 ![Event Loop](/images/event-loop.jpg)
+
+> Spring Webflux & Evnet Loop 방식 이해를 위한 좋은 블로그 : [https://devahea.github.io/2019/04/21/Spring-WebFlux는-어떻게-적은-리소스로-많은-트래픽을-감당할까](https://devahea.github.io/2019/04/21/Spring-WebFlux%EB%8A%94-%EC%96%B4%EB%96%BB%EA%B2%8C-%EC%A0%81%EC%9D%80-%EB%A6%AC%EC%86%8C%EC%8A%A4%EB%A1%9C-%EB%A7%8E%EC%9D%80-%ED%8A%B8%EB%9E%98%ED%94%BD%EC%9D%84-%EA%B0%90%EB%8B%B9%ED%95%A0%EA%B9%8C/)
 
 ---
 
