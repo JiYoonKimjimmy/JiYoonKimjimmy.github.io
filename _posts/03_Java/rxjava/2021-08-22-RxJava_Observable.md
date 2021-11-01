@@ -197,6 +197,8 @@ class PrintUtil {
 
 #### BackPressure 방지를 위한 Flowable
 ##### Observable 의 BackPressure
+- `Observable` 는 배압 제어를 못하기 때문에 10000 건 모두 발행한다.
+
 {% highlight java %}
 private static void backPressure() throws Exception {
     PrintUtil.printData("backPressure()");
@@ -209,10 +211,11 @@ private static void backPressure() throws Exception {
             });
     Thread.sleep(10000);
 }
-// `Observable` 는 배압 제어를 못하기 때문에 10000 건 모두 발행한다.
 {% endhighlight %}
 
 ##### Flowable 의 BackPressure 제어
+- `Flowable` 는 일정량 발행이 되면, 발행을 제어하고 구독 처리된다.
+
 {% highlight java %}
 private static void noBackPressure() throws Exception {
     PrintUtil.printData("noBackPressure()");
@@ -225,15 +228,14 @@ private static void noBackPressure() throws Exception {
             });
     Thread.sleep(10000);
 }
-// `Flowable` 는 일정량 발행이 되면, 발행을 제어하고 구독 처리된다.
 {% endhighlight %}
 
 #### Observable vs Flowable
-- When to use `Observable` ? 1,000개 미만의 이벤트 데이터 흐름이 발생하는 경우
+- When to use `Observable` ? 10,000개 미만의 이벤트 데이터 흐름이 발생하는 경우
 - When to use `Flowable` ? 10,000개 이상의 데이터 흐름이 발생하는 경우
-  - 디스트에서 파일 읽는 경우
-  - DB 에서 데이터 읽는 경우
-  - 네트워크 IO 실행하는 경우
+  - 디스크에서 파일 읽는 경우
+  - DB 에서 대용량 데이터 읽는 경우
+  - 네트워크 I/O 실행하는 경우
 
 #### BackPressure Strategy
 - `Flowable` 구현일지라도 배압 제어를 통해 `MissingBackpressureException` 을 방지 필수
