@@ -52,12 +52,12 @@ class BatchJobConfig(
 
 간단한 `simpleJob` 를 실행하여 `simpleStep` 에서 실행되는 아래와 같은 로그를 확인해볼 수 있다.
 
-![spring batch basic 01 테스트 결과](/images/spring-batch-basic-01.png)
+![spring Batch basic 01 테스트 결과](/images/spring-batch-basic-01.png)
 
 ### Job
 ![Job 구조](/images/job-hierarchy.png)
 
-`Job` 은 **batch 작업 하나의 단위**이고, `Job` 안에서 여러 개의 `Step` 들이 구성되어 batch 작업을 수행한다. `Spring Batch` 구조에서 제일 큰 개념은 `Job` 이라 할 수 있다.
+`Job` 은 **Batch 작업 하나의 단위**이고, `Job` 안에서 여러 개의 `Step` 들이 구성되어 Batch 작업을 수행한다. `Spring Batch` 구조에서 제일 큰 개념은 `Job` 이라 할 수 있다.
 
 #### JobInstance
 `JobInstance` 는 논리적인 `Job` 를 의미한다. 실제 1일 1회 실행되는 `Job` 이 존재한다면, 매일 1회 실행되는 새로운 `Job` 이 생성이 될 것이고, 이를 관리하고자 논리적인 `JobInstance` 가 필요하다.
@@ -74,24 +74,24 @@ class BatchJobConfig(
 ### Step
 ![Job & Step 구조](/images/job-hierarchy-with-steps.png)
 
-`Step` 은 `Job` 의 독립적이고 순차적으로 단계를 처리하기 위한 도메인 객체이다. 모든 `Job` 은 하나 이상의 `Step` 으로 구성되며, `Step` 은 실제 batch 에서 수행해야하는 처리를 정의하고 있다.
+`Step` 은 `Job` 의 독립적이고 순차적으로 단계를 처리하기 위한 도메인 객체이다. 모든 `Job` 은 하나 이상의 `Step` 으로 구성되며, `Step` 은 실제 Batch 에서 수행해야하는 처리를 정의하고 있다.
 
 #### StepExecution
 `StepExecution` 은 한 번의 `Step` 실행 시도를 의미한다. `Step` 를 실행할 때마다 생성되지만, 이전 단계의 `Step` 이 실패되면 다음 `Step` 를 실행하지 않고 `StepExecution` 도 저장하지 않는다.
 
 #### Job & Step 구조
-![spring batch job & step 구조](/images/spring-batch-job-step.png)
+![spring Batch job & step 구조](/images/spring-batch-job-step.png)
 
 `Job` 은 항상 1개의 이상의 `Step` 으로 구성되어있다.
 `Step` 를 구성할 수 있는 방법은 크게 2가지로 나눌 수가 있다.
-- `Tasklet` : batch 의 작업을 하나로 처리
+- `Tasklet` : Batch 의 작업을 하나로 처리
 - `Reader & Processor & Writer` : 조회 / 처리 / 전달 기능을 나눠서 처리
 
 ---
 
 ### 기타 중요 기능
 #### JobRepository
-`JobRepository` 는 `Spring batch` 에서의 모든 저장(`persistence`) 메커니즘을 담당하고, `JobLauncher`, `Job`, `Step` 구현체에 `CRUD` 기능을 제공해준다.
+`JobRepository` 는 `Spring Batch` 에서의 모든 저장(`persistence`) 메커니즘을 담당하고, `JobLauncher`, `Job`, `Step` 구현체에 `CRUD` 기능을 제공해준다.
 `Job` 를 실행할 때 `repository` 에서 `JobExecution` 를 조회하고, 실행 중에는 `StepExecution` 과 `JobExecution` 구현체를 `repository` 에 전달/저장한다.
 
 #### JobLauncher
@@ -104,13 +104,13 @@ class BatchJobConfig(
 `ItemProcessor` 는 `ItemReader` 에서 조회된 정보를 변환하거나 다른 비즈니스 처리를 담당한다.
 
 #### ItemWriter
-`ItemWriter` 는 `Step` 에서 `batch` 또는 `chunk` 단위로 정보를 출력하는 작업을 추상화한 개념이다.
+`ItemWriter` 는 `Step` 에서 `Batch` 또는 `chunk` 단위로 정보를 출력하는 작업을 추상화한 개념이다.
 
 ---
 
-기본적인 `Spring batch` 의 개념을 확인하였고, 세부적인 코드나 내용들은 계속 정리하면서 추가할 예정이다.
+기본적인 `Spring Batch` 의 개념을 확인하였고, 세부적인 코드나 내용들은 계속 정리하면서 추가할 예정이다.
 
-`Spring batch` 는 앞서 설명한 것처럼 `@Configuration` 으로 `Bean` 등록하여 사용가능하지만, `jar` 가 실행될 때 수행하는 batch 가 아닌 `Spring Web` 에서 특정 API 를 호출하여 batch 의 `Job` 을 실행시키는 방법도 있다.
+`Spring Batch` 는 앞서 설명한 것처럼 `@Configuration` 으로 `Bean` 등록하여 사용가능하지만, `jar` 가 실행될 때 수행하는 Batch 가 아닌 `Spring Web` 에서 특정 API 를 호출하여 Batch 의 `Job` 을 실행시키는 방법도 있다.
 하지만, `Spring Web` 에서 실행시키는 방법은 권장하지 않는 방법이기에 일단 `jar` 로 실행시키는 방법을 정리할 예정이다.
 
 ---
