@@ -117,8 +117,6 @@ public JobLauncher jobLauncher() {
 
 ![JobLauncher async flow](/images/job-launcher-sequence-async.png)
 
-
-
 ---
 
 #### 출처
