@@ -3,7 +3,7 @@ layout: post
 title : Spring Batch step.2 - Job
 date  : 2021-11-04
 image : spring-batch-stereotypes.png
-tags  : spring springbatch kotlin
+tags  : spring springbatch kotlin job
 ---
 
 ## Job
