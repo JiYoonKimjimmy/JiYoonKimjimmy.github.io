@@ -119,6 +119,10 @@ public JobLauncher jobLauncher() {
 
 ---
 
+여기까지 보면 `Spring Batch` 에서 `Job` 을 구성하는 기본적인 구현 방법은 이해가 된다. 세부적인 `Job` 설정들은 구현 단계에서 공식 레퍼런스를 참고하면서 학습할 예정이다.
+
+---
+
 #### 출처
 - [jojoldu 님의 Spring Batch 가이드](https://jojoldu.tistory.com/324?category=902551)
 - [Spring Batch 공식 Reference](https://docs.spring.io/spring-batch/docs/4.2.x/reference/html/index-single.html#spring-batch-intro)
