@@ -1,6 +1,6 @@
 ---
 layout: post
-title : Spring Batch step.1 - 기본
+title : Spring Batch step.1 - Overview
 date  : 2021-11-04
 image : spring-batch-logo.png
 tags  : spring springbatch kotlin
