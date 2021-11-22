@@ -64,9 +64,7 @@ public Step sampleStep(PlatformTransactionManager transactionManager) {
 
 {% highlight java %}
 public interface ItemReader<T> {
-
     T read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException;
-
 }
 {% endhighlight %}
 
@@ -81,9 +79,7 @@ public interface ItemReader<T> {
 
 {% highlight java %}
 public interface ItemWriter<T> {
-
     void write(List<? extends T> items) throws Exception;
-
 }
 {% endhighlight %}
 
@@ -96,9 +92,7 @@ public interface ItemWriter<T> {
 
 {% highlight java %}
 public interface ItemProcessor<I, O> {
-
     O process(I item) throws Exception;
-
 }
 {% endhighlight %}
 
