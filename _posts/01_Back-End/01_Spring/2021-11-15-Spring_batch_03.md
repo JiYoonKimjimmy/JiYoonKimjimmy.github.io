@@ -58,7 +58,70 @@ public Step sampleStep(PlatformTransactionManager transactionManager) {
 
 ---
 
-사실 `Step` 부분을 보면서 한번에 모든 내용을 정리할 수는 없을 정도로 많은 분량이기에 간단하게 `Step` 의 역할과 기본 구현 방식만 살펴보았고, 실제로 코드를 구현해보면서 세세한 부분을 삺펴봐야할 것 같다.
+### ItemReader
+`ItemReader` 는 데이터를 읽어오는 간단한 인터페이스이지만, 다양한 입력을 읽어올 수 있다.
+예를 들면 `Flat`, `XML`, `Database` 등 있을 수 있는데, 이 외에도 많은 데이터 정보를 읽을 수 있다.
+
+{% highlight java %}
+public interface ItemReader<T> {
+
+    T read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException;
+
+}
+{% endhighlight %}
+
+기본적인 `ItemReader` 인터페이스는 `read` 함수를 구현해야 한다. 이 함수는 `Item` 하나를 반환하거나 더 이상 반환할 `Item` 이 없는 경우, `null` 를 반환한다. `Item` 은 읽어오는 파일의 한줄이거나 데이버테이스의 한 `row` 를 의미한다.
+
+`ItemReader` 는 더이상 읽을 데이터가 없을 때 별도의 `exception` 처리를 하지 않는다. 단순히 `null` 를 반환할 뿐이다.
+
+---
+
+### ItemWriter
+`ItemWriter` 는 `ItemReader` 에서 하는 일과는 정반대인 데이터를 `write` 하는 일을 한다. `write` 를 한다고하지만, 이 기능은 `insert`, `update`, `send` 등 여러가지 기능을 의미할 수 있다.
+
+{% highlight java %}
+public interface ItemWriter<T> {
+
+    void write(List<? extends T> items) throws Exception;
+
+}
+{% endhighlight %}
+
+`ItemWriter` 는 하나의 데이터가 아니라 리스트 형식의 `Item` 묶음을 받아 처리한다. 최대 `Chunk` 사이즈만큼 데이터 리스트를 받고, 리스트를 모두 `write` 한 후에는 결과를 반환하기 전에 `flush` 처리르 한다.
+
+---
+
+### ItemProcessor
+`ItemProcessor` 는 읽어온 데이터를 변경이 필요한 비즈니스 로직을 정의할 수 있는 인터페이스이다. 해당 로직을 `ItemWriter` 에서 처리할 수도 있지만, 굳이 `ItemWriter` 에서 처리할 필요가 없다면 별도의 `ItemProcessor` 를 정의하여 처리할 수 있다.
+
+{% highlight java %}
+public interface ItemProcessor<I, O> {
+
+    O process(I item) throws Exception;
+
+}
+{% endhighlight %}
+
+위 코드와 같인 `ItemProcessor` 에서는 하나의 데이터 입력을 받아 하나의 데이터로 변환하여 반환한다. 새로 반환하는 객체의 타입은 같은 타입일 수도 있고, 다른 타입일수도 있다.
+
+#### Chaining ItemProcessors
+보통은 `Item` 은 한번의 변환으로 충분할 수도 있지만, 여러 번 변환이 필요한 경우도 있을 수 있다. 그럴 때는 `Compsite Pattern` 를 활용하여 구현이 가능하다.
+
+{% highlight java %}
+CompositeItemProcessor<Foo, Foobar> compositeProcessor = new CompositeItemProcessor<Foo, Foobar>();
+
+List itemProcessors = new ArrayList();
+itemProcessors.add(new FooTransformer());
+itemProcessors.add(new BarTransformer());
+
+compositeProcessor.setDelegates(itemProcessors);
+{% endhighlight %}
+
+---
+
+### ItemStream
+
+
 
 ---
 
