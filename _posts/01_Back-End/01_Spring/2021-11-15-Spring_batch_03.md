@@ -119,12 +119,6 @@ compositeProcessor.setDelegates(itemProcessors);
 
 ---
 
-### ItemStream
-
-
-
----
-
 #### 출처
 - [jojoldu 님의 Spring Batch 가이드](https://jojoldu.tistory.com/324?category=902551)
 - [Spring Batch 공식 Reference](https://docs.spring.io/spring-batch/docs/4.2.x/reference/html/index-single.html#spring-batch-intro)
