@@ -132,7 +132,7 @@ db.createUser({
 })
 {% endhighlight %}
 
-> `MongoDB` 계정 삭제하는 방법<br>
+> #### `MongoDB` 계정 삭제하는 방법<br>
 > use \<customDB><br>
 > db.dropUser("\<username>")
 
