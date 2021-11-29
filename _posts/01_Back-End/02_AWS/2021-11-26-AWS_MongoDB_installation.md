@@ -2,7 +2,7 @@
 layout: post
 title : EC2 + MongoDB 설치하기
 date  : 2021-11-26
-image : mongodb-01.png
+image : mongodb-01.jpg
 tags  : aws mongodb
 ---
 
