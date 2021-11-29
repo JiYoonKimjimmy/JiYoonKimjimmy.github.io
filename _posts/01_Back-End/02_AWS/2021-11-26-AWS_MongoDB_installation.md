@@ -96,10 +96,10 @@ $ sudo systemctl restart mongod
 {% highlight bash %}
 $ vi /etc/mongod.conf
 
-26 # network interfaces
-27 net:
-28   port: 27017
-29   bindIp: 0.0.0.0  # Enter 0.0.0.0,:: to bind to all IPv4 and IPv6 addresses or, alternatively, use the net.bindIpAll setting.
+# network interfaces
+net:
+   port: 27017
+   bindIp: 0.0.0.0  # Enter 0.0.0.0,:: to bind to all IPv4 and IPv6 addresses or, alternatively, use the net.bindIpAll setting.
 {% endhighlight %}
 
 #### 2. 계정 생성
