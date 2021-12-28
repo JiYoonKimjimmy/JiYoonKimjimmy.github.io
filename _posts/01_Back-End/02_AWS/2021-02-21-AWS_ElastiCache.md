@@ -3,7 +3,7 @@ layout: post
 title : AWS ElastiCache for Redis
 date  : 2021-02-21
 image : aws_redis.png
-tags  : back-end AWS
+tags  : back-end aws
 ---
 
 ## Spring Boot + AWS ElastiCache for Redis
