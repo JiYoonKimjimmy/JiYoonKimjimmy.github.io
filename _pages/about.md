@@ -24,6 +24,12 @@ image: about.jpg
 
 
 #### Projects
+##### Mock API 전용 Server 구축 <small>2021.11 ~ 2021.12</small>
+* 외부 솔루션 연동을 통한 프로젝트 진행 지원을 위한 Mock Test Server 구축
+* 외부 솔루션 API 정의서를 간단하게 Mock API 스펙을 정의하여 테스트 지원
+* 별도 DB Schma 또는 REST API 개발 없이 테스트 지원
+* `MongoDB` 활용한 동적 Data Schma 구성 및 API 구성
+
 ##### 부산 지역화폐 동백전 이관 프로젝트 <small>2021.02 ~ 2021.05</small>
 * 기존 부산 지역화폐 사업 이관 프로젝트 수행
 * 회원 정보, 잔액 정보, 거래 내역 포함한 모든 Database Migration 처리
@@ -45,6 +51,7 @@ image: about.jpg
 * 코나카드 전체 시스템 회원 관리 Rest API 신규/운영 개발
 <br><br>
 **Project Specs**
+  * Java
   * Spring Boot
   * JPA
   * QueryDSL
@@ -62,9 +69,35 @@ image: about.jpg
 * 신규 DB 모델링 설계/운영
 <br><br>
 **Project Specs**
+  * Java
   * Spring Boot
   * Spring Batch
   * JPA
+  * Oracle
+  * Gradle
+  * Jenkins
+
+##### 고객센터 API 연계 지원 Sever Core Component
+* 고객센터 서비스별 필요한 서버 API 연계 지원
+* 회원 카드 관리, 회원 탈퇴 등 MSA 구조상 나눠져있는 API 정보 수집/연계하여 고객센터 웹 서비스에서 하나의 API 요청/응답 처리 지원
+<br><br>
+**Project Specs**
+  * Kotlin, Java
+  * Spring Boot
+  * JPA
+  * Oracle
+  * Gradle
+  * Jenkins
+
+##### 기부 서비스 관리 Server Core Component
+* 지역화폐 기반 기부 서비스 관리 운영 개발
+* 기부 등록/수정/완료 처리 등 다양한 기부 서비스 관련 API 개발
+<br><br>
+**Project Specs**
+  * Kotlin
+  * Spring Boot
+  * JPA
+  * QueryDSL
   * Oracle
   * Gradle
   * Jenkins
