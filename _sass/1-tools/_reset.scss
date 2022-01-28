@@ -36,10 +36,12 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
   border: 1px solid #c2c6cc;
+  width: 100%
 }
 
 th, td {
   border: 1px solid #c2c6cc;
   padding: 3px;
   font-size: 0.9em;
+  padding: 5px 10px 5px 10px;
 }
