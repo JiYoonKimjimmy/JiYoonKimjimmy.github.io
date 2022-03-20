@@ -39,6 +39,11 @@ image: about.jpg
 * `email` 기반 회원 체계에서 `CI` 기반의 회원 체계 및 정책 수립하여 개발 진행
 * 부산은행 지역화폐와 회원 정보 연동
 
+#### 코나모빌리티 택시 서비스 <> 캐시비 시스템 연동 <small>2021.12 ~ 2022.04</small>
+* 코나모빌리티 택시 서비스와 캐시비 시스템간 택시 가맹점, 정산, 입금 내역 연동 프로세스 개발
+* 각 파트별 연동 전문 규격서 작성
+* `Batch` 프로그램을 통하여 캐시비 개발사(`로카모빌리티`)로 송신 및 결과 파일 수신
+
 #### Mock API 전용 Server 구축 <small>2021.11 ~ 2021.12</small>
 * 외부 솔루션 연동이 필요한 프로젝트 진행 지원을 위한 Mock Test Server 구축
 * 간단한 API 만으로 외부 솔루션 API 서비스 구현하고 테스트 지원
@@ -114,6 +119,16 @@ image: about.jpg
   * Kotlin
   * Spring Boot, Spring data JPA
   * MongoDB
+  * Gradle, Jenkins
+
+##### 코나모빌리티 택시 서비스 외부 시스템 연동 Server Core Component
+* 연동 시스템별 `Batch` 프로그램 개발
+* 택시 가맹점, 정산 내역, 입금 내역 시스템 연동
+<br><br>
+**Project Specs**
+  * Kotlin
+  * Spring Boot, Spring Batch, Spring data JPA
+  * Oracle
   * Gradle, Jenkins
 
 ---
