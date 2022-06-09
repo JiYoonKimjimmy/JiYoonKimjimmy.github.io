@@ -1,6 +1,6 @@
 #-------------------------------
 # General Site Settings
-title: Jimmyberg's Dev blog
+title: Jimmyberg's<br> Dev blog
 logo:  # You can add own logo.
 description: The NEW Jimmyberg's blog.
 
@@ -11,7 +11,7 @@ author:
   name: Jimmyberg
   image: profile.jpg
   say-hello: <strong>사막을 건너는 낙타처럼..</strong>
-  bio: 무더운 사막을 묵묵히 한 발자국씩 나아가는 낙타처럼, 꾸준히 배우고 성장하여, 보다 더 멋지고, 성숙한 Back-End 개발자가 되기 위한 기록 저장소.<br><strong>#Back-End,#Java,#Kotlin,#Spring,#SpringBoot,#JPA,#Oracle,#SQL</strong>
+  bio: 무더운 사막을 묵묵히 한 발자국씩 나아가는 낙타처럼, 꾸준히 배우고 성장하여, 보다 더 멋지고, 성숙한 개발자가 되기 위한 기록 저장소.
 
 
 #-------------------------------
