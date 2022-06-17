@@ -6,6 +6,12 @@
         <div class="hero__content">
           <h1 class="hero__title">{{ site.data.settings.author.say-hello }}</h1>
           <p class="hero__subtitle">{{ site.data.settings.author.bio }}</p>
+          <!-- <h3 class="hero__subtitle">#Back-End, #Java, #Kotlin, #Spring, #SpringBoot, #JPA</h3> -->
+          <h3 class="hero__subtitle">
+            {% for tag in site.data.settings.author.tags %}
+              #{{ tag }}
+            {% endfor %}
+          <h3>
           <div class="hero__social">
             <span class="hero__social-title">Follow Me |</span>
             {% include contact-link.html %}
