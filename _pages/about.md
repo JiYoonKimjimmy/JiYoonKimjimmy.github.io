@@ -46,8 +46,8 @@ image: about.jpg
 #### Mock API 전용 Server 구축 <small>2021.11 ~ 2021.12</small>
 * 외부 솔루션 연동이 필요한 프로젝트 진행 지원을 위한 Mock Test Server 구축
 * 간단한 API 만으로 외부 솔루션 API 서비스 구현하고 테스트 지원
-* 별도 DB Schma 또는 REST API 개발 없이 테스트 지원
-* `MongoDB` 활용한 **동적 Data Schma 구성 및 API 구성**
+* 별도 DB Schema 또는 REST API 개발 없이 테스트 지원
+* `MongoDB` 활용한 **동적 Data Schema 구성 및 API 구성**
 
 #### 부산 지역화폐 동백전 이관 프로젝트 <small>2021.02 ~ 2021.05</small>
 * 기존 부산 지역화폐 사업 이관 프로젝트 수행
@@ -98,8 +98,8 @@ image: about.jpg
 
 ##### Mock API 관리 Server Core Component
 * 외부 솔루션 API 테스트 지원용 Mock Server
-* 동적 Data Schma 및 API 지원
-* `MongoDB` 사용하여 동적 Schma 활용
+* 동적 Data Schema 및 API 지원
+* `MongoDB` 사용하여 동적 Schema 활용
 <br><br>
 **Project Specs**
   * Kotlin
