@@ -7,7 +7,11 @@ tags  : back-end spring
 ---
 
 ## OAuth 2.0
-타사의 API 사용하고 싶을 때 권한 획득 및 인증을 위한 Open Standard Protocol
+`OAuth` 는 인증을 위한 개방형 표준 프로토콜이다.
+
+리소스 서버에서 제공하는 자원에 대한 접근 권한을 관리하고, 접근 인증을 해주는 기능을 수행한다.
+
+구글, 네이버, 카카오 와 같은 다양한 기업에서 `Open-API` 제공하거나 `Social Login` 를 제공할 때, `token` 정보 제공하여 API 를 호출하도록 할텐데, `token` 인증 방식 중 `OAuth` 프로토콜 방식으로 개발 구현되어있다.
 
 ## OAuth 구조
 ### OAuth 구성
@@ -17,7 +21,7 @@ tags  : back-end spring
 * AUthorization Server : OAuth 인증 서버
 
 ### OAuth Flow
-![25238637583547EC0A](/images/25238637583547EC0A.png)
+![OAuth Flow](/images/25238637583547EC0A.png)
 <br>
 (A) Client 가 Social Login 요청<br>
 (B) Resource Owner 는 Social Login 할 수 있게 화면 이동<br>
