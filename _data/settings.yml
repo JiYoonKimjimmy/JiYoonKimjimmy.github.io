@@ -11,7 +11,7 @@ author:
   name: Jimmyberg
   image: profile.jpg
   say-hello: <strong>사막을 건너는 낙타처럼..</strong>
-  bio: 무더운 사막을 묵묵히 한 발자국씩 나아가는 낙타처럼,<br>꾸준히 배우고, 성장하고, 보다 더 멋지고,<br>성숙한 개발자가 되기 위한 기록 저장소
+  bio: 무더운 사막을 묵묵히 한 발자국씩 나아가는 낙타처럼,<br>꾸준히 배우고, 성장하고, 보다 더 멋지고,<br>성숙한 개발자가 되기 위한 기록 저장소.
   tags: [Back-End,Java,Kotlin,Spring,SpringBoot,JPA]
 
 
