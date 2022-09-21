@@ -95,6 +95,26 @@ if [ -f ~/.bash_profile ]; then
 fi
 ```
 
+### ATOM Editor `Snippets` 설정
+- `ATOM` 의 자동 완성 추가하는 설정
+
+#### `snippets.cson` 수정
+```cson
+'.text.md':
+  'Jekyll Code Block':
+    'prefix': 'codeblock'
+    'body': '{% highlight $1 %}$2\n{% endhighlight %}'
+  'Start Jekyll Code Block':
+    'prefix': 'startcodeblock'
+    'body': '{% highlight $1 %}'
+  'End Jekyll Code Block':
+    'prefix': 'endcodeblock'
+    'body': '{% endhighlight %}'
+  'br Tag Element':
+    'prefix': 'br'
+    'body': '<br>\n'
+```
+
 ---
 
 ## Ref.
