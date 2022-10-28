@@ -21,67 +21,23 @@ image: about.jpg
 ---
 
 # Experience
-## <strong>코나아이(Konai)</strong> <small>2020.11 ~ 현재</small>
+## <strong>KONAi 코나아이</strong> <small>2020.11 ~ 현재</small>
 #### 결제 플랫폼 기술연구소 Server Developer
 - **`Java`, `Kotlin` Spring Boot 기반 Rest API Sever 개발**
 - 코나카드 결제 플랫폼 개발/운영
 - 국내 지자체 지역화폐 서비스 개발/운영
 - MSA 구조의 Core Server System 개발/운영
 
-### Projects
-#### 선불카드 결제 플랫폼 Open-API 서비스 구축 <small>2022.06 ~ 진행 중</small>
-- 코나아이 선불카드 결제 플랫폼 서비스를 `Open-API` 제공하기 위한 서버 시스템 신규 개발
-- 선불카드 결제 시스템을 구축할 수 있는 회원 가입부터 카드 발급, 결제 등 전반적인 API 제공
-- `API-Gateway`, `Mock-Server`, 개발자 센터를 통해 `Open-API` 연동 및 테스트, 문서 제공
-
-#### 지역화폐 서비스 이관 시스템 구축 <small>2022.05 ~ 2022.06</small>
-- 지역화폐 서비스가 운영사 변경으로 인해 데이터 이관 및 정보 연동을 지원하는 시스템 신규 개발
-- 회원 정보, 잔액, 거래 내역 등 지역화폐 운영에 필요한 데이터 백업 및 데이터 마이그레이션 진행
-- 회원 가입으로 기존 지역화폐 회원 정보 연동 처리
-- 회원 잔액 이관 프로세스 구축하여 충전금, 포인트, 정책 수당 등 신규 카드로 이관 처리
-- 기존 거래 내역 조회 API 제공
-- 기존 거래에 대한 체크카드 승인 취소 및 매입 취소에 따른 잔액 충전 프로세스 구축
-
-#### 코나카드관리사이트 회원 체계 구축 <small>2022.03 ~ 2022.05</small>
-- 부산 지역화폐 전용 코나카드 관리 사이트 신규 서비스를 위한 회원 관련 프로세스 개발
-- `email` 기반 회원 체계에서 `CI` 기반의 회원 체계 및 정책 수립하여 개발 진행
-- 부산은행 지역화폐와 회원 정보 연동
-
-#### 코나모빌리티 택시 서비스 with 로카모빌리티 시스템 연동 <small>2021.12 ~ 2022.04</small>
-- 코나모빌리티 택시 서비스와 캐시비 시스템간 택시 가맹점, 정산, 입금 내역 연동 프로세스 개발
-- 각 파트별 연동 전문 규격서 작성
-- `Batch` 프로그램을 통하여 캐시비 개발사(`로카모빌리티`)로 송신 및 결과 파일 수신
-
-#### Mock API 전용 Server 구축 <small>2021.11 ~ 2021.12</small>
-- 외부 솔루션 연동이 필요한 프로젝트 진행 지원을 위한 Mock Test Server 구축
-- 간단한 API 만으로 외부 솔루션 API 서비스 구현하고 테스트 지원
-- 별도 DB Schema 또는 REST API 개발 없이 테스트 지원
-- `MongoDB` 활용한 **동적 Data Schema 구성 및 API 구성**
-
-#### 부산 지역화폐 동백전 이관 프로젝트 <small>2021.02 ~ 2021.05</small>
-- 기존 부산 지역화폐 사업 이관 프로젝트 수행
-- 회원 정보, 잔액 정보, 거래 내역 포함한 모든 Database Migration 처리
-- 신규 회원 가입 or 기존 부산 지역화폐 사용 회원 정보 연동 처리
-- `AS-IS` 부산 지역화폐 잔액 및 캐시백 정보 이관 처리
-- 지역화폐 연동 체크 카드 정보 Migration 처리
-- 체크 카드 BIN 정보를 코나 선불 카드와 연동 처리
-- 1일 1회 체크 카드사 결제 취소 전문 파일 수신 및 회원 잔액 충전 Batch 시스템 개발
-
-#### 휴면 회원 정책 적용 프로젝트 <small>2021.01 ~ 2021.03</small>
-- 코나카드 전체 회원 1년 이상 미사용자 휴면 전환 정책 적용
-- 1일 1회 휴면 전환 예정 안내/전환 실행 Batch 시스템 개발
-- 회원 가입, Login, JWT Token 갱신 등 휴면 회원 여부 확인 API 수정 개발
-- 회원 본인 인증 및 거래(카드 사용, 충전 등)를 통한 휴면 해제 API 신규 개발
-- 휴면 전환/해제 History 관리
-
-### 담당 Server Core Component 관리 <small>2020.11 ~ 현재</small>
+### 담당 Server Core Component 관리
 #### 회원 관리 Server Core Component
 - 코나 결제 플랫폼 시스템 회원 관리 Rest API 신규/운영 개발
-- 회원 가입 및 로그인, 회원 정보 관리, 약관 관리 등 회원 관련 API 제공
+- 회원, 인증, 약관 정보 등 회원 체계 관련 DB 관리
+- 회원 가입 및 로그인, 회원 정보 조회, 회원 약관 동의 프로세스 등 회원 관련 API 제공
+- 휴면 회원 전환 등 개인 정보 보호를 위한 프로세스 구축
 <br><br>
 **Project Specs**
   - Java, Kotlin
-  - Spring Boot, Spring data JPA, QueryDSL
+  - Spring Boot, Spring data JPA
   - Oracle
   - Gradle, Jenkins
 
@@ -131,12 +87,12 @@ image: about.jpg
 - 이관 대상 지역화폐
   - `2021년` 부산동백전
   - `2022년` 김포페이
-  <br><br>
-  **Project Specs**
-    - Kotlin
-    - Spring Boot, Spring Batch, Spring data JPA, QueryDSL
-    - Oracle
-    - Gradle, Jenkins
+<br><br>
+**Project Specs**
+  - Kotlin
+  - Spring Boot, Spring Batch, Spring data JPA, QueryDSL
+  - Oracle
+  - Gradle, Jenkins
 
 ##### Open-API 환경 API-Gateway Server Core Component
 - `Open-API` 환경의 신규 `API-Gateway` 구축
@@ -145,16 +101,62 @@ image: about.jpg
 - API 인증/인가
 - API Call-Count 확인/제한
 - 제휴사 Callback API 요청 처리
-  <br><br>
-  **Project Specs**
-    - Kotlin
-    - Spring Cloud Gateway, Spring Webflux, Spring Data R2DBC
-    - MySQL
-    - Gradle
+<br><br>
+**Project Specs**
+  - Kotlin
+  - Spring Cloud Gateway, Spring Webflux, Spring Data R2DBC
+  - MySQL
+  - Gradle
+
+### Projects
+#### 선불카드 결제 플랫폼 Open-API 서비스 구축 <small>2022.06 ~ 진행 중</small>
+- 코나아이 선불카드 결제 플랫폼 서비스를 `Open-API` 제공하기 위한 서버 시스템 신규 개발
+- 선불카드 결제 시스템을 구축할 수 있는 회원 가입부터 카드 발급, 결제 등 전반적인 API 제공
+- `API-Gateway`, `Mock-Server`, 개발자 센터를 통해 `Open-API` 연동 및 테스트, 문서 제공
+
+#### 지역화폐 서비스 이관 시스템 구축 <small>2022.05 ~ 2022.06</small>
+- 지역화폐 서비스가 운영사 변경으로 인해 데이터 이관 및 정보 연동을 지원하는 시스템 신규 개발
+- 회원 정보, 잔액, 거래 내역 등 지역화폐 운영에 필요한 데이터 백업 및 데이터 마이그레이션 진행
+- 회원 가입으로 기존 지역화폐 회원 정보 연동 처리
+- 회원 잔액 이관 프로세스 구축하여 충전금, 포인트, 정책 수당 등 신규 카드로 이관 처리
+- 기존 거래 내역 조회 API 제공
+- 기존 거래에 대한 체크카드 승인 취소 및 매입 취소에 따른 잔액 충전 프로세스 구축
+
+#### 코나카드관리사이트 회원 체계 구축 <small>2022.03 ~ 2022.05</small>
+- 부산 지역화폐 전용 코나카드 관리 사이트 신규 서비스를 위한 회원 관련 프로세스 개발
+- `email` 기반 회원 체계에서 `CI` 기반의 회원 체계 및 정책 수립하여 개발 진행
+- 부산은행 지역화폐와 회원 정보 연동
+
+#### 코나모빌리티 택시 서비스 with 로카모빌리티 시스템 연동 <small>2021.12 ~ 2022.04</small>
+- 코나모빌리티 택시 서비스와 캐시비 시스템간 택시 가맹점, 정산, 입금 내역 연동 프로세스 개발
+- 각 파트별 연동 전문 규격서 작성
+- `Batch` 프로그램을 통하여 캐시비 개발사(`로카모빌리티`)로 송신 및 결과 파일 수신
+
+#### Mock API 전용 Server 구축 <small>2021.11 ~ 2021.12</small>
+- 외부 솔루션 연동이 필요한 프로젝트 진행 지원을 위한 Mock Test Server 구축
+- 간단한 API 만으로 외부 솔루션 API 서비스 구현하고 테스트 지원
+- 별도 DB Schema 또는 REST API 개발 없이 테스트 지원
+- `MongoDB` 활용한 **동적 Data Schema 구성 및 API 구성**
+
+#### 부산 지역화폐 동백전 이관 프로젝트 <small>2021.02 ~ 2021.05</small>
+- 기존 부산 지역화폐 사업 이관 프로젝트 수행
+- 회원 정보, 잔액 정보, 거래 내역 포함한 모든 Database Migration 처리
+- 신규 회원 가입 or 기존 부산 지역화폐 사용 회원 정보 연동 처리
+- `AS-IS` 부산 지역화폐 잔액 및 캐시백 정보 이관 처리
+- 지역화폐 연동 체크 카드 정보 Migration 처리
+- 체크 카드 BIN 정보를 코나 선불 카드와 연동 처리
+- 1일 1회 체크 카드사 결제 취소 전문 파일 수신 및 회원 잔액 충전 Batch 시스템 개발
+
+#### 휴면 회원 정책 적용 프로젝트 <small>2021.01 ~ 2021.03</small>
+- 코나카드 전체 회원 1년 이상 미사용자 휴면 전환 정책 적용
+- 1일 1회 휴면 전환 예정 안내/전환 실행 Batch 시스템 개발
+- 회원 가입, Login, JWT Token 갱신 등 휴면 회원 여부 확인 API 수정 개발
+- 회원 본인 인증 및 거래(카드 사용, 충전 등)를 통한 휴면 해제 API 신규 개발
+- 휴면 전환/해제 History 관리
 
 ---
 
-## 아톤(ATON) <small>2016.03 ~ 2020.10</small>
+## ATON 아톤 <small>2016.03 ~ 2020.10</small>
 #### 금융 플랫폼 Server Developer
 - KB국민은행, IBK기업은행, KEB하나은행 제1금융권 프로젝트 참여
 - 자회사 아톤모빌리 중고차 유통 플랫폼 시스템 고도화 프로젝트 참여
@@ -226,8 +228,8 @@ image: about.jpg
 ### Skills
 #### Back-End
 - Java, Kotlin
-- Spring Framework, Spring Boot, Spring Security, Spring Batch
-- JPA, QueryDSL, JOOQ
+- Spring Framework, Spring Boot, Spring Webflux, Spring etc..
+- JPA, QueryDSL
 - Gradle, Maven
 
 #### Front-End
