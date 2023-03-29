@@ -37,12 +37,13 @@ JPA Test 를 위하여 **@DataJpaTest** Annotation 사용하여 Test 환경 구�
 * Spring MVC 의 동작을 재현할 수 있는 Class
 * Spring DispatcherServlet 에게 요청하여 테스트를 진행
 ##### 관련 주요 함수
+
 | 함수명 | 역할 |
-|---|:---:|
-| perform() | 주어진 url 을 수행할 수 있는 환경을 구성 |
-| andDo() | perform 의 요청을 처리 |
-| andExpect() | 검증 내용을 확인 |
-| andReturn() | 테스트 완료 후 결과 객체를 확인 |
+|:---|:---|
+| `perform()` | 주어진 url 을 수행할 수 있는 환경을 구성 |
+| `andDo()` | perform 의 요청을 처리 |
+| `andExpect()` | 검증 내용을 확인 |
+| `andReturn()` | 테스트 완료 후 결과 객체를 확인 |
 
 ## Spring Security Test
 @WithMockUser Annotation 를 이용하여 사용자에게 Resource 의 사용 권한 유무에 대한 Test 환경 구성
