@@ -117,6 +117,51 @@ fi
 
 ---
 
+## Trouble Shooting 😈
+
+### 🔥어느순간 `jekyll` 프로젝트 빌드가 안될 때🔥
+- `Ruby` 나 `Jekyll` 시스템 자체를 오랜 시간 업데이트를 하지 않는다면, 프로젝트가 정상적으로 빌드되지 않을 수도 있다.
+- 그럴 땐, 아래와 같은 방법을 수행하여 해결할 수 있었다.
+
+#### `Ruby` 업데이트
+
+```bash
+$ brew update
+$ brew upgrade ruby
+```
+
+#### `Jekyll` 업데이트
+
+```bash
+$ gem update jekyllrb
+$ bundle update
+```
+
+#### Version 업데이트로 인한 새로운 문제
+- 위와 같이 모두 업데이트를 했더니 프로젝트는 정상적으로 빌드되어 구동이 되었지만, 아래와 같은 에러를 남긴다.
+- `Sass` 컴파일러 자체적으로 `Deprecated` 함수가 있어서 발생하는 것 같다.
+- 이는 프로젝트 내의 `Sass` 코드를 수정하던지, 아니면.. 에러 로그를 무시하는 방법이 있다.
+
+```bash
+...
+Deprecation Warning: Using / for division outside of calc() is deprecated and will be removed in Dart Sass 2.0.0.
+
+Recommendation: math.div($i, $columns) or calc($i / $columns)
+
+More info and automated migrator: https://sass-lang.com/d/slash-div
+
+   ╷
+77 │         margin-left: percentage( $i / $columns );
+   │                                  ^^^^^^^^^^^^^
+   ╵
+    1-tools/_grid.scss 77:34  @import
+    - 61:9                    root stylesheet
+Warning: 7 repetitive deprecation warnings omitted.
+...
+```
+
+---
+
 ## Ref.
 * [Jekyllrb.com - Jekyll Official site installation document](https://jekyllrb.com/docs/installation/macos/)
 * [ogaeng.com - Jekyll 블로그 만들기(1) - 설치하기](https://ogaeng.com/jekyll-blog-install/)
