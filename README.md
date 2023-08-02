@@ -135,6 +135,7 @@ $ brew upgrade ruby
 ```bash
 $ gem update jekyllrb
 $ bundle update
+$ bundle install
 ```
 
 #### Version 업데이트로 인한 새로운 문제
