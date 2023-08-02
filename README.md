@@ -163,8 +163,8 @@ Warning: 7 repetitive deprecation warnings omitted.
 
 ##### `Warning` 코드 전체 수정
 
-```sass
--- width: percentage( $i / $columns );
+```scss
+// width: percentage( $i / $columns );
 width: percentage( calc($i / $columns) );
 ```
 
