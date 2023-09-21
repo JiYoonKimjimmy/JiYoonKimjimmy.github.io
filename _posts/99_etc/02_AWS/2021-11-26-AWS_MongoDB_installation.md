@@ -196,7 +196,9 @@ db.createUser({
 
 ## MongoDB 백업 & 복구
 
-TBD
+- MongoDB Database Tools 설치
+- `mongodump` 사용 방법
+- `mongorestore` 사용 방법
 
 ---
 
