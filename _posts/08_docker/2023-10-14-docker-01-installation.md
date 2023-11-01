@@ -76,5 +76,30 @@ For more examples and ideas, visit:
 
 ---
 
+### Docker 개발 환경 구축
+
+- Docker 의 `Image` 이미지 구성은 기본적인 개발도구도 제외된 상태이다.
+- 기본적인 개발도구도 직접 설치가 필요하다.
+
+---
+
+#### Docker Container `vim` 설치
+
+##### `root` 계정으로 Container 접속
+
+{% highlight bash %}
+$ docker exec -it --user root <container_id> /bin/bash
+{% endhighlight %}
+
+##### `apt-get` 활용한 `vim` 설치
+
+{% highlight bash %}
+<docker_container>$ apt-get update
+<docker_container>$ apt-get upgrade
+<docker_container>$ apt-get install vim
+{% endhighlight %}
+
+---
+
 #### 출처
 - [Install Docker with Ubuntu](https://haengsin.tistory.com/128)
