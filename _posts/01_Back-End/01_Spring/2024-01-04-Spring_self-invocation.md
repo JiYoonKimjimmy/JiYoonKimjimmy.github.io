@@ -49,7 +49,7 @@ Spring 은 **관점 지향 프로그래밍** `AOP` 지원하고 있으며, `AOP`
 
 - ***단, 회원 정보 변경 이력 저장 실패 시, 회원 정보 원복 처리***
 
-{% highlight kotlin %}
+{% highlight java %}
 @Service
 class UserService(
     private val userRepository: UserRepository,
@@ -137,7 +137,7 @@ class UserService(
 
 서비스 클래스 분리 방식으로 처음 예제 코드를 한번 리팩토링 해보면,
 
-{% highlight kotlin %}
+{% highlight java %}
 @Service
 class UserService(
     private val userPersistenceService: UserPersistenceService
@@ -197,7 +197,7 @@ class UserPersistenceService(
 
 단, 안내 알림 발송이 *실패*하더라도 회원 정보 변경은 **성공**한다는 요건이 있다면, 각 로직 별 트랜잭션 처리가 필요할 것이다.
 
-{% highlight kotlin %}
+{% highlight java %}
 @Service
 class UserService(
     private val userPersistenceService: UserPersistenceService,
