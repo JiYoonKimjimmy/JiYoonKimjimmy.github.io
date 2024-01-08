@@ -99,11 +99,11 @@ code.language-plaintext,
 kbd,
 samp {
   white-space: pre;
-  font-family: none; /* 1 */
-  font-size: 0.9em; /* 2 */
+  font-family: Menlo,Monaco,Consolas,"Courier New",monospace; /* 1 */
+  font-size: 85%; /* 2 */
   padding: 1px 4px 3px 4px;
-  color: #ff0000;
-  background-color: #e6e6e687;
+  color: #c7254e;
+  background-color: #f9f2f4;
 }
 
 code,
