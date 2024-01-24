@@ -1,3 +1,11 @@
+---
+layout: post
+title : Spring Data Redis 의 `Phantom` & `Secondary Indexing`
+date  : 2023-12-20
+image : spring-data-redis.png
+tags  : redis springdataredis phantom secondaryindexing
+---
+
 ## Spring Data Redis 사용 후기
 
 ### 👉 `:phantom` Cache Key 에 대해서.. 👈
