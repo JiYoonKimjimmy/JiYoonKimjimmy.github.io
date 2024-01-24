@@ -1,7 +1,7 @@
 ---
 layout: post
 title : Spring Data Redis 의 `Phantom` & `Secondary Indexing`
-date  : 2023-12-20
+date  : 2024-01-24
 image : spring-data-redis.png
 tags  : redis springdataredis phantom secondaryindexing
 ---
