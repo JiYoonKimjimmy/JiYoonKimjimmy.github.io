@@ -6,13 +6,14 @@
   // background: #f8f8f8;
   // background: #e6e6e6c9;
   // background: #c2c6cc6e;
-  background: #99999925;
+  background: #99999910;
   border-color: #99999910;
   border-style: solid;
+  border-radius: 4px;
   
-  .highlighter-rouge & {
-    background: #eef;
-  }
+  // .highlighter-rouge & {
+  //   background: #eef;
+  // }
 
   .c     { color: #998; font-style: italic } // Comment
   .err   { color: #a61717; background-color: #e3d2d2 } // Error
