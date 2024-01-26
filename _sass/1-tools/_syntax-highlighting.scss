@@ -2,18 +2,14 @@
   Syntax Highlighting
 */
 
-.highlight {
-  // background: #f8f8f8;
-  // background: #e6e6e6c9;
-  // background: #c2c6cc6e;
-  background: #99999910;
-  border-color: #99999910;
+div.highlight, figure.highlight {
+  background: #99999920;
+  border-color: #99999920;
   border-style: solid;
   border-radius: 4px;
-  
-  // .highlighter-rouge & {
-  //   background: #eef;
-  // }
+}
+
+.highlight {
 
   .c     { color: #998; font-style: italic } // Comment
   .err   { color: #a61717; background-color: #e3d2d2 } // Error
