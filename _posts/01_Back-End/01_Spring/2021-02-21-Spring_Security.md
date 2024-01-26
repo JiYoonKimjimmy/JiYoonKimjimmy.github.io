@@ -1,24 +1,51 @@
 ---
 layout: post
-title : Spring Security
+title : Spring Security (feat. JWT)
 date  : 2021-02-21
 image : spring_security.png
-tags  : back-end spring
+tags  : back-end spring jwt jsonwebtoken
 ---
 
 ## Spring Security?
-* 인증 및 권한 부여를 통해 resource를 쉽게 제어할 수 있는 Spring의 Framework
-* DispatcherServlet 앞에서 Filter를 등록하여 요청을 먼저 확인
+
+* Spring 기반의 웹 애플리케이션의 웹 보안 제어를 위한 프레임워크
+* 인증 및 권한 부여를 통해 요청에 대한 `Resource` 제어
+
+---
 
 ## JWT ***(JSON Web Token)***
+
+최근 Spring F/W 활용한 웹 애플리케이션에서는 `API` 유효성 검증을 위한 방식으로,
+`Token` 인증 방식 중에서 **`JWT` 토큰 인증**을 많이 사용하고 있는 듯 하다.
+
 ### 특징
+
+* `JSON` 형식의 데이터를 검증하기 위한 토큰 역할
 * **웹 표준 기반** ***(RFC 7519)*** 의 다양한 환경 지원이 가능
 * **Self-Contained** ***(자가 수용적)*** 으로서 JWT 자체가 모든 정보를 포함
 * 자가 수용적인 특성을 이용해 **전달 방식이 비교적 간편**(Header 포함 or URL param 전달 가능)
+* `JSON` 형식의 인증 정보를 쉽게 추가하는 등 높은 확장성 보장
+* `Stateless 무상태` 의 서버 구현을 위한 수단으로 사용
+* `Signature 서명` 정보를 통해 위조 & 변조 방지 가능 *(하지만, `CSRF` 공격 취약)*
+
+> ###### `CSRF Cross-Site Request Forgery` 공격
+> - 공격자가 피해자의 의도하지 않은 작업을 수행하도록 유도하는 해킹 공격
+> - 공격자가 피해자의 `JWT` 토큰을 탈취하고 활용 가능
+
+---
 
 ### JWT의 구조
+
 ### [Header].[Payload].[Signature]
+
+| 구분 | 역할 |
+| :---: | --- |
+| **Header** | Token 생성 사용된 알고리즘, 토큰 종류 정보 포함 |
+| **Payload** | 인증 정보 및 기타 *Claim 클레임* 정보 포함 |
+| **Signature** | Header & Payload 정보를 서명한 정보 포함 |
+
 #### Header
+
 {% highlight js %}
 {
   "typ": "JWT",     // "typ" : token 타입 정의
@@ -28,8 +55,10 @@ tags  : back-end spring
 {% endhighlight %}
 
 #### Payload
-Payload 부분은 Token에 담을 정보(Claim)들을 포함
+
+* Payload 부분은 Token에 담을 정보(Claim)들을 포함
 * Registerd(등록된) Claim : 이미 정해져있는 Token 정보
+
 {% highlight js %}
 {
   "iss": "jwttest.com",    // Token 발급자
@@ -44,6 +73,7 @@ Payload 부분은 Token에 담을 정보(Claim)들을 포함
 {% endhighlight %}
 
 * Public(공개) Claim : 충돌 방지된(Collision-Resistant) 이름 형식인 URL 형식을 자기고 있는 정보
+
 {% highlight js %}
 {
   ...
@@ -54,6 +84,7 @@ Payload 부분은 Token에 담을 정보(Claim)들을 포함
 {% endhighlight %}
 
 * Private(비공개) Claim : Registerd 나 Public 이 아닌 정보(충돌 가능)
+
 {% highlight js %}
 {
   ...
@@ -64,13 +95,18 @@ Payload 부분은 Token에 담을 정보(Claim)들을 포함
 {% endhighlight %}
 
 #### Signature
-Header 와 Payload 값을 인코딩한 후 결합하여, 비밀키로 Hash하여 생성한 값
+
+* Header 와 Payload 값을 인코딩한 후 결합하여, 비밀키로 Hash하여 생성한 값
+
 {% highlight js %}
 const jwt = base64UrlEncode(header) + "." + base64UrlEncode(payload);
 HMACSHA256(jwt, secret)
 {% endhighlight %}
 
-## JWT 구현
+---
+
+## Spring Security + JWT 토큰 인증 방식 구현
+
 #### JwtTokenProvider
 * JWT Token 생성 및 유효성 검증을 위한 Component 역할
 
