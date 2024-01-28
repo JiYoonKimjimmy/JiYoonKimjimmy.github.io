@@ -28,6 +28,11 @@ tags  : interview
 9. Kotlin 최신 버전 확인
 10. Spring F/W & Spring Boot 최신 버전 확인
 11. 시스템 아키텍처 디자인
+    - 기본 MVC 패턴 RESTful API 시스템
+    - 분산 시스템 구조
+    - Load-Balancing 처리
+    - Cache 처리
+    - 데이터 분산 및 Sharding 처리
 
 ---
 
