@@ -39,11 +39,9 @@ tags  : interview
 하지만, 동시 실행 가능한 특성 때문에 서로 다른 `Thread` 가 동시에 동일한 자원에 접근하여 발생하는 **동시성 문제**가 있다. 해당 문제를 해결하기 위해 `Thread` 간 동기화를 위해
 `synchronized` 코드 블록을 활용하거나 `Lock 락` 객체 이용 등 다양한 방식으로 처리가 필요하다.
 
-##### `Thread-Pool` 종류
+Java 에서 `Thread-Pool` 관리하기 위해서는 `ExecutorService` 인터페이스와 `ThreadPoolExecutor` 클래스를 활용하여 구현할 수 있다.
 
-Java 에서 `Thread-Pool` 관리하기 위해서는 `ExecutorService` 인터페이스와 `ThreadPoolExecutor` 클래스가 필요하다.
-
-###### ExecutorService 인터페이스 제공 `Thread-Pool` 종류
+##### ExecutorService 인터페이스 제공 `Thread-Pool` 종류
 
 - `ExecutorService` 인터페이스를 활용하면 손쉽게 `Thread-Pool` 생성 가능하다.
 
@@ -66,7 +64,7 @@ public class ThreadPoolTest {
 }
 ```
 
-###### ThreadPoolExecutor 클래스 활용 `Thread-Pool` 생성
+##### ThreadPoolExecutor 클래스 활용 `Thread-Pool` 생성
 
 - `ThreadPoolExecutor` 클래스를 활용하면 상황에 맞는 `Thread-Pool` 생성 가능하다.
 - `Thread-Pool` 생성을 위한 다양한 옵션을 제공한다.
