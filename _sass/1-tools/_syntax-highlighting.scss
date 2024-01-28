@@ -9,8 +9,11 @@ div.highlight, figure.highlight {
   border-radius: 4px;
 }
 
-.highlight {
+div.highlighter-rouge {
+  margin: 30px 0;
+}
 
+.highlight {
   .c     { color: #998; font-style: italic } // Comment
   .err   { color: #a61717; background-color: #e3d2d2 } // Error
   .k     { font-weight: bold } // Keyword
