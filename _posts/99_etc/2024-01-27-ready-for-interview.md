@@ -110,4 +110,92 @@ public class ThreadPoolTest {
 
 ### Java 동시성 & 병렬 처리 패턴
 
+#### 동시성 이슈 처리
+
+여러 `Thread` 는 동시에 실행될 수 있기 대문에, 한번에 **동일한 자원에 접근이 가능하다.**
+하나의 `Thread` 가 특정 자원에 접근하여 변경을 하는 동안 다른 `Thread` 가 해당 자원을 다시 접근한다면, 자원에 대한 일관성이 깨질 수가 있다.
+
+위와 같은 **동시성 이슈**를 해결하기 위한 방식에 대해 살펴보고자 한다.
+
+##### synchronized
+
+`synchronized` 는 Java 에서 많이 사용하는 `Thread` 동기화를 위한 방법으로, `synchronized` 가 있는 함수 또는 코드 블록은 먼저 진입한 `Thread` 만을 접근 허용한다.
+
+```java
+public class Counter {
+
+    private int count = 0;
+
+    public synchronized void increment() {
+        count++;
+    }
+
+    public int getCount() {
+        return count;
+    }
+}
+```
+
+위 예제에서 `count` 라는 전역 변수에 대한 접근은 `increment()` 함수에서만 허용하고, `increment()` 함수를 먼저 호출한 `Thread` 만이 접근 가능하다.
+
+##### Lock 객체
+
+`Lock` 객체도 `synchronized` 키워드와 비슷하게 먼저 `Lock` 객체를 선점하는 `Thread` 만을 접근 허용한다.
+
+```java
+public class Counter {
+
+    private int count = 0;
+
+    private Lock lock = new ReentrantLock();
+
+    public void increment() {
+        lock.lock();
+        try {
+            count++;
+        } finally {
+            lock.unlock();
+        }
+    }
+
+    public int getCount() {
+        return count;
+    }
+}
+```
+
+`lock` 이란 객체를 생성하고, `lock.lock()` 함수 호출하는 것처럼 최초 접근한 `Thread` 접근 허용 후 **잠금 처리한다.**
+
+그 후 비즈니스 로직 수행 완료 후 `lock.unlock()` 함수를 호출하여 **잠금 해제**하는 것을 볼 수 있다.
+
+---
+
+#### 병렬 처리
+
+동시 처리와 병렬 처리는 같으면서도 다른 정의를 할 수 있을 것 같다.
+
+- 동시 처리 : 여러 스레드가 **다른 작업**을 동시에 수행
+- 병렬 처리 : 여러 스레드가 **같은 작업**을 동시에 수행
+
+Java 에서 병렬 처리를 위한 방식으로는 `Stream` API 를 사용하거나 많은 프로그래밍 언어에서 사용하는 `Coroutine` 라이브러리가 있을 것 같다.
+
+##### Coroutine
+
+**`Coroutine` 은 코드 블록을 일시 중단 가능한 작업 단위이다.** `Coroutine` 는 `Thread` 와 유사하지만 생성 및 관리를 자동으로 처리한다는 큰 특징이 있다.
+
+다음과 같은 구현 목적을 위해 `Coroutine` 를 많이 활용한다.
+
+- 병렬 처리 : 여려 개의 작업을 동시에 수행 처리
+- 비동기 처리 : 여러 개의 작업을 비동기 방식 수행 처리
+- 일시 중단 작업 처리 : 작업을 일시 중단할 수 있도록 처리
+
+병렬과 비동기 처리를 위해서는 기존 Java 언어만으로는 코드가 많이 복잡하고 구현 방식이 까다로웠지만,
+`Coroutine` 을 활용하면 좀 더 **간견한 코드 구현**과 **`Thread` 관리에 대한 부담이 줄어드는 장점**을 가지게 되는 것 같다.
+
+하지만, 잘못 사용하는 경우 코드에 대한 복잡도가 높아지거나 성능 이슈 또는 서비스 장애 발생할 수 있으니 정확한 상황에 대한 적절한 구현에 대한 결정이 필요할 것 같다.
+
+---
+
+### `CQRS`
+
 ---
