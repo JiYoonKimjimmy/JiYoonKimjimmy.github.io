@@ -21,11 +21,11 @@ tags  : interview
 2. Java 동시성 처리 패턴
 3. Java 병렬 처리 패턴
 4. `CQRS` 개념에 대해서
-5. 데이터베이스 `Isolation Level` 에 대해서
-6. Spring F/W 의 `Bean` 생성 기본 패턴이 `Single-ton` 인 이유
+5. 데이터베이스 `Isolation Level`
+6. Spring F/W `Bean` 생성 패턴
 7. `JWT` Token 인증
 8. `OAuth` 인증
-9. Kotlin 최신 버전 확인
+9. Kotlin 언어 특징
 10. Spring F/W & Spring Boot 최신 버전 확인
 11. 시스템 아키텍처 디자인
 
@@ -196,7 +196,7 @@ Java 에서 병렬 처리를 위한 방식으로는 `Stream` API 를 사용하�
 
 ---
 
-### `CQRS`
+### CQRS 패턴
 
 `CQRS Command Query Responsibility Segregation` 는 **명령과 질의를 분리하는 개념**의 아키텍처 패턴이다.
 
@@ -213,7 +213,93 @@ Java 에서 병렬 처리를 위한 방식으로는 `Stream` API 를 사용하�
 
 ---
 
-### 데이터베이스 `Isolation Level`
+### 데이터베이스 Isolation Level
+
+데이터베이스를 활용한 애플리케이션을 개발하면서 주의를 기울여야 하는 것이 바로 `Transaction 트랜잭션` 일 것이다.
+
+트랜잭션은 데이터의 일관성과 유효성을 지켜주는 중요한 수단이 되기 때문에, 대용량 트래픽의 서비스인 경우 각별히 주의할 로직 중 일부분이다.
+
+데이터베이스는 기본적으로 데이터에 대한 트랜잭션 처리를 위해 `Isolation Level 격리 수준` 을 가지고 있고,
+**데이터베이스의 데이터의 일관성과 유효성을 *보장*하기 위해 트랜잭션을 *격리*하고 처리하는 수준을 지정하고 관리하게 된다.**
+
+트랜잭션을 **격리** 한다는 의미는, 하나의 트랜잭션이 접근한 데이터에 대해서는 다른 트랜잭션이 조회 또는 변경을 하지 못하는 것을 의미한다.
+
+데이터베이스는 **격리 수준** 설정을 통해 다른 트랜잭션이 조회 또는 변경 수준을 조절할 수 있도록 여러 가지의 옵션을 제공하고 있고, **총 4가지**의 격리 수준을 제공한다.
+
+- `SERIALIZABLE`
+- `REPEATABLE READ`
+- `READ COMMITTED`
+- `READ UNCOMMITED`
+
+#### SERIALIZABLE
+
+`SERIALIZABLE` 는 *가장 엄격한 수준*으로, 트랜잭션을 말그대로 **순차적으로 처리**하는 수준을 의미한다.
+
+여러 개의 트랜잭션이 동일한 데이터에 동시 접근이 불가하기 때문에, 데이터의 부정합 문제는 발생하지 않을 것이다.
+하지만, 반대로 트랜잭션이 순차적으로 실행된다는 특성 때문에 동시 처리 성능은 현저히 떨어질 것이다.
+
+#### REPEATABLE READ
+
+`REPEATABLE READ` 는 **트랜잭션이 시작되기 전에 `COMMIT 커밋` 완료된 데이터만 조회가 가능한** 수준을 의미한다.
+
+해당 격리 수준은 하나의 트랜잭션 내에서 동일한 결과를 보장하지만, 새로운 레코드 추가되는 경우 데이터 부정합이 생길 수 있다.
+
+RDBMS 기준 변경 전의 데이터 레코드를 `Undo` 저장 공간에 `Back-up 백업` 하고, `MVCC(Multi-Version Concurrency Control) 다중 버전 동시성 제어` 을 통해
+트랜잭션 롤백에 대한 데이터 복원과 서로 다른 트랜잭션 간의 세밀한 데이터 관리가 가능하다.
+
+하지만, `MySQL` 의 `Gap Lock 갭-락` 처럼 별도 처리가 없다면, `Phantom Read` 와 같은 데이터 부정합이 발생할 수 있다.
+
+> 자세한 내용은 [망나니 개발자님의 "[MySQL] 트랜잭션의 격리 수준(Isolation Level)에 대해 쉽고 완벽하게 이해하기"](https://mangkyu.tistory.com/299) 참고
+
+#### READ COMMITTED
+
+`READ COMMITTED` 는 **커밋이 완료된 데이터만 조회 가능**하도록 하는 수준을 의미한다.
+
+해당 격리 수준은 `Phantom Read` 와 `Non-repeatable Read` 이슈까지 발생할 수 있다.
+커밋이 완료되지 않은 상태에서 다른 트랜잭션 조회 요청은 `Undo` 영역의 데이터 조회되기 때문이다.
+
+많은 DBMS에서 해당 격리 수준을 기본으로 설정하고 있지만, 데이터 잠금 정책을 통해서 해결할 수 있을 것 같다.
+
+#### READ UNCOMMITED
+
+`READ UNCOMMITED` 는 *가장 낮은 수준*으로, **커밋되지 않는 데이터도 조회 가능**하도록 하는 수준을 의미한다.
+다른 트랜잭션이 커밋 또는 롤백되지 않은 데이터도 모두 조회 가능하다.
+
+해당 격리 수준은 많은 DBMS에서도 인정하지 않을 정도의 수준이라고 한다.
+
+##### DBMS 기본 격리 수준
+
+| DBMS | 격리 수준 |
+| :---: | :---: |
+| MySQL | `REPEATABLE READ` |
+| OracleDB | `READ COMMITTED` |
+| PostgreSQL | `READ COMMITTED` |
+| MS SQL Server | `READ COMMITTED` |
+| MongoDB | `READ UNCOMMITED` |
+
+---
+
+##### Isolation Level 장애 이슈
+
+###### `Phantom Read`
+
+- 하나의 트랜잭션 내에서 동일한 쿼리(조회)의 결과가 없어지거나 다른 `row` 가 생성되는 경우
+- `회원-A`가 데이터 접근을 여러번 하는 동안, `회원-B`가 신규 데이터를 생성한다면, `회원-A`의 동일한 조회 결과가 **없어질 수 있다.**
+- 방지하기 위해서는 `Write Lock, Exclusive Lock` 쓰기 잠금 처리가 필요하다.
+
+###### `Non-repeatable Read`
+
+- 하나의 트랜잭션 내에서 동일한 쿼리(조회)의 결과값이 달라지는 경우
+- `트랜잭션-1`이 데이터 접근 후 완전히 실행 종료되기 전에 `트랜잭션-2`가 데이터 접근하여 변경한다면, `트랜잭션-1`이 다시 데이터 접근한 경우 **변경될 수 있다.**
+
+###### `Dirty Read`
+
+- 하나의 트랜잭션에서 아직 데이터에 대한 변경이 끝나지 않은 상태*(commit 되지 않은 상태)*에서 다른 트랜잭션이 조회하는 경우
+- 기존 변경하던 트랜잭션의 작업은 **`Roll-back 롤백` 된다.**
+
+---
+
+### Spring F/W `Bean` 생성 패턴
 
 ---
 
