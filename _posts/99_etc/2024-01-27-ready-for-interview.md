@@ -21,8 +21,8 @@ tags  : interview
 2. Java 동시성 처리 패턴
 3. Java 병렬 처리 패턴
 4. `CQRS` 개념에 대해서
-5. 데이터베이스 `Isolation Level` 에 대해서
-6. Spring F/W 의 `Bean` 생성 기본 패턴이 `Single-ton` 인 이유
+5. 데이터베이스 `Isolation Level`
+6. Spring F/W `Bean` 생성 패턴
 7. `JWT` Token 인증
 8. `OAuth` 인증
 9. Kotlin 언어 특징
@@ -296,6 +296,10 @@ RDBMS 기준 변경 전의 데이터 레코드를 `Undo` 저장 공간에 `Back-
 
 - 하나의 트랜잭션에서 아직 데이터에 대한 변경이 끝나지 않은 상태*(commit 되지 않은 상태)*에서 다른 트랜잭션이 조회하는 경우
 - 기존 변경하던 트랜잭션의 작업은 **`Roll-back 롤백` 된다.**
+
+---
+
+### Spring F/W `Bean` 생성 패턴
 
 ---
 
