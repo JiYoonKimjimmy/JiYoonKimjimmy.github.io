@@ -361,9 +361,20 @@ Spring F/W 의 기본 `Bean` 생성 패턴은 `Single-ton 싱글턴` 객체 생�
     - `Axon`
 - 데이터 분산 및 Sharding 처리
 
+#### 회원 가입 & 로그인 & 인증 시스템 디자인
+
+- 도메인 설계
+- 프레임워크 선정
+- 가입 프로세스 정리
+- 로그인 프로세스 정리
+- API 인증 프로세스 정리
+- JWT Token 인증 처리 방식 고도화
+-
+
+
 ---
 
-### 시스템 인프라 모니터
+### 시스템 인프라 모니터링
 
 - 네트워크 모니터링
 - 서버 모니터링
@@ -375,4 +386,4 @@ Spring F/W 의 기본 `Bean` 생성 패턴은 `Single-ton 싱글턴` 객체 생�
 - [Datadog](https://www.datadoghq.com/)
 - [Jennifer](https://jennifersoft.com/ko/)
 
----
+--- 
