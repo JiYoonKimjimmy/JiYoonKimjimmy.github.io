@@ -18,16 +18,18 @@ tags  : interview
 ### Items
 
 1. Java `Thread-Pool` 관리
-2. Java 동시성 처리 패턴
-3. Java 병렬 처리 패턴
-4. `CQRS` 개념에 대해서
-5. 데이터베이스 `Isolation Level`
-6. Spring F/W `Bean` 생성 패턴
-7. `JWT` Token 인증
-8. `OAuth` 인증
-9. Kotlin 언어 특징
-10. Spring F/W & Spring Boot 최신 버전 확인
-11. 시스템 아키텍처 디자인
+1. Java `for-loop` 처리 방식
+1. Java 동시성 처리 패턴
+1. Java 병렬 처리 패턴
+1. `CQRS` 개념에 대해서
+1. 데이터베이스 `Isolation Level`
+1. Spring F/W `Bean` 생성 패턴
+1. `JWT` Token 인증
+1. `OAuth` 인증
+1. Kotlin 언어 특징
+1. Spring F/W & Spring Boot 최신 버전 확인
+1. 시스템 아키텍처 디자인
+1. 시스템 인프라 모니터
 
 ---
 
@@ -105,6 +107,20 @@ public class ThreadPoolTest {
     }
 }
 ```
+
+---
+
+### Java `for-loop` 처리 방식
+
+- 단순 `for-loop`
+- 향상된 `for-loop`
+- `Stream` 객체
+
+---
+
+#### Kotlin Collection API 처리 방식
+
+- `filter`, `find` 처리 방식
 
 ---
 
@@ -299,7 +315,37 @@ RDBMS 기준 변경 전의 데이터 레코드를 `Undo` 저장 공간에 `Back-
 
 ---
 
-### Spring F/W `Bean` 생성 패턴
+### Spring Framework
+
+#### Spring F/W 특징
+
+- DI
+- IoC
+- DispatcherServlet
+- Filter
+- Interceptor
+- AOP
+- DelegatingFilterProxy
+- Spring Boot
+- Spring Security
+- Spring Cloud
+
+---
+
+#### Spring F/W `Bean` 생성 패턴
+
+Spring F/W 의 기본 `Bean` 생성 패턴은 `Single-ton 싱글턴` 객체 생성 패턴이다. 그리고 아래와 같은 패턴을 지정할 수 있다.
+
+##### Spring Bean Scope 종류
+
+| Scope 구분 | 설명 |
+| :---: | --- |
+| `singleton` | 단 하나의 인스턴스만 생성 |
+| `prototype` | 요청마다 새로운 인스턴스 생성 |
+| `request` | `HTTP` 요청 완료될 때까지 인스턴스 유지 |
+| `session` | `HTTP` 세션 유지되는 동안 인스턴스 유지 |
+| `global-session` | 글로벌 세션 유지되는 동안 인스턴스 유지 |
+| `thread` | 실행 스레드가 유지되는 동안 인스턴스 유지 |
 
 ---
 
@@ -314,5 +360,19 @@ RDBMS 기준 변경 전의 데이터 레코드를 `Undo` 저장 공간에 `Back-
 - Event-Sourcing & CQRS 패턴 처리
     - `Axon`
 - 데이터 분산 및 Sharding 처리
+
+---
+
+### 시스템 인프라 모니터
+
+- 네트워크 모니터링
+- 서버 모니터링
+- 데이터베이스 모니터링
+
+#### 모니터링 도구
+
+- [Prometheus](https://prometheus.io/)
+- [Datadog](https://www.datadoghq.com/)
+- [Jennifer](https://jennifersoft.com/ko/)
 
 ---
