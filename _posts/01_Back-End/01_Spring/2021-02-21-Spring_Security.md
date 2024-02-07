@@ -16,7 +16,9 @@ tags  : back-end spring jwt jsonwebtoken
 ## JWT ***(JSON Web Token)***
 
 최근 Spring F/W 활용한 웹 애플리케이션에서는 `API` 유효성 검증을 위한 방식으로,
-`Token` 인증 방식 중에서 **`JWT` 토큰 인증**을 많이 사용하고 있는 듯 하다.
+`Token` 인증 방식 중에서 **`JWT` 토큰 인증**을 많이 사용하고 있다.
+
+> JWT Token 공식 스펙 : [RFC 7519](https://datatracker.ietf.org/doc/html/rfc7519#section-7.2)
 
 ### 특징
 
@@ -31,6 +33,19 @@ tags  : back-end spring jwt jsonwebtoken
 > ###### `CSRF Cross-Site Request Forgery` 공격
 > - 공격자가 피해자의 의도하지 않은 작업을 수행하도록 유도하는 해킹 공격
 > - 공격자가 피해자의 `JWT` 토큰을 탈취하고 활용 가능
+
+
+#### JWT Token 생성 방식
+
+JWT 토큰을 검증하는 방식으로 JWT 인터페이스를 **`JWS`** & **`JWE`** 방식으로 구현할 수 있다.
+
+##### JWS JSON Web Signature
+
+- 서버에서 인증을 근거로 만든 정보를 서버의 `Private Key` 로 서명하여 Token 정보 생성하는 방식
+
+##### JWE JSON Web Encryption
+
+- 서버와 클라이언트 간 암호화된 데이터를 Token 정보 생성하는 방식
 
 ---
 
