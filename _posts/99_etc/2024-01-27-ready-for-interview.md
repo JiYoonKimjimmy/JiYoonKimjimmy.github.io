@@ -2,7 +2,7 @@
 layout: post
 title : Ready for Interview
 date  : 2024-01-27
-image : development-knowledge-note.png
+image : ready-for-interview.png
 tags  : interview
 ---
 
