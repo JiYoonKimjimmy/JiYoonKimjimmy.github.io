@@ -3,7 +3,7 @@ layout: post
 title : Ready for Interview
 date  : 2024-01-27
 image : ready-for-interview.png
-tags  : interview
+tags  : interview back-end
 ---
 
 ## Back-End 개발자 인터뷰를 위한 준비
