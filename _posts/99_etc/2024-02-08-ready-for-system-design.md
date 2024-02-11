@@ -33,3 +33,10 @@ tags  : interview back-end system-design systemdesign
 각 항목에 대해 시스템을 구성하기 위한 도구에 대한 선택과 명확한 이유도 항상 잘 정리하고 있어야한다.
 
 ---
+
+#### 출처
+
+- [박종훈 기술블로그 - 시스템 설계 면접](https://jonghoonpark.com/2023/05/10/%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%84%A4%EA%B3%84-%EB%A9%B4%EC%A0%91-%ED%8C%81)
+- [시스템 설계 면접 준비 과정](https://brunch.co.kr/@jihyun-um/43)
+
+---
