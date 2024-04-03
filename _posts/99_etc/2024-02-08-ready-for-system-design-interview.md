@@ -6,7 +6,7 @@ image : ready-for-system-design.png
 tags  : interview back-end system-design systemdesign
 ---
 
-## System Design Interview가
+## System Design Interview
 
 시스템 아키텍처를 설계한다는 것은 개발자만이 할 수 있는 특별한 경험 중 하나일 것이다.
 
