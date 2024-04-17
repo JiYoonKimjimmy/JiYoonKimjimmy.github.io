@@ -82,10 +82,10 @@ public class ThreadPoolTest {
 
 `ThreadPoolExecutor` 클래스를 활용하여 `Thread-Pool` 생성한다면 다음과 같은 장점을 가질 수 있다.
 
-- `Thread-Pool` 크리 조절 가능
-- `Thread` 의 실행 우선 순위 지정 가능
-- `Thread` 실행 중인 상태에서 대기하는 시간 조절 가능
-- `Thread` 실행 대기 `Queue` 종류 지정 가능
+- `Thread-Pool` **크기 조절** 가능
+- `Thread` 의 실행 **우선 순위 지정** 가능
+- `Thread` 실행 중인 상태에서 **대기 시간 조절** 가능
+- `Thread` 실행 대기 `Queue` **종류 지정** 가능
 
 ```java
 ThreadPoolExecutor executorService = new ThreadPoolExecutor(
@@ -113,9 +113,38 @@ public class ThreadPoolTest {
 
 ### Java `for-loop` 처리 방식
 
-- 단순 `for-loop`
-- 향상된 `for-loop`
-- `Stream` 객체
+#### 단순 `for-loop`
+
+- 가장 기본적인 형태의 반복문
+- 초기화식, 조건식, 증감식으로 반복문을 구성
+
+```java
+for (int i = 0; i < 5; i++) {
+    System.out.println("현재 숫자 : " + i);
+}
+```
+
+#### 향상된 `for-loop`
+
+- `Collection` 객체 또는 `Array` 객체를 순회하면서 간편한 방법으로 반복문을 구성(`for-each` 구문이라고 한다.)
+- 배열 또는 컬렉션의 각 요소를 순차적으로 접근하여 처리
+
+```java
+int[] numbers = {1, 2, 3, 4, 5};
+for (int number : numbers) {
+    System.out.println("현재 숫자: " + number);
+}
+```
+
+#### `Stream` 객체
+
+- `Java 8` 에서 추가된 기능으로, `Collection` 반복 처리 지원 객체
+- 함수형 프로그래밍 스타일 지원
+
+```java
+List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+numbers.stream().forEach(number -> System.out.println("현재 숫자: " + number));
+```
 
 ---
 
@@ -216,17 +245,17 @@ public class Counter {
 - 동시 처리 : 여러 스레드가 **다른 작업**을 동시에 수행
 - 병렬 처리 : 여러 스레드가 **같은 작업**을 동시에 수행
 
-Java 에서 병렬 처리를 위한 방식으로는 `Stream` API 를 사용하거나 많은 프로그래밍 언어에서 사용하는 `Coroutine` 라이브러리가 있을 것 같다.
+Java 에서 병렬 처리를 위한 방식으로는 `Stream` API 를 사용하거나 많은 프로그래밍 언어에서 지원하고 있는 `Coroutine` 라이브러리를 활용할 수 있다.
 
 ##### Coroutine
 
-**`Coroutine` 은 코드 블록을 일시 중단 가능한 작업 단위이다.** `Coroutine` 는 `Thread` 와 유사하지만 생성 및 관리를 자동으로 처리한다는 큰 특징이 있다.
+`Coroutine` 은 일종의 **코드 블록을 일시 중단 가능한 작업 단위이다.** `Coroutine` 는 `Thread` 와 유사하지만, **생성 및 관리를 자동으로 처리한다**는 큰 특징이 있다.
 
 다음과 같은 구현 목적을 위해 `Coroutine` 를 많이 활용한다.
 
-- 병렬 처리 : 여려 개의 작업을 동시에 수행 처리
-- 비동기 처리 : 여러 개의 작업을 비동기 방식 수행 처리
-- 일시 중단 작업 처리 : 작업을 일시 중단할 수 있도록 처리
+- 병렬 처리 : 하나 또는 여러 개의 작업을 **동시 수행 처리**
+- 비동기 처리 : 여러 개의 작업을 **별도 수행 처리**
+- 일시 중단 작업 처리 : 작업을 **일시 중단**할 수 있도록 처리
 
 병렬과 비동기 처리를 위해서는 기존 Java 언어만으로는 코드가 많이 복잡하고 구현 방식이 까다로웠지만,
 `Coroutine` 을 활용하면 좀 더 **간견한 코드 구현**과 **`Thread` 관리에 대한 부담이 줄어드는 장점**을 가지게 되는 것 같다.
@@ -244,13 +273,13 @@ Java 에서 병렬 처리를 위한 방식으로는 `Stream` API 를 사용하�
 
 ##### Sync vs Async
 
-동기와 비동기의 차이는 여러 개의 작업이 주어졌을 때, **순차적으로 수행**할지 vs **한번에 수행**할지로 정리해볼 수 있다.
+동기와 비동기의 차이는 여러 개의 작업이 주어졌을 때, **순차적으로 수행할지 vs 한번에 수행**할지로 정리해볼 수 있다.
 
 작업 수행 속도로만 따진다면, **분명 비동기 방식이 빠를 것이다.** 하지만 **작업 순서가 보장**되어야 하는 비즈니스 로직에서는 당연히 **동기식 프로그래밍이 필요할 것이다.**
 
 그러므로, 각 방식에 대한 개념을 잘 이해하고 상황에 맞는 적절한 개발을 해야 한다.
 
-##### Blocling vs Non-Blocking
+##### Blocking vs Non-Blocking
 
 블로킹과 논-블로킹의 개념은 조금 더 어려울 수 있다. 이 두가지는 스레드의 작업 제어권이 어느 쪽에 있는지를 이해하는 것이 중요하다.
 
@@ -263,7 +292,7 @@ Java 에서 병렬 처리를 위한 방식으로는 `Stream` API 를 사용하�
 
 ### CQRS 패턴
 
-`CQRS Command Query Responsibility Segregation` 는 **명령과 질의를 분리하는 개념**의 아키텍처 패턴이다.
+`CQRS` 패턴은 `Command Query Responsibility Segregation` 라는 의미로, **명령과 질의를 분리하는 개념**의 아키텍처 패턴이다.
 
 - `Command 명령` : 데이터를 변경하는 작업
 - `Query 질의` : 데이터를 조회하는 작업
@@ -309,10 +338,12 @@ Java 에서 병렬 처리를 위한 방식으로는 `Stream` API 를 사용하�
 
 해당 격리 수준은 하나의 트랜잭션 내에서 동일한 결과를 보장하지만, 새로운 레코드 추가되는 경우 데이터 부정합이 생길 수 있다.
 
-RDBMS 기준 변경 전의 데이터 레코드를 `Undo` 저장 공간에 `Back-up 백업` 하고, `MVCC(Multi-Version Concurrency Control) 다중 버전 동시성 제어` 을 통해
+RDBMS 기준 변경 전의 데이터 레코드를 `Undo` 저장 공간에 `Back-up 백업` 하고, `MVCC (Multi-Version Concurrency Control)` **다중 버전 동시성 제어**을 통해
 트랜잭션 롤백에 대한 데이터 복원과 서로 다른 트랜잭션 간의 세밀한 데이터 관리가 가능하다.
 
 하지만, `MySQL` 의 `Gap Lock 갭-락` 처럼 별도 처리가 없다면, `Phantom Read` 와 같은 데이터 부정합이 발생할 수 있다.
+
+`READ COMMITTED` 격리 수준보다 성능적인 측면에서 다소 느릴 수 있지만, 보다 **높은 데이터 정합성을 보장**할 수 있다.
 
 > 자세한 내용은 [망나니 개발자님의 "[MySQL] 트랜잭션의 격리 수준(Isolation Level)에 대해 쉽고 완벽하게 이해하기"](https://mangkyu.tistory.com/299) 참고
 
@@ -320,10 +351,14 @@ RDBMS 기준 변경 전의 데이터 레코드를 `Undo` 저장 공간에 `Back-
 
 `READ COMMITTED` 는 **커밋이 완료된 데이터만 조회 가능**하도록 하는 수준을 의미한다.
 
+트랜잭션이 시작된 후 **이미 커밋된** 데이터만 읽지만, 다른 트랜잭션이 해당 데이터를 변경하고 커밋하였다면 **데이터 변경 내용이 이전 트랜잭션에 반영**될 수 있다.
+
 해당 격리 수준은 `Phantom Read` 와 `Non-repeatable Read` 이슈까지 발생할 수 있다.
 커밋이 완료되지 않은 상태에서 다른 트랜잭션 조회 요청은 `Undo` 영역의 데이터 조회되기 때문이다.
 
 많은 DBMS에서 해당 격리 수준을 기본으로 설정하고 있지만, 데이터 잠금 정책을 통해서 해결할 수 있을 것 같다.
+
+`REPEATABLE READ` 격리 수준보다 데이터 정합성은 떨어질 수 있으나, **높은 성능적인 이점**을 가질 수 있다.
 
 #### READ UNCOMMITED
 
