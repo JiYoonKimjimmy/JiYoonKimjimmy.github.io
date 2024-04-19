@@ -12,7 +12,7 @@ tags  : redis springdataredis phantom secondaryindexing
 - Spring Data Redis 자체적으로 저장된 Cache Key 정보가 `Expiry` 만료가 되는 시점에 별도의 `Event` 이벤트를 받기 위해 `{cache key}:phantom` 방식으로 복사본을 저장한다.
 - `{cache key}` 정보가 만료되는 시점에 `{cache key}:phantom` 를 통해서 Application 에 정의된 Event 처리를 수행할 수 있게 된다.
 
-```java
+```kotlin
 @EnableRedisRepositories(enableKeyspaceEvents = RedisKeyValueAdapter.EnableKeyspaceEvents.ON_STARTUP)
 ```
 
@@ -23,7 +23,7 @@ tags  : redis springdataredis phantom secondaryindexing
 - **Secondary Indexing** : `key` 조건으로 검색 외의 `Index` 로 지정한 정보에 대해서 검색할 수 있도록 새로운 `SET` Cache 정보를 저장한다.
 - `Redis` 의 `Secondary Indexing` 처리를 위해 `SpringDataRedis` 에서는 `@Indexed` Annotation 을 통해서 간단하게 구현이 가능하다.
 
-```java
+```kotlin
 @RedisHash(value = "blacklist")
 data class BlacklistUserCacheModel(
     @Id

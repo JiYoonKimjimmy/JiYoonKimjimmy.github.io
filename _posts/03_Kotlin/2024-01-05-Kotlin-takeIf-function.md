@@ -40,7 +40,7 @@ takeIf { condition }?.apply { doSomething() }
 
 ### `takeIf()` 함수의 내부
 
-{% highlight java %}
+{% highlight kotlin %}
 /**
  * Returns `this` value if it satisfies the given [predicate] or `null`, if it doesn't.
  *
@@ -71,7 +71,7 @@ public inline fun <T> T.takeIf(predicate: (T) -> Boolean): T? {
 
 #### 기본 함수 사용법
 
-{% highlight java %}
+{% highlight kotlin %}
 @Test
 fun `takeIf() 함수 기본 사용법`() {
     val status = true
@@ -87,7 +87,7 @@ fun `takeIf() 함수 기본 사용법`() {
 {% endhighlight %}
 
 ###### Output
-{% highlight text %}
+{% highlight log %}
 Hello World
 Hell World
 Hello ! World !
@@ -96,7 +96,7 @@ Nothing !!
 
 #### 확장 함수 활용한 사용법
 
-{% highlight java %}
+{% highlight kotlin %}
 @Test
 fun `String 확장 함수 이용한 takeIf() 함수 사용법`() {
     stringTakeIfWithWorld("Hello")?.apply { println(this) }
@@ -113,7 +113,8 @@ private fun String.add(str: String): String {
 {% endhighlight %}
 
 ###### Output
-{% highlight text %}
+
+{% highlight log %}
 Hello World
 Nothing !!
 {% endhighlight %}
