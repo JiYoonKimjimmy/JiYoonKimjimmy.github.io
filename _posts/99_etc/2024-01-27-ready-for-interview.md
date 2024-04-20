@@ -55,7 +55,7 @@ Java 에서 `Thread-Pool` 관리하기 위해서는 `ExecutorService` 인터페�
 | `newCachedThreadPool()` | 필요에 따라 `Thread` 생성 및 종료하는 `Thread-Pool` 생성 |
 | `newScheduledThreadPool()` | 지정된 시간에 작업을 실행하는 `Thread-Pool` 생성 |
 
-```java
+{% highlight java %}
 public class ThreadPoolTest {
     @Test
     void generateThreadPoolByExecutorService() {
@@ -65,7 +65,7 @@ public class ThreadPoolTest {
         Executors.newScheduledThreadPool(10);
     }
 }
-```
+{% endhighlight %}
 
 ##### ThreadPoolExecutor 클래스 활용 `Thread-Pool` 생성
 
@@ -87,14 +87,7 @@ public class ThreadPoolTest {
 - `Thread` 실행 중인 상태에서 **대기 시간 조절** 가능
 - `Thread` 실행 대기 `Queue` **종류 지정** 가능
 
-```java
-ThreadPoolExecutor executorService = new ThreadPoolExecutor(
-    10,                             // corePoolSize
-    20,                             // maximumPoolSize
-    1000,                           // keepAliveTime
-    TimeUnit.MILLISECONDS,          // unit
-    new LinkedBlockingQueue<>(100)  // workQueue
-);
+{% highlight java %}
 public class ThreadPoolTest {
     @Test
     void generateThreadPoolByThreadPoolExecutor() {
@@ -107,7 +100,7 @@ public class ThreadPoolTest {
         );
     }
 }
-```
+{% endhighlight %}
 
 ---
 
@@ -118,33 +111,33 @@ public class ThreadPoolTest {
 - 가장 기본적인 형태의 반복문
 - 초기화식, 조건식, 증감식으로 반복문을 구성
 
-```java
+{% highlight java %}
 for (int i = 0; i < 5; i++) {
     System.out.println("현재 숫자 : " + i);
 }
-```
+{% endhighlight %}
 
 #### 향상된 `for-loop`
 
 - `Collection` 객체 또는 `Array` 객체를 순회하면서 간편한 방법으로 반복문을 구성(`for-each` 구문이라고 한다.)
 - 배열 또는 컬렉션의 각 요소를 순차적으로 접근하여 처리
 
-```java
+{% highlight java %}
 int[] numbers = {1, 2, 3, 4, 5};
 for (int number : numbers) {
     System.out.println("현재 숫자: " + number);
 }
-```
+{% endhighlight %}
 
 #### `Stream` 객체
 
 - `Java 8` 에서 추가된 기능으로, `Collection` 반복 처리 지원 객체
 - 함수형 프로그래밍 스타일 지원
 
-```java
+{% highlight java %}
 List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
 numbers.stream().forEach(number -> System.out.println("현재 숫자: " + number));
-```
+{% endhighlight %}
 
 ---
 
@@ -156,19 +149,19 @@ Java 의 `Stream` 객체 API 를 활용할 때보단 편하게 코딩을 할 수
 
 그렇다면, 그런 확장 함수는 과연 어떤 동작을 하게 되는 것일까? 바로 위에 바로 언급한 Java 의 `Stream` 객체이다.
 
-```kotlin
+{% highlight kotlin %}
 val list = listOf(1, 2, 3, 4)
 list.filter { it > 2 }
 println(list)   // [3, 4]
-```
+{% endhighlight %}
 
 위와 같은 Kotlin 의 코드는 실행을 위해 컴파일되는 시점에 아래와 같은 Java 코드 변환 뒤 `.class` 파일로 컴파일된다.
 
-```java
+{% highlight java %}
 List<Integer> list = Arrays.asList(1, 2, 3, 4);
 list.stream().filter(i -> i > 2);
 System.out.println(list);
-```
+{% endhighlight %}
 
 결국은 `Stream` 객체를 사용하기 때문에, Kotlin 에서도 `Collection` 객체를 사용할 때 주의 사항 중 하나인 **중간 객체 생성의 조심성**이 생긴 것 같다.
 
@@ -189,7 +182,7 @@ System.out.println(list);
 
 `synchronized` 는 Java 에서 많이 사용하는 `Thread` 동기화를 위한 방법으로, `synchronized` 가 있는 함수 또는 코드 블록은 먼저 진입한 `Thread` 만을 접근 허용한다.
 
-```java
+{% highlight java %}
 public class Counter {
 
     private int count = 0;
@@ -202,7 +195,7 @@ public class Counter {
         return count;
     }
 }
-```
+{% endhighlight %}
 
 위 예제에서 `count` 라는 전역 변수에 대한 접근은 `increment()` 함수에서만 허용하고, `increment()` 함수를 먼저 호출한 `Thread` 만이 접근 가능하다.
 
@@ -210,7 +203,7 @@ public class Counter {
 
 `Lock` 객체도 `synchronized` 키워드와 비슷하게 먼저 `Lock` 객체를 선점하는 `Thread` 만을 접근 허용한다.
 
-```java
+{% highlight java %}
 public class Counter {
 
     private int count = 0;
@@ -230,7 +223,7 @@ public class Counter {
         return count;
     }
 }
-```
+{% endhighlight %}
 
 `lock` 이란 객체를 생성하고, `lock.lock()` 함수 호출하는 것처럼 최초 접근한 `Thread` 접근 허용 후 **잠금 처리한다.**
 
