@@ -99,7 +99,7 @@ tags  : interview back-end system-design systemdesign
 네트워크 구간에 대한 시스템 장애에 대한 대응책을 정리해보고자 한다.
 
 - `Circuit Breaker` 패턴 & `Retry` 매커니즘 적용
-- `Message Queue` 활용한 비동기 네트워크 시스템 적용
+- `Message Broker` 활용한 비동기 네트워크 시스템 적용
 
 #### Circuit Breaker 패턴 & Retry 매커니즘 적용
 
@@ -141,9 +141,24 @@ tags  : interview back-end system-design systemdesign
 
 ---
 
-#### `Message Queue` 활용한 비동기 네트워크 시스템 적용
+#### `Message Broker` 활용한 비동기 네트워크 시스템 적용
 
+서비스 네트워크 장애를 방지하기 위해서는 서비스 간 **느슨한 결합** 구조도 설계의 중요한 부분이다.
 
+`Message Queue` 또는 `Message Broker` 를 활용하여 서비스 간 비동기 메시지 전달하고,
+이를 통해 전체 시스템의 서비스 결합도를 낮추고, 확장성과 안정성을 높일 수 있다.
+
+`Message Queue` **메시지 큐**는 `Producer` **생산자**에 의해 발행된 메시지를 저장하였다가
+`Consumer` **소비자**가 순차적으로 수신하여 처리하는 `FIFO` 기반 비동기적인 서비스 흐름을 구현하도록 지원한다.
+
+`Message Broker` **메시지 브로커**는 메시지 큐와 같이 메시지를 저장하고 처리하는 방식이지만,
+**메시지 라우팅**, Pub/Sub 메시징 패턴 외 **Point-to-Point** 메시징 패턴 지원, **트랜잭션 관리** 등 보다 다양한 기능을 제공하고 있다.
+
+##### `Apache Kafka`
+
+- 분명 Kafka 가 더 대규모 분산 처리와 성능 측면 우월한 것은 알겠는데,
+- 정확히 어떤 차이점을 가지고 있는지 알아야 할 필요가 있다!
+- 그리고, 시스템 데이터 대사 프로세스에 대한 대응 방안 꼭 생각해보자!
 
 ---
 
