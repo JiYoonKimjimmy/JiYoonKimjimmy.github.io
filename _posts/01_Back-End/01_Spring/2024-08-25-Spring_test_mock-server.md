@@ -42,6 +42,13 @@ tags  : spring springframework springboot mockwebserver testcode
 
 - `Square` 에서 제공하는 HTTP 서버로, HTTP 테스트 요청을 `Mocking` 할 수 있다.
 
+```groovy
+dependencies {
+    // ...
+    implementation 'com.squareup.okhttp3:mockwebserver:4.11.0'
+    // ...
+}
+```
 
 ```java
 @RestClientTest
