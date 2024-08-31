@@ -1,7 +1,7 @@
 ---
 layout: post
 title : Coroutine (feat. Kotlin)
-date  : 2024-02-15
+date  : 2024-08-31
 image : kotlin_coroutines.png
 tags  : coroutine 코루틴
 ---
