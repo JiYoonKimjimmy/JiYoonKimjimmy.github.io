@@ -11,8 +11,6 @@ tags  : coroutine 코루틴
 코루틴은 코틀린 언어뿐만 아니라 Go-lang, C++, Javasacript 등 많은 언어에서 지원하고 있고, 
 코틀린 진영에서도 많은 개발자들이 적극 활용하여 비동기 프로그래밍을 구현하고 있다.
 
-> [당근마켓 밋업 - Kotlin Coroutines 톺아보기](https://www.youtube.com/watch?v=eJF60hcz3EU)
-
 ---
 
 ## Coroutine 코루틴에 대해서
@@ -22,9 +20,9 @@ tags  : coroutine 코루틴
 
 코루틴은 **협력적 멀티태스킹**을 지원하고, 비동기 프로그래밍을 쉽게 할 수 있도록 도와주는 **경량 스레드**라고도 많이 불린다.
 
-- 겅량성 : 코루틴은 스레드보다 훨씬 가볍고 생성 비용이 적기 때문에, 수천 개의 코루틴을 생성해도 메모리와 성능 큰 영향이 없다.
-- 비동기 코드 간결성 : 흔히 **콜백 지옥**과 같은 코드의 가독성 저하 문제를 피할 수 있고, 동기 코드처럼 작성할 수 있다.
-- 구조화된 동시성 : 코루틴은 부모-자식 관계를 통해 구조화된 동시성을 지원한다.
+- **경량성** : 코루틴은 스레드보다 훨씬 가볍고 생성 비용이 적기 때문에, 수천 개의 코루틴을 생성해도 메모리와 성능 큰 영향이 없다.
+- **비동기 코드 간결성** : 흔히 **콜백 지옥**과 같은 코드의 가독성 저하 문제를 피할 수 있고, 동기 코드처럼 작성할 수 있다.
+- **구조화된 동시성** : 코루틴은 부모-자식 관계를 통해 구조화된 동시성을 지원한다.
   - 코루틴의 `parent` 가 종료되면, `parent` 의 모든 `children` 도 취소된다.
   - `child` 코루틴 실행 중 `exception` 예외 발생하여 종료되면, `exception` 은 `parent` 에게 전달되어 취소시킨다.
   - 만약 `child` 에서 명시적으로 취소하면, `parent` 에게 취소는 전파되지 않는다.
@@ -32,7 +30,7 @@ tags  : coroutine 코루틴
 ### Thread 스레드 vs. Coroutine 코루틴
 
 - `Thread` **스레드**는 OS 운영체제에서 관리하는 독립적인 실행 단위이다. 스레드는 생성 비용과 `Context-Switching` 전환 비용이 크다.
-- `Coroutine` **코루틴**은 스레드 위에서 실행되는 경량 스레드이다. 코루틴은 스레드보다 생성 비용이 적고, **컨텍스트 스위칭** 비용이 없다.
+- `Coroutine` **코루틴**은 스레드 위에서 실행되는 경량 스레드이다. 코루틴은 스레드보다 생성 비용이 적고, **컨텍스트 스위칭 비용이 적다.**
 - 스레드는 `Preemptive Multitasking` **선점형 멀티태스킹**을 사용하고, 코루틴은 `Cooperative Multitasking` **협력형 멀티태스킹**을 사용한다.
 
 ---
@@ -182,7 +180,8 @@ runBlocking {
 #### 출처
 
 - [Kotlin Official Documentation - Coroutines Guide](https://kotlinlang.org/docs/coroutines-guide.html)
-- [나무위키 - 코루](https://namu.wiki/w/%EC%BD%94%EB%A3%A8%ED%8B%B4)
 - [Ecem Okan - Introduction to Kotlin Coroutines](https://medium.com/@ecemokan/introduction-to-kotlin-coroutine-458353fb4c70)
+- [당근마켓 밋업 - Kotlin Coroutines 톺아보기](https://www.youtube.com/watch?v=eJF60hcz3EU)
+- [나무위키 - 코루틴](https://namu.wiki/w/%EC%BD%94%EB%A3%A8%ED%8B%B4)
 
 ---
