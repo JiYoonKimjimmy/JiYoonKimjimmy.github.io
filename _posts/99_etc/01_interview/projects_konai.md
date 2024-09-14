@@ -1,4 +1,4 @@
-# KONAi 프로젝트 면접 준비
+# KONAi 프로젝트 정리 for Interview
 
 ## 회원 정보 관리 서비스
 
