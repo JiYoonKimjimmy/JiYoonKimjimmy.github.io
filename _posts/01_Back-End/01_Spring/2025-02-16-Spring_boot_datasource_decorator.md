@@ -80,6 +80,12 @@ decorator.datasource.p6spy.log-filter.pattern=
 
 ---
 
+#### P6Spy 동작 원리
+
+- TODO 작성 예정
+
+---
+
 #### Reference
 
 - [gavlyukovskiy - Spring Boot DataSource Decorator](https://github.com/gavlyukovskiy/spring-boot-data-source-decorator)
