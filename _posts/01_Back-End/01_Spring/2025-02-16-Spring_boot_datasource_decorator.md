@@ -88,5 +88,6 @@ decorator.datasource.p6spy.log-filter.pattern=
 #### Reference
 
 - [gavlyukovskiy - Spring Boot DataSource Decorator](https://github.com/gavlyukovskiy/spring-boot-data-source-decorator)
+- [Stark97's blog - [SpringBoot] 3.x.x 버전에서 P6Spy 적용하기](https://curiousjinan.tistory.com/entry/spring-boot-3-p6spy-jpa-logging#2.%20SpringBoot3.x.x%EC%97%90%EC%84%9C%20P6spy%20%EC%A0%81%EC%9A%A9%EB%B0%A9%EB%B2%95%EC%9D%B4%20%EB%B0%94%EB%80%90%20%EC%9D%B4%EC%9C%A0-1)
 
 ---
