@@ -28,7 +28,16 @@ tags  : springboot-datasource-decorator
 
 Spring Data JPA 를 사용한다면, 이미 요청 쿼리에 대한 로깅이 가능하지만, **쿼리의 `WHERE` 절에 있는 조건값에 대한 상세한 정보를 제공하지는 않는 점**에서 `P6Spy` 적용을 검토하게 되었다.
 
-##### P6Spy 적용
+#### P6Spy 특징
+
+##### Proxy Driver
+
+- `P6Spy` 는 `JDBC` 드라이버를 감싸는 **Proxy Driver 프록시 드라이버**를 제공한다
+- 프록시 드라이버는 실제 `JDBC` 드라이버와 동일한 인터페이스를 구현하여, 실제 드라이버를 대체할 수 있도록 한다.
+- **애플리케이션이 데이터베이스와 상호작용할 때 프록시 드라이버를 통해 요청 전달되도록 한다.**
+- 프록시 드라이버는 `Connection`, `Statement`, `PreparedStatement`, `CallableStatement` 객체들과 같은 `JDBC` 객체들을 감싸고, 이들의 메서드 호출을 가로챈다.
+
+#### P6Spy 적용
 
 ```gradle
 dependencies {
@@ -79,14 +88,9 @@ decorator.datasource.p6spy.log-filter.pattern=
 
 ---
 
-#### P6Spy 동작 원리
-
-- TODO 작성 예정
-
----
-
 #### Reference
 
 - [gavlyukovskiy - Spring Boot DataSource Decorator](https://github.com/gavlyukovskiy/spring-boot-data-source-decorator)
+- [Stark97's blog - [SpringBoot] 3.x.x 버전에서 P6Spy 적용하기](https://curiousjinan.tistory.com/entry/spring-boot-3-p6spy-jpa-logging#2.%20SpringBoot3.x.x%EC%97%90%EC%84%9C%20P6spy%20%EC%A0%81%EC%9A%A9%EB%B0%A9%EB%B2%95%EC%9D%B4%20%EB%B0%94%EB%80%90%20%EC%9D%B4%EC%9C%A0-1)
 
 ---
