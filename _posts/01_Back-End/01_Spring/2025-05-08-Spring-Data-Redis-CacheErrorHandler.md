@@ -17,6 +17,18 @@ tags  : redis springdataredis cacheerrorhandler
 Redis command timed out; nested exception is io.lettuce.core.RedisCommandTimeoutException: Command timed out after 500 millisecond(s).
 ```
 
+> **Redis Timeout 설정 변경**
+>
+> ```properties
+> # Properties
+> spring.redis.timeout: 2000
+> 
+> # YAML
+> spring:
+>     redis:
+>         timeout: 2000
+> ```
+
 ---
 
 ### Solution
