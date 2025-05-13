@@ -1,6 +1,6 @@
 ---
 layout: post
-title : Java 21 JVM Option
+title : Java Instant 클래스
 date  : 2025-04-28
 image : java_log.png
 tags  : java jdk21 jvm jvamoption

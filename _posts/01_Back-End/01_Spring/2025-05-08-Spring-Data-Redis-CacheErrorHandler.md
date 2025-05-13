@@ -1,6 +1,6 @@
 ---
 layout: post
-title : Spring Data Redis 의 `CacheErrorHandler`
+title : Spring Data Redis's CacheErrorHandler
 date  : 2025-05-08
 image : spring-data-redis.png
 tags  : redis springdataredis cacheerrorhandler
