@@ -42,9 +42,9 @@ Redis command timed out; nested exception is io.lettuce.core.RedisCommandTimeout
 public class SimpleCacheErrorHandler implements CacheErrorHandler {
 
     @Override
-	public void handleCacheGetError(RuntimeException exception, Cache cache, Object key) {
-		throw exception;
-	}
+    public void handleCacheGetError(RuntimeException exception, Cache cache, Object key) {
+        throw exception;
+    }
 
     // ... code ...
 }
@@ -60,13 +60,13 @@ public class CustomCacheErrorHandler extends SimpleCacheErrorHandler {
     private static final Logger logger = LoggerFactory.getLogger(CustomCacheErrorHandler.class);
 
     @Override
-	public void handleCacheGetError(RuntimeException exception, Cache cache, Object key) {
+    public void handleCacheGetError(RuntimeException exception, Cache cache, Object key) {
         if (exception instanceof RedisCommandTimeoutException) {
             logger.warn("Redis timeout during cache GET for key {}: {}", key, exception.getMessage());
         } else {
             throw exception;
         }
-	}
+    }
 
 }
 ```
@@ -130,12 +130,12 @@ class CustomCacheErrorHandlerTest {
         String cacheName = "my:cache"   // `@Cacheable.cacheNames`
         RedisCache originalCache = (RedisCache) redisCacheManager.getCache(cacheName);
         assert cache != null;
-        RedisCache spyCache = Mockito.spy(originalCache);
+        RedisCache spyCache = spy(originalCache); // Mockito 활용
 
         // RedisCache.get() 함수 예외 발생 mocking 처리
-        Mockito.doThrow(new RedisCommandTimeoutException("redis command timeout")).when(spyCache).get(Mockito.any());
+        doThrow(new RedisCommandTimeoutException("redis command timeout")).when(spyCache).get(any());
         // RedisCacheManger.getCache() 함수 spyCache 반환 mocking 처리
-        Mockito.doReturn(spyCache).when(redisCacheManager).getCache(cacheName);
+        doReturn(spyCache).when(redisCacheManager).getCache(cacheName);
 
         // when
         List<String> result = cacheService.getCache(key);
