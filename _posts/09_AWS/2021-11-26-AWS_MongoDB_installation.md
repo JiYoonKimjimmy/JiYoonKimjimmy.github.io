@@ -7,6 +7,7 @@ tags  : aws mongodb
 ---
 
 ## MongoDB 설치
+
 `EC2` 설치 또는 Linux OS 환경 구성이 선행되었다는 가정하에 `MongoDB` 를 설치해보겠다.
 그리고 해당 방법의 기준 `OS` 는 `Amazon Linux 2` 로 결정하였다. 다양한 `OS` 의 설치 방법은 [`MongoDB` 공식 홈페이지](https://docs.mongodb.com/manual/installation/)에서도 충분히 잘 설명해주고 있는 것 같다.
 
@@ -64,141 +65,232 @@ $ sudo systemctl stop mongod
 $ sudo systemctl restart mongod
 {% endhighlight %}
 
-> ##### Init System<br>
-> 리눅스 환경에서 `MongoDB` 의 프로세스 실행하고 관리하기 위해서 [`init system`](https://docs.mongodb.com/manual/reference/glossary/#std-term-init-system) 을 사용하게 된다.<br>
-최신 리눅스 환경에서는 `systemd` 를 사용을 주로하지만, 이전 버전에서는 `System V init` 를 사용하는 경우가 있고, 그 둘의 실행 방법은 다르기 때문에 아래와 같은 명령어로 확인할 수 있다.<br>
->> $ ps --no-headers -o comm 1
+> ##### Init System
+> 
+> 리눅스 환경에서 `MongoDB` 의 프로세스 실행하고 관리하기 위해서 [`init system`](https://docs.mongodb.com/manual/reference/glossary/#std-term-init-system) 을 사용하게 된다.
+> 
+> 최신 리눅스 환경에서는 `systemd` 를 사용을 주로하지만, 이전 버전에서는 `System V init` 를 사용하는 경우가 있고, 그 둘의 실행 방법은 다르기 때문에 아래와 같은 명령어로 확인할 수 있다.
+> 
+> ```shell
+> $ ps --no-headers -o comm 1
+> ```
+
 
 ---
 
-### `Tarball` 활용한 설치 방법
+## `Tarball` 활용한 수동 설치 방법
 
-#### 1. MongoDB Server `.tgz` 파일 다운로드
+### 1. MongoDB Community Edition `tar.gz`  다운로드
 
-> [MongoDB Community Edition Download](https://www.mongodb.com/try/download/community)
+> [https://www.mongodb.com/try/download/community](https://www.mongodb.com/try/download/community)
 
-- 공식 사이트에서 현재 설치하고자 하는 OS 체제 버전에 맞는 파일을 다운로드
+##### 설치 대상 서버 OS 확인 방법
 
-> Linux 환경 OS 확인 방법 : `$ cat /etc/os-release`
+```shell
+# 커널 이름, 버전, 호스트명 등 커널 관련 정보 확인
+$ uname -a 
+# OS 이름, 버전, ID 등 상세한 정보 확인
+$ cat /etc/os-release
+```
 
-#### 2. `.tgz` 파일 설치
+> ##### 설치 서버 정보
+> 
+> - **OS** : Rocky Linux 9.5 (RHEL 9 기반)
+> - **아키텍처** : x86_64 (64bit)
+> - **OpenSSL 버전**: 3.x (Rocky 9의 기본)
+> 
+> 설치 파일 : `RedHat / CentOS 9.3 x64` 플랫폼 선택 > `mongodb-linux-x86_64-rhel93-8.0.10.tgz` 파일 다운로드
 
-{% highlight bash %}
-$ tar -zxvf mongodb-linux-*-7.0.1.tgz
-{% endhighlight %}
+### 2. `tar.gz` 파일 압축 해체 & 실행 파일 환경 구축
 
-#### 3. MongoDB `/bin` 파일 이동
+- **작업 위치 : /home/mock_server/mongodb**
 
-{% highlight bash %}
-$ sudo cp /path/to/the/mongodb-directory/bin/* /usr/local/bin/
-{% endhighlight %}
+```shell
+$ tar -zxvf mongodb-linux-x86_64-rhel93-8.0.10.tgz
+$ cp -R mongodb-linux-x86_64-rhel93-8.0.10/* /home/mock_server/mongodb/bin
+$ export PATH=/home/mock_server/mongodb/bin:$PATH
+$ source ~/.bashrc
+```
 
-- 아래 3개의 파일이 이동된다.
-  - `mongod`
-  - `mongos`
-  - `install_compass`
+### 3. MongoDB 실행 환경 구축
 
-#### 4. MongoDB Shell 다운로드 & 설치
+#### `db` & `log` 디렉토리 생성
 
-> [MongoDB Shell Download](https://www.mongodb.com/try/download/shell)
+```shell
+$ mkdir -p /home/mock_server/mongodb/db
+$ mkdir -p /home/mock_server/mongodb/log
+```
 
-{% highlight bash %}
-$ tar -zxvf mongosh-1.10.6-linux-x64.tgz
-$ sudo cp /path/to/the/mongosh-directory/* /usr/local/bin/
-{% endhighlight %}
+#### `mongod.conf` 파일 생성
 
-- 아래 2개의 파일이 이동된다.
-  - `mongosh`
-  - `mongosh_crypt_v1.so`
+- **파일 위치 : /home/mock_server/mongodb/cfg**
 
-#### 5. MongoDB Default 디렉토리 생성
+```properties
+systemLog:
+  destination: file
+  path: /home/mock_server/mongodb/log/mongod.log
+  logAppend: true
 
-{% highlight bash %}
-# create new directory
-$ sudo mkdir -p /var/lib/mongo
-$ sudo mkdir -p /var/log/mongodb
-# change owner & group
-$ sudo chown -R mongod:mongod /var/lib/mongo
-$ sudo chown -R mongod:mongod /var/log/mongodb
-{% endhighlight %}
+storage:
+  dbPath: /home/mock_server/mongodb/db
 
-- `/var/lib/mongo` : data directory
-- `/var/log/mongodb` : log directory
-
-> [Camael's note - MongoDB 데이터 파일 구조](https://blog.yevgnenll.me/posts/mongodb-data-file-structure-wired-tiger-engine)
-
-#### 6. MongoDB 실행 & 접속
-
-{% highlight bash %}
-# run database
-$ mongod --dbpath /var/lib/mongo --logpath /var/log/mongodb/mongod.log --fork
-# connect database
-$ mongosh "mongodb://localhost:27017"
-{% endhighlight %}
-
----
-
-### `MongoDB` 설정 및 외부 접속
-
-#### 1. `MongoDB` 접속 가능 IP 정보 변경
-`/etc/mongod.conf` 파일에서 `bindIp` 의 `127.0.0.1` 인 부분을 `0.0.0.0` 으로 수정
-
-{% highlight bash %}
-$ vi /etc/mongod.conf
-
-# network interfaces
 net:
-   port: 27017
-   bindIp: 0.0.0.0  # Enter 0.0.0.0,:: to bind to all IPv4 and IPv6 addresses or, alternatively, use the net.bindIpAll setting.
-{% endhighlight %}
+  bindIp: 0.0.0.0   # 외부 접속 허용
+  port: 27017
 
-#### 2. 계정 생성
+processManagement:
+  fork: true        # 백그라운드 실행
 
-{% highlight bash %}
-# `MongoDB` 접속
-$ mongo
+```
 
-# `admin` 계정 생성
-use admin
-db.createUser({
-    user: "<username>",
-    pwd: "<password>",
-    roles: [
-        "userAdminAnyDatabase",
-        "dbAdminAnyDatabase",
-        "readWriteAnyDatabase"
-    ]
-})
+### 4. MongoDB 실행
 
-# `customDB` 계정 생성
-use <customDB>
-db.createUser({
-    user: "<username>",
-    pwd: "<password>",
-    roles: [
-        "dbAdmin",
-        "readWrite"
-    ]
-})
-{% endhighlight %}
+```shell
+$ mongod --config /data/home/mock_server/mongodb/cfg/mongod.conf
+```
 
-> #### `MongoDB` 계정 삭제하는 방법<br>
-> use \<customDB><br>
-> db.dropUser("\<username>")
+### 5. MongoDB 접속
 
-#### 3, `EC2` 보안 그룹 설정 변경
-- `MongoDB` 접속 `port(default: 27017)` 맞게 인바운드 규칙 추가
+#### Mongosh 설치
 
-#### 4. `MongoDB` 외부 접속
-- `EC2` host url 과 `MongoDB` 의 `port` 사용하여 정상 접속 확인!
+> [https://www.mongodb.com/try/download/shell](https://www.mongodb.com/try/download/shell)
+> 
+> - 설치 파일 : `Linux x64` 플랫폼 선택 > `mongosh-2.5.2-linux-x64.tgz` 파일 다운로드
+
+```shell
+$ tar -zxvf mongosh-2.5.2-linux-x64.tgz
+$ cp -R mongosh-2.5.2-linux-x64/bin/* /home/mock_server/mongodb/bin
+$ source ~/.bashrc
+```
+
+#### Mongosh 접속
+
+```shell
+$ mongosh
+```
+
+### 6. MongoDB 종료
+
+```shell
+$ mongod --config /data/home/mock_server/mongodb/cfg/mongod.conf --shutdown
+```
 
 ---
 
-## MongoDB 백업 & 복구
+## MongoDB 계정 생성
 
-- MongoDB Database Tools 설치
-- `mongodump` 사용 방법
-- `mongorestore` 사용 방법
+### Admin 계정 생성
+
+```json
+use admin
+db.createUser({ 
+	user: "admin", 
+	pwd: "<password>", 
+	roles: [ "userAdminAnyDatabase", "dbAdminAnyDatabase", "readWriteAnyDatabase" ] 
+})
+```
+
+### Custom 계정 생성
+
+```json
+use ms
+db.createUser({ 
+	user: "mock", 
+	pwd: "Kona!234", 
+	roles: [ "dbAdmin", "readWrite" ] 
+})
+```
+
+---
+
+## MongoDB 백업
+
+### MongoDB Database Tools `tar.gz` 다운로드
+
+> [https://www.mongodb.com/try/download/database-tools](https://www.mongodb.com/try/download/database-tools)
+> 
+> - 설치 파일 : `RedHat / CentOS 9.3 x86_64` 플랫폼 선택 > `mongodb-database-tools-rhel93-x86_64-100.12.2.tgz` 파일 다운로드
+
+```shell
+$ tar -zxvf mongodb-database-tools-rhel93-x86_64-100.12.2.tgz
+$ cp -R mongosh-2.5.2-linux-x64/bin/* /home/mock_server/mongodb/bin
+$ source ~/.bashrc
+```
+
+### MongoDB 백업하기: `mongodump`
+
+```shell
+$ mongodump --db <DB명> --out <백업 디렉토리>
+```
+
+### MongoDB 백업 파일 복원: `mongorestore`
+
+```shell
+$ mongorestore --db <DB명> --drop <백업 디렉토리>
+```
+
+- `--db` : 복원할 대상 DB 이름
+- `--drop` : 기존 동일한 컬렉션이 있다면 삭제 후 overwrite
+- `<백업 디렉토리>` : 기존 `mongodump` 를 통한 백업 파일 디렉토리 경로
+
+---
+
+##### etc. Linux 계정/그룹 관리
+
+```shell
+# 1. 공용 그룹 생성
+$ sudo groupadd mongogrp
+
+# 2. root & 현재 계정 그룹 추가
+$ sudo usermod -aG mongogrp root
+$ sudo usermod -aG mongogrp mongod
+$ sudo usermod -aG mongogrp $(whoami)
+
+# 3. 특정 디렉토리 그룹 소유자 변경
+$ sudo chown -R mock_server:mongogrp /data/mongodb
+
+# 4. 그룹 쓰기 권한 + 디렉토리 상속 설정
+$ sudo chmod -R 2775 /data/mongodb
+```
+
+---
+
+##### etc. Linux `systemd` 서비스 등록
+
+```shell
+# 1. `systemd` 서비스 파일 생성
+$ sudo cp -R /home/mock_server/mongodb/01_setup/mongodb-linux-x86_64-rhel93-8.0.10/* ./
+$ sudo vi /etc/systemd/system/mongod.service
+
+# 2. /etc/systemd/system/mongod.service 내용 작성
+[Unit]
+Description=MongoDB Database Server (Custom Install)
+After=network.target
+
+[Service]
+User=mock_server
+Group=mongogrp
+ExecStart=/opt/mongodb/bin/mongod --config /home/mock_server/mongodb/cfg/mongod.conf
+PIDFile=/home/mock_server/mongodb/mongod.pid
+RuntimeDirectory=mongodb
+Restart=on-failure
+LimitNOFILE=64000
+
+[Install]
+WantedBy=multi-user.target
+
+# 3. 서비스 등록 및 활성화
+$ sudo systemctl daemon-reexec
+$ sudo systemctl daemon-reload
+$ sudo systemctl enable mongod
+$ sudo systemctl start mongod
+
+# 4. 상태 확인
+$ sudo systemctl status mongod
+
+# etc. 커널 로그 확인
+journalctl -xe -u mongod
+```
 
 ---
 
