@@ -80,7 +80,7 @@ $ sudo systemctl restart mongod
 
 ## `Tarball` 활용한 수동 설치 방법
 
-### 1. MongoDB Community Edition `tar.gz`  다운로드
+#### 1. MongoDB Community Edition `tar.gz`  다운로드
 
 > [https://www.mongodb.com/try/download/community](https://www.mongodb.com/try/download/community)
 
@@ -99,9 +99,9 @@ $ cat /etc/os-release
 > - **아키텍처** : x86_64 (64bit)
 > - **OpenSSL 버전**: 3.x (Rocky 9의 기본)
 > 
-> 설치 파일 : `RedHat / CentOS 9.3 x64` 플랫폼 선택 > `mongodb-linux-x86_64-rhel93-8.0.10.tgz` 파일 다운로드
+> - 설치 파일 : `RedHat / CentOS 9.3 x64` 플랫폼 선택 > `mongodb-linux-x86_64-rhel93-8.0.10.tgz` 파일 다운로드
 
-### 2. `tar.gz` 파일 압축 해체 & 실행 파일 환경 구축
+#### 2. `tar.gz` 파일 압축 해체 & 실행 파일 환경 구축
 
 - **작업 위치 : /home/mock_server/mongodb**
 
@@ -112,16 +112,16 @@ $ export PATH=/home/mock_server/mongodb/bin:$PATH
 $ source ~/.bashrc
 ```
 
-### 3. MongoDB 실행 환경 구축
+#### 3. MongoDB 실행 환경 구축
 
-#### `db` & `log` 디렉토리 생성
+##### `db` & `log` 디렉토리 생성
 
 ```shell
 $ mkdir -p /home/mock_server/mongodb/db
 $ mkdir -p /home/mock_server/mongodb/log
 ```
 
-#### `mongod.conf` 파일 생성
+##### `mongod.conf` 파일 생성
 
 - **파일 위치 : /home/mock_server/mongodb/cfg**
 
@@ -143,15 +143,15 @@ processManagement:
 
 ```
 
-### 4. MongoDB 실행
+#### 4. MongoDB 실행
 
 ```shell
 $ mongod --config /data/home/mock_server/mongodb/cfg/mongod.conf
 ```
 
-### 5. MongoDB 접속
+#### 5. MongoDB 접속
 
-#### Mongosh 설치
+##### Mongosh 설치
 
 > [https://www.mongodb.com/try/download/shell](https://www.mongodb.com/try/download/shell)
 > 
@@ -163,13 +163,13 @@ $ cp -R mongosh-2.5.2-linux-x64/bin/* /home/mock_server/mongodb/bin
 $ source ~/.bashrc
 ```
 
-#### Mongosh 접속
+##### Mongosh 접속
 
 ```shell
 $ mongosh
 ```
 
-### 6. MongoDB 종료
+#### 6. MongoDB 종료
 
 ```shell
 $ mongod --config /data/home/mock_server/mongodb/cfg/mongod.conf --shutdown
@@ -179,7 +179,7 @@ $ mongod --config /data/home/mock_server/mongodb/cfg/mongod.conf --shutdown
 
 ## MongoDB 계정 생성
 
-### Admin 계정 생성
+#### Admin 계정 생성
 
 ```json
 use admin
@@ -190,7 +190,7 @@ db.createUser({
 })
 ```
 
-### Custom 계정 생성
+#### Custom 계정 생성
 
 ```json
 use ms
@@ -205,7 +205,7 @@ db.createUser({
 
 ## MongoDB 백업
 
-### MongoDB Database Tools `tar.gz` 다운로드
+#### MongoDB Database Tools `tar.gz` 다운로드
 
 > [https://www.mongodb.com/try/download/database-tools](https://www.mongodb.com/try/download/database-tools)
 > 
@@ -217,13 +217,13 @@ $ cp -R mongosh-2.5.2-linux-x64/bin/* /home/mock_server/mongodb/bin
 $ source ~/.bashrc
 ```
 
-### MongoDB 백업하기: `mongodump`
+#### MongoDB 백업하기: `mongodump`
 
 ```shell
 $ mongodump --db <DB명> --out <백업 디렉토리>
 ```
 
-### MongoDB 백업 파일 복원: `mongorestore`
+#### MongoDB 백업 파일 복원: `mongorestore`
 
 ```shell
 $ mongorestore --db <DB명> --drop <백업 디렉토리>
@@ -294,5 +294,6 @@ journalctl -xe -u mongod
 
 ---
 
-#### 출처
+#### Reference
+
 - [MongoDB 공식 홈페이지](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-amazon/)
