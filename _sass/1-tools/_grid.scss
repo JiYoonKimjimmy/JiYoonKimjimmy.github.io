@@ -1,10 +1,8 @@
+@use '../0-settings' as *;
+
 $columns: 12;
 $container-base-width: 1200px;
 $container-offset: $base-spacing-unit;
-
-$desktop: 992px;
-$tablet:  768px;
-$mobile:  576px;
 
 $mq: ( $mobile:$columns, $tablet:$columns, $desktop:$columns );
 
