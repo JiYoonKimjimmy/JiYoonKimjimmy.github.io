@@ -4,3 +4,5 @@ _site
 Gemfile.lock
 */.DS_Store
 .idea
+.jekyll.log
+.jekyll.pid
