@@ -1,5 +1,3 @@
-@use "sass:color";
-
 // *****************
 // Global Variables
 // *****************
@@ -40,7 +38,7 @@ $heading-font-color: $dark;
 
 // Links
 $link-color: #337ab7;
-$link-color-hover: color.adjust($dark, $lightness: -15%);
+$link-color-hover: darken($dark, 15%);
 
 // Button
 $button-color: $white;
