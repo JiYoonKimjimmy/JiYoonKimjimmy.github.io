@@ -6,3 +6,4 @@ Gemfile.lock
 .idea
 .jekyll.log
 .jekyll.pid
+.claude
