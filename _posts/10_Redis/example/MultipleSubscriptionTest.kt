@@ -1,5 +1,3 @@
-package com.musinsapayments.prepay.application.prepay.admin.campaign.infrastructure.redis.stream
-
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.params.ParameterizedTest

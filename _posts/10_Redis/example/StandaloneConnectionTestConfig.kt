@@ -1,5 +1,3 @@
-package com.musinsapayments.prepay.application.prepay.admin.campaign.infrastructure.redis.stream
-
 import io.lettuce.core.ClientOptions
 import io.lettuce.core.RedisClient
 import io.lettuce.core.RedisURI
