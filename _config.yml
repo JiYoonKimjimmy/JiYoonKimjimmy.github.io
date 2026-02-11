@@ -5,6 +5,9 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 # Build settings
 # markdown: kramdown
 markdown: kramdown
+# Rouge 비활성화 → 코드 블록이 div.highlight 중첩 없이 출력됨 (Highlight.js가 클라이언트에서 처리)
+kramdown:
+  syntax_highlighter: none
 permalink: pretty
 plugins:
   - jekyll-paginate

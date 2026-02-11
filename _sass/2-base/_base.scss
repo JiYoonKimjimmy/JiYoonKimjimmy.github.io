@@ -11,6 +11,7 @@ body {
   background-color: $background-color;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.01em;
   input, textarea {
 		border: 1px solid $border-color;
 		outline: none;
@@ -29,7 +30,20 @@ body {
 
 *::selection {
   color: $white;
-  background-color: $dark;
+  background-color: $brand-color;
+}
+
+// Inline code (dev blog)
+p code,
+li code,
+td code {
+  font-family: 'JetBrains Mono', Consolas, Monaco, monospace;
+  font-size: 0.9em;
+  padding: 0.2em 0.4em;
+  background: $code-bg;
+  border: 1px solid $code-border;
+  border-radius: 4px;
+  color: $dark;
 }
 
 h1,
@@ -104,12 +118,99 @@ blockquote ul, blockquote p {
 
 pre {
   overflow: auto;
-//  padding: 15px;
   margin-bottom: 0;
   font-size: 14px;
+  font-family: 'JetBrains Mono', Consolas, Monaco, monospace;
   white-space: pre-wrap;
   word-wrap: break-word;
   word-break: break-all;
+}
+
+// 코드 블록: 한 겹만 보이도록 (Jekyll은 div.highlighter-rouge, Rouge 사용 시 div.highlight 추가)
+// 래퍼들은 시각적으로 하나로 보이게 하고, 배경/테두리는 pre에만 맡김
+.post__content div.highlighter-rouge,
+.post__content .language-kotlin.highlighter-rouge {
+  margin: 1.25em 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  background: transparent;
+}
+
+.post__content div.highlighter-rouge .highlight,
+.post__content .highlight {
+  margin: 0;
+  padding: 0;
+  border-radius: inherit;
+  background: transparent;
+}
+
+.post__content div.highlighter-rouge pre,
+.post__content pre.highlight,
+.post__content pre {
+  margin: 0;
+  padding: 1rem 1.25rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  border-radius: 0;
+  border: none;
+}
+
+/* Rouge 비활성화 시 래퍼 없이 pre만 올 수 있음 → pre 단독일 때도 동일한 카드 스타일 */
+.post__content > pre {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+// Tables in post content (dev blog)
+.post__content table {
+  width: 100%;
+  max-width: 100%;
+  margin: 1.25em 0;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+  background: $card-bg;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.post__content thead {
+  background: $table-header-bg;
+}
+
+.post__content th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: $dark;
+  border-bottom: 2px solid $table-header-border;
+  font-size: 0.875rem;
+  letter-spacing: 0.02em;
+}
+
+.post__content td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid $table-border;
+}
+
+.post__content tbody tr:hover {
+  background: rgba($brand-color, 0.04);
+}
+
+.post__content tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.post__content th[align="center"],
+.post__content td[align="center"] {
+  text-align: center;
+}
+
+.post__content th[align="right"],
+.post__content td[align="right"] {
+  text-align: right;
 }
 
 img,

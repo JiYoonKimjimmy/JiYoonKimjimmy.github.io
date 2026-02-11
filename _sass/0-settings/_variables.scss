@@ -18,55 +18,67 @@ $global-transition: all .35s;
 
 
 // *****************
-// Color Variables
+// Color Variables (Dev Blog)
 // *****************
-$brand-color: #f6b141;
-$dark: #393e46;
-$gray: #bbbbbb;
-$light-gray: #e6eef0;
+$brand-color: #0d9488;        // teal-600 accent
+$brand-color-hover: #0f766e;   // teal-700
+$dark: #1e293b;                // slate-800
+$gray: #64748b;                // slate-500
+$light-gray: #e2e8f0;          // slate-200
 $white: #ffffff;
-$black: #000000;
+$black: #0f172a;               // slate-900
 
 // Background Colors
-$background-color: $white;
+$background-color: #f8fafc;    // slate-50 (soft off-white)
+$card-bg: $white;
 
 // Body Color
-$text-color: $dark;
+$text-color: #334155;          // slate-700
 
 // Headings
 $heading-font-color: $dark;
 
 // Links
-$link-color: #337ab7;
-$link-color-hover: darken($dark, 15%);
+$link-color: #0d9488;
+$link-color-hover: $brand-color-hover;
 
 // Button
 $button-color: $white;
 $button-background-color: $brand-color;
 
 // Border
-$border-color: $light-gray;
+$border-color: #e2e8f0;
+
+// Code / technical
+$code-bg: #f1f5f9;             // slate-100
+$code-border: #cbd5e1;         // slate-300
+$table-header-bg: #cbd5e1;     // slate-300 (더 진하게)
+$table-header-border: #94a3b8; // slate-400
+$table-border: #e2e8f0;
 
 
 // *****************
-// Typography
+// Typography (Dev Blog)
 // *****************
-$base-font-size: 16px;
+$base-font-size: 17px;
 $base-font-style: normal;
 $base-font-variant: normal;
-$base-font-weight: normal;
-$base-font-family: 'Roboto', Helvetica Neue, Helvetica, Arial, sans-serif;
-$base-line-height: 26px;
+$base-font-weight: 400;
+$base-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+$base-line-height: 1.7;
 
 // Headings
 $heading-font-weight: 700;
-$heading-font-family: 'Roboto', Helvetica Neue, Helvetica, Arial, sans-serif;
+$heading-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
-$font-size-h1:  36px;
-$font-size-h2:  28px;
-$font-size-h3:  24px;
-$font-size-h4:  20px;
-$font-size-h5:  18px;
-$font-size-h6:  16px;
+$font-size-h1:  2rem;      // 32px
+$font-size-h2:  1.5rem;    // 24px
+$font-size-h3:  1.25rem;   // 20px
+$font-size-h4:  1.125rem;  // 18px
+$font-size-h5:  1rem;      // 16px
+$font-size-h6:  0.9375rem; // 15px
 
-$heading-line-height: 1.2;
+$heading-line-height: 1.3;
+
+// Reading width for article body
+$post-content-max-width: 880px;
