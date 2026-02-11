@@ -7,21 +7,24 @@
   }
 
   .article__image {
+    flex: 0 0 50%;
     width: 50%;
+    aspect-ratio: 10 / 7;
+    min-height: 200px;
     display: block;
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
-    background-color: $white;
     &:hover {
       opacity: 0.9;
     }
 
-    &:after {
-      content: "";
-      display: table;
-      width: 100%;
-      padding-bottom: 70%;
+    @supports not (aspect-ratio: 1) {
+      &:after {
+        content: "";
+        display: block;
+        padding-bottom: 70%;
+      }
     }
   }
 
@@ -98,6 +101,7 @@
     }
 
     .article__image {
+      flex: 0 0 auto;
       width: 100%;
     }
 

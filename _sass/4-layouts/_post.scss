@@ -81,7 +81,7 @@
 .post__head {
     // max-width: 80%;
     max-height: 350px;
-    margin: 0px auto;
+    margin: 0px auto 2.5rem;
 }
 
 .post-image {
@@ -90,7 +90,6 @@
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: $white;
   &:after {
     content: "";
     display: table;
@@ -151,6 +150,10 @@
     border-left-color: $brand-color;
     border-right-color: rgba($brand-color, 0.3);
     background: rgba($brand-color, 0.05);
+
+    p, ul {
+      margin: 0.25rem 0;
+    }
   }
 }
 
@@ -199,23 +202,24 @@
 
     .post__nav__image {
       display: block;
-      max-width: 80%;
-      max-height: 300px;
-      margin: 0px auto;
-      margin-bottom: 40px;
+      max-width: 50%;
+      max-height: 180px;
+      aspect-ratio: 4 / 3;
+      margin: 0 auto 1.5rem;
       background-position: center;
-      background-size: cover;
+      background-size: contain;
       background-repeat: no-repeat;
-      background-color: $light-gray;
       transition: .35s ease-in-out;
       &:hover {
         opacity: 0.9;
       }
-      &:after {
-        content: "";
-        display: table;
-        width: 100%;
-        padding-bottom: 65%;
+
+      @supports not (aspect-ratio: 1) {
+        &:after {
+          content: "";
+          display: block;
+          padding-bottom: 75%;
+        }
       }
     }
 
@@ -278,7 +282,9 @@
     .prev,
     .next {
       .post__nav__image {
-        margin-bottom: 20px;
+        max-width: 70%;
+        max-height: 140px;
+        margin-bottom: 1rem;
       }
     }
   }
