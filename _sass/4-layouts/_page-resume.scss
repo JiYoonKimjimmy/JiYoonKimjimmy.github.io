@@ -1,0 +1,221 @@
+// ============================================
+// Page Resume - 개발자 소개서/이력서 스타일
+// ============================================
+
+.page--resume {
+  .page__content {
+    // Summary: 타이틀/태그라인 강조
+    > h1:first-child {
+      margin-bottom: 0.5em;
+    }
+
+    > h3 {
+      color: $brand-color;
+      font-weight: 600;
+      margin-top: 0;
+      margin-bottom: 1em;
+    }
+
+    // 섹션 구분: h1(Experience 등) 좌측 accent bar
+    > h1 {
+      position: relative;
+      padding-left: 16px;
+      margin-top: 1.75em;
+      margin-bottom: 0.9em;
+      font-size: $font-size-h1;
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.15em;
+        bottom: 0.15em;
+        width: 4px;
+        background: $brand-color;
+        border-radius: 2px;
+      }
+
+      &:first-of-type {
+        margin-top: 0;
+
+        &::before {
+          display: none;
+        }
+      }
+    }
+
+    // 회사 블록: h2 회사명 + 기간 (콘텐츠 폭에 맞춤, 여백 축소)
+    > h2 {
+      display: inline-block;
+      margin-top: 0.9em;
+      margin-bottom: 0.4em;
+      padding: 0.5em 0.9em;
+      font-size: $font-size-h3;
+      background: $card-bg;
+      border-radius: $global-radius;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+      border-left: 4px solid $brand-color;
+
+      strong {
+        font-weight: 700;
+      }
+
+      small {
+        display: inline-block;
+        margin-left: 0.5em;
+        padding: 0.2em 0.5em;
+        font-size: 0.85em;
+        font-weight: 500;
+        color: $brand-color;
+        background: rgba($brand-color, 0.1);
+        border-radius: 4px;
+      }
+    }
+
+    // 역할 타이틀 (h4 직후 회사 h2)
+    h2 + h4,
+    h2 + h3 + h4 {
+      margin-top: 0.5em;
+      margin-bottom: 0.35em;
+      color: $gray;
+      font-size: $font-size-h5;
+      font-weight: 600;
+    }
+
+    // 서브섹션 (담당 Component, Projects)
+    h3 {
+      margin-top: 1.15em;
+      margin-bottom: 0.5em;
+      padding-bottom: 0.35em;
+      font-size: $font-size-h4;
+      border-bottom: 1px solid $light-gray;
+    }
+
+    // 컴포넌트/프로젝트명 (h4, h5, h6) - 좌측 accent로 블록 구분
+    h4, h5, h6 {
+      margin-top: 0.9em;
+      margin-bottom: 0.4em;
+      padding-left: 12px;
+      border-left: 3px solid $brand-color;
+      font-size: $font-size-h4;
+      font-weight: 600;
+    }
+
+    // 기술 스택: HTML .tech-stack (Skills와 동일한 pill 스타일)
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5em;
+      margin: 0.5em 0 1em;
+      padding-bottom: 1.25em;
+      margin-bottom: 1.25em;
+      border-bottom: 1px solid $light-gray;
+
+      span {
+        display: inline-block;
+        padding: 0.35em 0.75em;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: $dark;
+        background: $white;
+        border: 1px solid $light-gray;
+        border-radius: 6px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+      }
+    }
+
+    // Skills: 기술 태그 그리드
+    h3:last-of-type ~ h4 + ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5em;
+      list-style: none;
+      margin: 0.4em 0 1em;
+      padding: 0;
+
+      li {
+        display: inline-block;
+        padding: 0.35em 0.75em;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: $dark;
+        background: $white;
+        border: 1px solid $light-gray;
+        border-radius: 6px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+
+        &::before {
+          display: none;
+        }
+
+        code {
+          padding: 0;
+          background: transparent;
+          border: none;
+        }
+      }
+    }
+
+    h3:last-of-type ~ h4 {
+      margin-top: 0.9em;
+      margin-bottom: 0.25em;
+      padding-left: 0;
+      border-left: none;
+      font-size: $font-size-h5;
+      color: $dark;
+    }
+
+    // 구분선
+    hr {
+      margin: 1.75em 0;
+      border: none;
+      border-top: 1px solid $light-gray;
+    }
+
+    // 리스트 기본 여백 및 프로젝트 설명 폰트 (Skills ul은 별도 스타일로 오버라이드)
+    ul {
+      margin-bottom: 0.5em;
+
+      li {
+        font-size: 0.9375rem;
+      }
+    }
+  }
+
+  @media only screen and (max-width: $tablet) {
+    .page__content {
+      > h2 {
+        padding: 0.45em 0.75em;
+      }
+
+      .tech-stack,
+      h3:last-of-type ~ h4 + ul {
+        gap: 0.35em;
+      }
+    }
+  }
+
+  @media only screen and (max-width: $mobile) {
+    .page__content {
+      > h1 {
+        font-size: $font-size-h3;
+      }
+
+      > h2 {
+        padding: 0.4em 0.65em;
+        font-size: $font-size-h4;
+
+        small {
+          display: block;
+          margin-left: 0;
+          margin-top: 0.35em;
+        }
+      }
+
+      .tech-stack span,
+      h3:last-of-type ~ h4 + ul li {
+        font-size: 0.8125rem;
+      }
+    }
+  }
+}

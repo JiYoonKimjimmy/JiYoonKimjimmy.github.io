@@ -3,6 +3,7 @@ layout: page
 title: About
 permalink: /about/
 image: about.jpg
+resume: true
 ---
 
 ---
@@ -35,52 +36,64 @@ image: about.jpg
 - 회원 가입 및 로그인, 회원 정보 조회, 회원 약관 동의 프로세스 등 회원 관련 API 제공
 - 휴면 회원 전환 등 개인 정보 보호를 위한 프로세스 구축
 <br><br>
-**Project Specs**
-  - Java, Kotlin
-  - Spring Boot, Spring data JPA
-  - Oracle
-  - Gradle, Jenkins
+**기술 스택**
+<div class="tech-stack">
+  <span>Java</span>
+  <span>Kotlin</span>
+  <span>Spring Boot, Spring data JPA</span>
+  <span>Oracle</span>
+  <span>Gradle, Jenkins</span>
+</div>
 
 #### 고객센터 API 연계 지원 Sever Core Component
 - 고객센터 서비스별 필요한 서버 API 연계 지원
 - 회원 카드 관리, 회원 탈퇴 등 MSA 구조상 나눠져있는 API 정보 수집/연계하여 고객센터 웹 서비스에서 하나의 API 요청/응답 처리 지원
 <br><br>
-**Project Specs**
-  - Java, Kotlin
-  - Spring Boot, Spring data JPA
-  - Oracle
-  - Gradle, Jenkins
+**기술 스택**
+<div class="tech-stack">
+  <span>Java</span>
+  <span>Kotlin</span>
+  <span>Spring Boot, Spring data JPA</span>
+  <span>Oracle</span>
+  <span>Gradle, Jenkins</span>
+</div>
 
 #### 기부 서비스 관리 Server Core Component
 - 지역화폐 기반 기부 서비스 관리 운영 개발
 - 기부 등록/수정/완료 처리 등 다양한 기부 서비스 관련 API 개발
 <br><br>
-**Project Specs**
-  - Kotlin
-  - Spring Boot, Spring data JPA, QueryDSL
-  - Oracle
-  - Gradle, Jenkins
+**기술 스택**
+<div class="tech-stack">
+  <span>Kotlin</span>
+  <span>Spring Boot, Spring data JPA, QueryDSL</span>
+  <span>Oracle</span>
+  <span>Gradle, Jenkins</span>
+</div>
 
 ##### Mock API 관리 Server Core Component
 - 외부 솔루션 API 테스트 지원용 Mock Server
 - 동적 Data Schema 및 API 지원
 - `MongoDB` 사용하여 동적 Schema 활용
 <br><br>
-**Project Specs**
-  - Kotlin
-  - Spring Boot, Spring data JPA
-  - MongoDB
-  - Gradle, Jenkins
+**기술 스택**
+<div class="tech-stack">
+  <span>Kotlin</span>
+  <span>Spring Boot, Spring data JPA</span>
+  <span>MongoDB</span>
+  <span>Gradle, Jenkins</span>
+</div>
 
 ##### 코나모빌리티 택시 서비스 외부 시스템 연동 Server Core Component
 - 연동 시스템별 `Batch` 프로그램 개발
 - 택시 가맹점, 정산 내역, 입금 내역 시스템 연동
 <br><br>
-**Project Specs**
-  - Kotlin
-  - Spring Boot, Spring Batch, Spring data JPA
-  - Oracle
-  - Gradle, Jenkins
+**기술 스택**
+<div class="tech-stack">
+  <span>Kotlin</span>
+  <span>Spring Boot, Spring Batch, Spring data JPA</span>
+  <span>Oracle</span>
+  <span>Gradle, Jenkins</span>
+</div>
 
 ##### 지역화폐 서비스 이관 Server Core Component
 - 운영사 변경으로 인한 지역화폐 서비스 데이터 이관 및 연동 처리 프로그램 개발
@@ -88,11 +101,13 @@ image: about.jpg
   - `2021년` 부산동백전
   - `2022년` 김포페이
 <br><br>
-**Project Specs**
-  - Kotlin
-  - Spring Boot, Spring Batch, Spring data JPA, QueryDSL
-  - Oracle
-  - Gradle, Jenkins
+**기술 스택**
+<div class="tech-stack">
+  <span>Kotlin</span>
+  <span>Spring Boot, Spring Batch, Spring data JPA, QueryDSL</span>
+  <span>Oracle</span>
+  <span>Gradle, Jenkins</span>
+</div>
 
 ##### Open-API 환경 API-Gateway Server Core Component
 - `Open-API` 환경의 신규 `API-Gateway` 구축
@@ -102,11 +117,13 @@ image: about.jpg
 - API Call-Count 확인/제한
 - 제휴사 Callback API 요청 처리
 <br><br>
-**Project Specs**
-  - Kotlin
-  - Spring Cloud Gateway, Spring Webflux, Spring Data R2DBC
-  - MySQL
-  - Gradle
+**기술 스택**
+<div class="tech-stack">
+  <span>Kotlin</span>
+  <span>Spring Cloud Gateway, Spring Webflux, Spring Data R2DBC</span>
+  <span>MySQL</span>
+  <span>Gradle</span>
+</div>
 
 ### Projects
 #### 선불카드 결제 플랫폼 Open-API 서비스 구축 <small>2022.06 ~ 진행 중</small>

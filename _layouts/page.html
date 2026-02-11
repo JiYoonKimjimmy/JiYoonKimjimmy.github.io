@@ -21,7 +21,7 @@ layout: default
 <div class="container">
 	<div class="row">
 		<!-- begin page -->
-		<article class="page col col-8 col-t-10 col-m-12">
+		<article class="page col col-8 col-t-10 col-m-12{% if page.resume %} page--resume{% endif %}">
 			<div class="page__content">
 				{{ content }}
 			</div>
