@@ -50,8 +50,9 @@ $button-background-color: $brand-color;
 $border-color: #e2e8f0;
 
 // Code / technical
-$code-bg: #f1f5f9;             // slate-100
-$code-border: #cbd5e1;         // slate-300
+$code-bg: #f1f5f9;             // slate-100 (인라인 코드)
+$code-block-bg: #1e1e1e;       // 코드 블록 배경 (어두운 톤)
+$code-border: #cbd5e1;          // slate-300
 $table-header-bg: #cbd5e1;     // slate-300 (더 진하게)
 $table-header-border: #94a3b8; // slate-400
 $table-border: #e2e8f0;

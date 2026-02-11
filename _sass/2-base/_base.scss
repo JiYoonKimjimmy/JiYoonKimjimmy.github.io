@@ -126,15 +126,14 @@ pre {
   word-break: break-all;
 }
 
-// 코드 블록: 한 겹만 보이도록 (Jekyll은 div.highlighter-rouge, Rouge 사용 시 div.highlight 추가)
-// 래퍼들은 시각적으로 하나로 보이게 하고, 배경/테두리는 pre에만 맡김
+// 코드 블록: 한 겹만 보이도록, 어두운 배경 (개발 블로그 스타일)
 .post__content div.highlighter-rouge,
 .post__content .language-kotlin.highlighter-rouge {
   margin: 1.25em 0;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-  background: transparent;
+  background: $code-block-bg;
 }
 
 .post__content div.highlighter-rouge .highlight,
@@ -142,7 +141,7 @@ pre {
   margin: 0;
   padding: 0;
   border-radius: inherit;
-  background: transparent;
+  background: $code-block-bg;
 }
 
 .post__content div.highlighter-rouge pre,
@@ -154,6 +153,7 @@ pre {
   line-height: 1.6;
   border-radius: 0;
   border: none;
+  background: $code-block-bg;
 }
 
 /* Rouge 비활성화 시 래퍼 없이 pre만 올 수 있음 → pre 단독일 때도 동일한 카드 스타일 */
@@ -161,10 +161,61 @@ pre {
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  background: $code-block-bg;
 }
 
-// Tables in post content (dev blog)
-.post__content table {
+/* 라인 번호 (highlightjs-line-numbers.js): 복사 시 제외 (user-select: none), 고정 폭 */
+.post__content .hljs-ln-numbers {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  text-align: right;
+  color: rgba(255, 255, 255, 0.45);
+  padding-right: 0.75rem;
+  padding-left: 0.5rem;
+  width: 3em;
+  min-width: 3em;
+  max-width: 3em;
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  vertical-align: top;
+  background: transparent !important;
+  box-sizing: border-box;
+}
+
+.post__content .hljs-ln-n {
+  background: transparent !important;
+  display: block;
+  width: 100%;
+  text-align: inherit;
+}
+
+.post__content .hljs-ln-code,
+.post__content .hljs-ln-line.hljs-ln-code {
+  padding-left: 0.75rem;
+  background: transparent !important;
+}
+
+.post__content .hljs-ln-line {
+  background: transparent !important;
+}
+
+.post__content .hljs-ln {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+  background: $code-block-bg;
+}
+
+.post__content .hljs-ln td {
+  padding: 0;
+  border: none;
+  vertical-align: top;
+  background: transparent !important;
+}
+
+// Tables in post content (dev blog) - 코드 블록 테이블(hljs-ln) 제외
+.post__content table:not(.hljs-ln) {
   width: 100%;
   max-width: 100%;
   margin: 1.25em 0;
