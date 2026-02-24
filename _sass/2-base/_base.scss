@@ -140,6 +140,24 @@ pre {
   background: $code-block-bg;
 }
 
+/* 연속된 코드 블록 사이 여백 확대 (가독성) */
+.post__content div.highlighter-rouge + div.highlighter-rouge,
+.post__content pre + pre {
+  margin-top: 2em;
+}
+
+/* 코드 블록 바로 다음 문단/요소 여백 확대 */
+.post__content div.highlighter-rouge + p,
+.post__content div.highlighter-rouge + ul,
+.post__content div.highlighter-rouge + ol,
+.post__content div.highlighter-rouge + blockquote,
+.post__content pre + p,
+.post__content pre + ul,
+.post__content pre + ol,
+.post__content pre + blockquote {
+  margin-top: 2em;
+}
+
 .post__content div.highlighter-rouge .highlight,
 .post__content .highlight {
   margin: 0;
@@ -173,6 +191,31 @@ pre {
 .post__content code.hljs {
   background: transparent !important;
   padding: 0; /* pre에 이미 padding 있음, 중복 제거 */
+}
+
+/* 코드 블록 스크롤바: 얇고 은은하게 (가독성 개선) - pre/code 모두 적용 (overflow 위치에 따라) */
+.post__content pre,
+.post__content pre code.hljs {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
+}
+.post__content pre::-webkit-scrollbar,
+.post__content pre code.hljs::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+.post__content pre::-webkit-scrollbar-track,
+.post__content pre code.hljs::-webkit-scrollbar-track {
+  background: transparent;
+}
+.post__content pre::-webkit-scrollbar-thumb,
+.post__content pre code.hljs::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 3px;
+}
+.post__content pre::-webkit-scrollbar-thumb:hover,
+.post__content pre code.hljs::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.35);
 }
 
 /* 라인 번호 (highlightjs-line-numbers.js): 복사 시 제외 (user-select: none), 고정 폭 */
