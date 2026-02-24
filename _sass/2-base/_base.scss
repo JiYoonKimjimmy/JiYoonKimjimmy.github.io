@@ -168,6 +168,13 @@ pre {
   background: $code-block-bg;
 }
 
+/* highlight.js 배경 중첩 제거: .hljs가 자체 배경(#0d1117)을 추가해 pre/code 이중 컨테이너처럼 보이는 문제 해결 */
+.post__content pre code.hljs,
+.post__content code.hljs {
+  background: transparent !important;
+  padding: 0; /* pre에 이미 padding 있음, 중복 제거 */
+}
+
 /* 라인 번호 (highlightjs-line-numbers.js): 복사 시 제외 (user-select: none), 고정 폭 */
 .post__content .hljs-ln-numbers {
   -webkit-user-select: none;
