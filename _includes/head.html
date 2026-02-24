@@ -21,6 +21,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // 코드 블록 내 <, > 등으로 인한 "unescaped HTML" 보안 경고 억제
+      // (shell, yaml, markdown 등에서 정상적인 코드가 경고를 유발함)
+      hljs.configure({ ignoreUnescapedHTML: true });
       hljs.highlightAll();
       hljs.initLineNumbersOnLoad();
     });
