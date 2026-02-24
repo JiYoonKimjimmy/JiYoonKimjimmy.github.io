@@ -150,11 +150,11 @@
   h3 { margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 1.2rem; color: $heading-font-color; }
   h4, h5, h6 { margin-top: 1.25rem; margin-bottom: 0.5rem; color: $heading-font-color; }
 
-  /* 모바일: 섹션 제목 비율 축소 */
+  /* 모바일: 섹션 제목 비율 축소 (본문 폰트 축소에 맞춤) */
   @media only screen and (max-width: $mobile) {
-    h1 { font-size: 1.35rem; }
-    h2 { font-size: 1.25rem; }
-    h3 { font-size: 1.1rem; }
+    h1 { font-size: 1.2rem; }
+    h2 { font-size: 1.1rem; }
+    h3 { font-size: 1rem; }
   }
 
   p {

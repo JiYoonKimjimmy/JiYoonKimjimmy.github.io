@@ -39,16 +39,159 @@ body {
 }
 
 // Inline code (dev blog)
+// 모바일: 긴 코드가 화면 전체 스크롤을 유발하지 않도록, 코드 블록 내부에서만 좌우 스크롤
 p code,
 li code,
-td code {
+td code,
+blockquote code,
+h1 code, h2 code, h3 code, h4 code, h5 code, h6 code {
   font-family: 'JetBrains Mono', Consolas, Monaco, monospace;
-  font-size: 0.9em;
-  padding: 0.2em 0.4em;
+  font-size: 0.8em;
+  padding: 0.12em 0.35em;
   background: $code-bg;
   border: 1px solid $code-border;
-  border-radius: 4px;
+  border-radius: 3px;
   color: $dark;
+  display: inline-block;
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: pre;
+  vertical-align: middle;
+  -webkit-overflow-scrolling: touch;
+  /* 기본: 스크롤바 숨김, 호버/포커스 시에만 표시 */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.post__content p code:hover,
+.post__content p code:focus-within,
+.post__content li code:hover,
+.post__content li code:focus-within,
+.post__content td code:hover,
+.post__content td code:focus-within,
+.post__content blockquote code:hover,
+.post__content blockquote code:focus-within,
+.post__content h1 code:hover,
+.post__content h1 code:focus-within,
+.post__content h2 code:hover,
+.post__content h2 code:focus-within,
+.post__content h3 code:hover,
+.post__content h3 code:focus-within,
+.post__content h4 code:hover,
+.post__content h4 code:focus-within,
+.post__content h5 code:hover,
+.post__content h5 code:focus-within,
+.post__content h6 code:hover,
+.post__content h6 code:focus-within,
+.page__content p code:hover,
+.page__content p code:focus-within,
+.page__content li code:hover,
+.page__content li code:focus-within,
+.page__content td code:hover,
+.page__content td code:focus-within,
+.page__content blockquote code:hover,
+.page__content blockquote code:focus-within {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.25) transparent;
+}
+/* 인라인 code 스크롤바: 기본 숨김, 호버/포커스 시 표시 */
+.post__content p code::-webkit-scrollbar,
+.post__content li code::-webkit-scrollbar,
+.post__content td code::-webkit-scrollbar,
+.post__content blockquote code::-webkit-scrollbar,
+.post__content h1 code::-webkit-scrollbar,
+.post__content h2 code::-webkit-scrollbar,
+.post__content h3 code::-webkit-scrollbar,
+.post__content h4 code::-webkit-scrollbar,
+.post__content h5 code::-webkit-scrollbar,
+.post__content h6 code::-webkit-scrollbar,
+.page__content p code::-webkit-scrollbar,
+.page__content li code::-webkit-scrollbar,
+.page__content td code::-webkit-scrollbar,
+.page__content blockquote code::-webkit-scrollbar {
+  height: 4px;
+}
+.post__content p code::-webkit-scrollbar-track,
+.post__content li code::-webkit-scrollbar-track,
+.post__content td code::-webkit-scrollbar-track,
+.post__content blockquote code::-webkit-scrollbar-track,
+.post__content h1 code::-webkit-scrollbar-track,
+.post__content h2 code::-webkit-scrollbar-track,
+.post__content h3 code::-webkit-scrollbar-track,
+.post__content h4 code::-webkit-scrollbar-track,
+.post__content h5 code::-webkit-scrollbar-track,
+.post__content h6 code::-webkit-scrollbar-track,
+.page__content p code::-webkit-scrollbar-track,
+.page__content li code::-webkit-scrollbar-track,
+.page__content td code::-webkit-scrollbar-track,
+.page__content blockquote code::-webkit-scrollbar-track {
+  background: transparent;
+}
+/* 기본: 스크롤바 thumb 투명 */
+.post__content p code::-webkit-scrollbar-thumb,
+.post__content li code::-webkit-scrollbar-thumb,
+.post__content td code::-webkit-scrollbar-thumb,
+.post__content blockquote code::-webkit-scrollbar-thumb,
+.post__content h1 code::-webkit-scrollbar-thumb,
+.post__content h2 code::-webkit-scrollbar-thumb,
+.post__content h3 code::-webkit-scrollbar-thumb,
+.post__content h4 code::-webkit-scrollbar-thumb,
+.post__content h5 code::-webkit-scrollbar-thumb,
+.post__content h6 code::-webkit-scrollbar-thumb,
+.page__content p code::-webkit-scrollbar-thumb,
+.page__content li code::-webkit-scrollbar-thumb,
+.page__content td code::-webkit-scrollbar-thumb,
+.page__content blockquote code::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 2px;
+}
+/* 호버/포커스 시 스크롤바 thumb 표시 */
+.post__content p code:hover::-webkit-scrollbar-thumb,
+.post__content p code:focus-within::-webkit-scrollbar-thumb,
+.post__content li code:hover::-webkit-scrollbar-thumb,
+.post__content li code:focus-within::-webkit-scrollbar-thumb,
+.post__content td code:hover::-webkit-scrollbar-thumb,
+.post__content td code:focus-within::-webkit-scrollbar-thumb,
+.post__content blockquote code:hover::-webkit-scrollbar-thumb,
+.post__content blockquote code:focus-within::-webkit-scrollbar-thumb,
+.post__content h1 code:hover::-webkit-scrollbar-thumb,
+.post__content h1 code:focus-within::-webkit-scrollbar-thumb,
+.post__content h2 code:hover::-webkit-scrollbar-thumb,
+.post__content h2 code:focus-within::-webkit-scrollbar-thumb,
+.post__content h3 code:hover::-webkit-scrollbar-thumb,
+.post__content h3 code:focus-within::-webkit-scrollbar-thumb,
+.post__content h4 code:hover::-webkit-scrollbar-thumb,
+.post__content h4 code:focus-within::-webkit-scrollbar-thumb,
+.post__content h5 code:hover::-webkit-scrollbar-thumb,
+.post__content h5 code:focus-within::-webkit-scrollbar-thumb,
+.post__content h6 code:hover::-webkit-scrollbar-thumb,
+.post__content h6 code:focus-within::-webkit-scrollbar-thumb,
+.page__content p code:hover::-webkit-scrollbar-thumb,
+.page__content p code:focus-within::-webkit-scrollbar-thumb,
+.page__content li code:hover::-webkit-scrollbar-thumb,
+.page__content li code:focus-within::-webkit-scrollbar-thumb,
+.page__content td code:hover::-webkit-scrollbar-thumb,
+.page__content td code:focus-within::-webkit-scrollbar-thumb,
+.page__content blockquote code:hover::-webkit-scrollbar-thumb,
+.page__content blockquote code:focus-within::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.25);
+}
+.post__content p code:hover::-webkit-scrollbar-thumb:hover,
+.post__content p code:focus-within::-webkit-scrollbar-thumb:hover,
+.post__content li code:hover::-webkit-scrollbar-thumb:hover,
+.post__content li code:focus-within::-webkit-scrollbar-thumb:hover,
+.post__content td code:hover::-webkit-scrollbar-thumb:hover,
+.post__content td code:focus-within::-webkit-scrollbar-thumb:hover,
+.post__content blockquote code:hover::-webkit-scrollbar-thumb:hover,
+.post__content blockquote code:focus-within::-webkit-scrollbar-thumb:hover,
+.page__content p code:hover::-webkit-scrollbar-thumb:hover,
+.page__content p code:focus-within::-webkit-scrollbar-thumb:hover,
+.page__content li code:hover::-webkit-scrollbar-thumb:hover,
+.page__content li code:focus-within::-webkit-scrollbar-thumb:hover,
+.page__content td code:hover::-webkit-scrollbar-thumb:hover,
+.page__content td code:focus-within::-webkit-scrollbar-thumb:hover,
+.page__content blockquote code:hover::-webkit-scrollbar-thumb:hover,
+.page__content blockquote code:focus-within::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.35);
 }
 
 h1,
@@ -128,7 +271,7 @@ blockquote p {
 pre {
   overflow: auto;
   margin-bottom: 0;
-  font-size: 14px;
+  font-size: 0.8125rem;
   font-family: 'JetBrains Mono', Consolas, Monaco, monospace;
   white-space: pre-wrap;
   word-wrap: break-word;
@@ -175,9 +318,9 @@ pre {
 .post__content pre.highlight,
 .post__content pre {
   margin: 0;
-  padding: 1rem 1.25rem;
-  font-size: 0.875rem;
-  line-height: 1.6;
+  padding: 0.75rem 1rem;
+  font-size: 0.8125rem;
+  line-height: 1.5;
   border-radius: 0;
   border: none;
   background: $code-block-bg;
@@ -331,6 +474,12 @@ pre {
 
 /* 모바일: 테이블 카드 레이아웃, 여백·스크롤바 조정 */
 @media only screen and (max-width: $mobile) {
+  /* 블로그 본문 폰트 축소 */
+  .post__content,
+  .page__content {
+    font-size: 0.9rem;
+  }
+
   /* 연속 코드 블록·코드블록-문단 여백 축소 */
   .post__content div.highlighter-rouge + div.highlighter-rouge,
   .post__content pre + pre,
@@ -360,12 +509,12 @@ pre {
     display: none;
   }
 
-  /* 코드 블록 패딩·폰트 축소 */
+  /* 코드 블록 패딩·폰트 축소 (모바일) */
   .post__content div.highlighter-rouge pre,
   .post__content pre.highlight,
   .post__content pre {
-    padding: 0.75rem 1rem;
-    font-size: 0.8125rem;
+    padding: 0.6rem 0.875rem;
+    font-size: 0.75rem;
   }
 
   /* 테이블 모바일 카드 레이아웃 (data-label 있음) */
