@@ -1,8 +1,12 @@
+.header-section {
+  width: 100%;
+  background: $card-bg;
+  border-bottom: 1px solid $light-gray;
+}
+
 .header {
   position: relative;
   height: 72px;
-  border-bottom: 1px solid $light-gray;
-  background: $card-bg;
 
   .header__overlay {
     position: fixed;
