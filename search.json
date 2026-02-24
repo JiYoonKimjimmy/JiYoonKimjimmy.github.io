@@ -6,7 +6,7 @@ layout: null
     {
       "title"    : "{{ post.title | escape }}",
       "category" : "{{ post.category }}",
-      "tags"     : "{{ post.tags | array_to_sentence_string }}",
+      "tags"     : "{{ post.tags | default: '' | array_to_sentence_string }}",
       "url"      : "{{ site.baseurl }}{{ post.url }}",
       "date"     : "{{ post.date | date: "%-d %b, %Y" }}"
     } {% unless forloop.last %},{% endunless %}
