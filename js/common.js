@@ -52,6 +52,31 @@ $(document).ready(function() {
   }
 
   /* =======================
+  // Responsive Tables - 스크롤 래퍼 + data-label (모바일 카드 레이아웃용)
+  ======================= */
+  $(".post__content table:not(.hljs-ln), .page__content table:not(.hljs-ln)").each(function() {
+    var $table = $(this);
+    if (!$table.parent().hasClass("table-wrapper")) {
+      $table.wrap('<div class="table-wrapper"></div>');
+    }
+    // data-label 추가 + 값 영역 래핑 (모바일 카드 레이아웃용)
+    var $headers = $table.find("thead th");
+    $table.find("tbody tr").each(function() {
+      $(this).find("td").each(function(i) {
+        var $td = $(this);
+        if ($headers.length > 0) {
+          var label = $headers.eq(i).text().trim();
+          if (label) $td.attr("data-label", label);
+        }
+        // 값 영역 래핑: 라벨·값 각각 테두리 적용용
+        if (!$td.children(".table-cell-value").length && $td.contents().length > 0) {
+          $td.contents().wrapAll('<span class="table-cell-value"></span>');
+        }
+      });
+    });
+  });
+
+  /* =======================
   // Responsive Videos
   ======================= */
   $(".post__content, .page__content").fitVids({
