@@ -3,9 +3,14 @@
   box-sizing: border-box;
 }
 
+/* Fluid typography: 뷰포트에 따라 14px~17px 사이로 자동 조절 (모바일 가독성) */
+html {
+  font-size: clamp(14px, 0.5vw + 12.5px, 17px);
+}
+
 body {
   font-family: $base-font-family;
-  font-size: $base-font-size;
+  font-size: 1rem;
   line-height: $base-line-height;
   color: $text-color;
   background-color: $background-color;

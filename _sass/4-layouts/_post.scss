@@ -34,6 +34,13 @@
       line-height: 1.35;
     }
   }
+
+  /* 매우 작은 화면(400px 이하): 제목 추가 축소 */
+  @media only screen and (max-width: 400px) {
+    .post-title {
+      font-size: 1.35rem;
+    }
+  }
 }
 
 .post__info {
@@ -124,18 +131,31 @@
 .post__content {
   margin-bottom: 2.5rem;
 
-  // Section headings (dev blog)
-  h1 { margin-top: 0; padding-bottom: 0.25rem; border-bottom: 2px solid $light-gray; }
+  // Section headings (dev blog) - rem 사용으로 fluid typography와 연동
+  // h1: 문서 제목(post-title)보다 작게 → 계층 명확화
+  h1 {
+    margin-top: 0;
+    padding-bottom: 0.25rem;
+    font-size: 1.5rem;
+    border-bottom: 2px solid $light-gray;
+  }
   h2 {
     margin-top: 2rem;
     margin-bottom: 0.75rem;
     padding-bottom: 0.35rem;
-    font-size: 1.5rem;
+    font-size: 1.35rem;
     color: $heading-font-color;
     border-bottom: 1px solid $light-gray;
   }
-  h3 { margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 1.25rem; color: $heading-font-color; }
+  h3 { margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 1.2rem; color: $heading-font-color; }
   h4, h5, h6 { margin-top: 1.25rem; margin-bottom: 0.5rem; color: $heading-font-color; }
+
+  /* 모바일: 섹션 제목 비율 축소 */
+  @media only screen and (max-width: $mobile) {
+    h1 { font-size: 1.35rem; }
+    h2 { font-size: 1.25rem; }
+    h3 { font-size: 1.1rem; }
+  }
 
   p {
     margin-bottom: 1rem;
