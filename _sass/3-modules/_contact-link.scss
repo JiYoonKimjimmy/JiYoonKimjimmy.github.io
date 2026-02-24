@@ -5,7 +5,7 @@
       display: inline-block;
 
       a {
-        font-size: clamp(14px, 2vw + 1rem, 18px);
+        font-size: unquote("clamp(14px, 2vw + 1rem, 18px)");
         color: $gray;
         &:hover {
           color: $dark;

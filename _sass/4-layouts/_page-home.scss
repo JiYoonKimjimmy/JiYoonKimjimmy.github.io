@@ -1,7 +1,7 @@
 .lates-title {
   position: relative;
   margin-bottom: 80px;
-  font-size: clamp(12px, 1.5vw + 0.75rem, 14px);
+  font-size: unquote("clamp(12px, 1.5vw + 0.75rem, 14px)");
   line-height: 1.5;
   letter-spacing: 1px;
   text-transform: uppercase;
