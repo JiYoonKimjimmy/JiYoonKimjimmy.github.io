@@ -40,11 +40,21 @@ body {
 
 // Inline code (dev blog)
 // 모바일: 긴 코드가 화면 전체 스크롤을 유발하지 않도록, 코드 블록 내부에서만 좌우 스크롤
+// code.language-plaintext: Kramdown/GitHub Pages가 인라인 코드에 부여하는 클래스 → normalize override
 p code,
+p code.language-plaintext,
 li code,
+li code.language-plaintext,
 td code,
+td code.language-plaintext,
 blockquote code,
-h1 code, h2 code, h3 code, h4 code, h5 code, h6 code {
+blockquote code.language-plaintext,
+h1 code, h1 code.language-plaintext,
+h2 code, h2 code.language-plaintext,
+h3 code, h3 code.language-plaintext,
+h4 code, h4 code.language-plaintext,
+h5 code, h5 code.language-plaintext,
+h6 code, h6 code.language-plaintext {
   font-family: 'JetBrains Mono', Consolas, Monaco, monospace;
   font-size: 0.8em;
   padding: 0.12em 0.35em;
