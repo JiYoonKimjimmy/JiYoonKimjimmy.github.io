@@ -2,7 +2,7 @@
 layout: post
 title : Claude Code Custom Slash 명령어 제작
 date  : 2026-02-24
-image : git-worktree.png
+image : git-worktree-claude-commands.png
 tags  : [git, worktree, claude, workflow, slash-commands]
 ---
 
