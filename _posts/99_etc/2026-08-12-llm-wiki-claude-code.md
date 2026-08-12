@@ -2,6 +2,7 @@
 layout: post
 title : LLM이 스스로 유지보수하는 지식 저장소 — Claude Code로 LLM Wiki 만들기
 date  : 2026-08-12
+image : llm-wiki-claude-code.png
 tags  : [claude, llm-wiki, knowledge-base, workflow, ai]
 ---
 
