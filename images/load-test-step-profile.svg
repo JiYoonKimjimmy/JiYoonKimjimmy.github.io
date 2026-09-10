@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 250" role="img" aria-labelledby="t2 d2" font-family="-apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Segoe UI', sans-serif">
+  <title id="t2">계단식 부하 프로파일과 지연시간의 무릎</title>
+  <desc id="d2">부하를 계단으로 올리며 각 단계를 유지하면 구간별 자원 사용량을 기록할 수 있고, 지연시간이 급격히 꺾이는 무릎 지점을 찾을 수 있다.</desc>
+  <rect width="720" height="250" fill="#f8fafc"/>
+
+  <line x1="54" y1="190" x2="704" y2="190" stroke="#cbd5e1"/>
+  <line x1="54" y1="24" x2="54" y2="190" stroke="#cbd5e1"/>
+  <text x="46" y="30" fill="#64748b" font-size="11" text-anchor="end">부하</text>
+  <text x="704" y="208" fill="#64748b" font-size="11" text-anchor="end">시간</text>
+
+  <path d="M54,180 L104,158 L224,158 L274,124 L394,124 L444,80 L564,80 L614,40 L684,40 L704,180"
+        stroke="#0d9488" stroke-width="2.2" fill="none"/>
+  <g fill="#0f766e" font-size="11.5" text-anchor="middle">
+    <text x="164" y="151">1단계</text>
+    <text x="334" y="117">2단계</text>
+    <text x="504" y="73">3단계</text>
+    <text x="649" y="33">4단계</text>
+  </g>
+  <g fill="#64748b" font-size="10.5" text-anchor="middle">
+    <text x="164" y="176">유지</text>
+    <text x="334" y="176">유지</text>
+    <text x="504" y="176">유지</text>
+    <text x="649" y="176">유지</text>
+  </g>
+
+  <path d="M54,186 L224,184 L394,181 L564,175 L626,166 L664,126 L694,62"
+        stroke="#b45309" stroke-width="1.8" fill="none" stroke-dasharray="5 4"/>
+  <text x="592" y="120" fill="#b45309" font-size="11.5">지연시간</text>
+  <circle cx="664" cy="126" r="5" fill="#f8fafc" stroke="#b45309" stroke-width="2"/>
+  <text x="676" y="148" fill="#b45309" font-size="11.5" font-weight="600">무릎 (knee)</text>
+
+  <text x="54" y="234" fill="#64748b" font-size="11.5">실선 = 우리가 만든 부하 · 점선 = 그때의 지연시간. 유지 구간마다 “부하 X 일 때 사용률 Y%” 한 점씩이 남는다.</text>
+</svg>

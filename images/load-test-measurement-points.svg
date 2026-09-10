@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 210" role="img" aria-labelledby="t4 d4" font-family="-apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Segoe UI', sans-serif">
+  <title id="t4">계측 위치에 따라 포함되는 구간이 다르다</title>
+  <desc id="d4">부하 생성기는 전 구간 왕복을, 게이트웨이는 인프라 진입 이후를, APM은 애플리케이션 안에서 보낸 시간만 잰다.</desc>
+  <rect width="720" height="210" fill="#f8fafc"/>
+
+  <rect x="4" y="52" width="116" height="40" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="62" y="77" fill="#334155" font-size="12.5" text-anchor="middle">부하 생성기</text>
+
+  <rect x="210" y="52" width="140" height="40" rx="6" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="280" y="77" fill="#334155" font-size="12.5" text-anchor="middle">게이트웨이·프록시</text>
+
+  <rect x="440" y="52" width="140" height="40" rx="6" fill="#ccfbf1" stroke="#0d9488"/>
+  <text x="510" y="77" fill="#0f766e" font-size="12.5" text-anchor="middle">애플리케이션</text>
+
+  <rect x="640" y="52" width="76" height="40" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <text x="678" y="77" fill="#64748b" font-size="12.5" text-anchor="middle">DB·외부</text>
+
+  <g stroke="#94a3b8" stroke-width="1.2" fill="none">
+    <path d="M120,72 L206,72"/>
+    <path d="M350,72 L436,72"/>
+    <path d="M580,72 L636,72"/>
+  </g>
+  <text x="163" y="64" fill="#94a3b8" font-size="10.5" text-anchor="middle">네트워크</text>
+
+  <path d="M8,126 L716,126" stroke="#b45309" stroke-width="2.4" fill="none"/>
+  <text x="8" y="119" fill="#b45309" font-size="12">부하 생성기 계측 — 전 구간 왕복 (가장 큼)</text>
+
+  <path d="M214,158 L716,158" stroke="#0d9488" stroke-width="2.4" fill="none"/>
+  <text x="214" y="151" fill="#0f766e" font-size="12">게이트웨이 계측 — 인프라 진입 이후</text>
+
+  <path d="M444,190 L716,190" stroke="#15803d" stroke-width="2.4" fill="none"/>
+  <text x="444" y="183" fill="#15803d" font-size="12">APM 계측 — 애플리케이션 안에서 보낸 시간</text>
+</svg>
