@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 460" width="960" height="460" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <rect width="960" height="460" fill="#ffffff"/>
+
+  <text x="480" y="52" text-anchor="middle" font-size="30" font-weight="700" fill="#212529">System One — Jev</text>
+  <text x="480" y="82" text-anchor="middle" font-size="16" fill="#868e96">텍스트 생성 없이, 타입이 정해진 판단을 코드에 직접 돌려준다</text>
+
+  <!-- input -->
+  <rect x="48" y="126" width="240" height="130" rx="10" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5"/>
+  <text x="168" y="158" text-anchor="middle" font-size="15" font-weight="600" fill="#495057">입력</text>
+  <text x="168" y="190" text-anchor="middle" font-size="16" fill="#212529">state</text>
+  <text x="168" y="216" text-anchor="middle" font-size="13" fill="#868e96">+</text>
+  <text x="168" y="240" text-anchor="middle" font-size="16" fill="#212529">typed questions</text>
+
+  <!-- model -->
+  <rect x="360" y="126" width="240" height="130" rx="10" fill="#edf2ff" stroke="#4c6ef5" stroke-width="2"/>
+  <text x="480" y="158" text-anchor="middle" font-size="15" font-weight="600" fill="#3b5bdb">Jev</text>
+  <text x="480" y="192" text-anchor="middle" font-size="15" fill="#364fc7">모든 질문을</text>
+  <text x="480" y="216" text-anchor="middle" font-size="15" fill="#364fc7">같은 state에 대해</text>
+  <text x="480" y="240" text-anchor="middle" font-size="15" fill="#364fc7">독립적·병렬로 평가</text>
+
+  <!-- output -->
+  <rect x="672" y="126" width="240" height="130" rx="10" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5"/>
+  <text x="792" y="158" text-anchor="middle" font-size="15" font-weight="600" fill="#495057">출력</text>
+  <text x="792" y="190" text-anchor="middle" font-size="16" fill="#212529">typed value</text>
+  <text x="792" y="214" text-anchor="middle" font-size="16" fill="#212529">probabilities</text>
+  <text x="792" y="238" text-anchor="middle" font-size="16" fill="#212529">confidence</text>
+
+  <!-- arrows -->
+  <defs>
+    <marker id="a" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 z" fill="#adb5bd"/>
+    </marker>
+  </defs>
+  <line x1="292" y1="191" x2="352" y2="191" stroke="#adb5bd" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="604" y1="191" x2="664" y2="191" stroke="#adb5bd" stroke-width="2" marker-end="url(#a)"/>
+
+  <!-- primitives -->
+  <text x="480" y="322" text-anchor="middle" font-size="14" fill="#868e96">세 가지 프리미티브</text>
+
+  <rect x="120" y="344" width="200" height="72" rx="8" fill="#ffffff" stroke="#dee2e6" stroke-width="1.5"/>
+  <text x="220" y="374" text-anchor="middle" font-size="17" font-weight="600" fill="#212529">Choice</text>
+  <text x="220" y="398" text-anchor="middle" font-size="13" fill="#868e96">이 중 어느 것인가</text>
+
+  <rect x="380" y="344" width="200" height="72" rx="8" fill="#ffffff" stroke="#dee2e6" stroke-width="1.5"/>
+  <text x="480" y="374" text-anchor="middle" font-size="17" font-weight="600" fill="#212529">Score</text>
+  <text x="480" y="398" text-anchor="middle" font-size="13" fill="#868e96">어느 수준인가</text>
+
+  <rect x="640" y="344" width="200" height="72" rx="8" fill="#ffffff" stroke="#dee2e6" stroke-width="1.5"/>
+  <text x="740" y="374" text-anchor="middle" font-size="17" font-weight="600" fill="#212529">Noul</text>
+  <text x="740" y="398" text-anchor="middle" font-size="13" fill="#868e96">이것이 참인가</text>
+</svg>
