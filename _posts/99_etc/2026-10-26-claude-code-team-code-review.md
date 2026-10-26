@@ -2,6 +2,7 @@
 layout: post
 title : 사람이 다 읽지 않는 코드 리뷰 — Claude Code 팀의 리뷰 방식 정리
 date  : 2026-10-26
+image : claude-code-team-code-review.svg
 tags  : [claude, code-review, ai, workflow, ci]
 ---
 

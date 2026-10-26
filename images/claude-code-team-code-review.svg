@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 460" width="960" height="460" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <rect width="960" height="460" fill="#ffffff"/>
+
+  <text x="480" y="52" text-anchor="middle" font-size="30" font-weight="700" fill="#212529">Claude Code 팀의 코드 리뷰</text>
+  <text x="480" y="82" text-anchor="middle" font-size="16" fill="#868e96">관문 하나 대신 여섯 겹, 그 아래에 빠른 롤백</text>
+
+  <defs>
+    <marker id="a" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+      <path d="M0,0 L9,4.5 L0,9 z" fill="#adb5bd"/>
+    </marker>
+  </defs>
+
+  <!-- layers -->
+  <rect x="35" y="126" width="130" height="120" rx="10" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5"/>
+  <text x="100" y="160" text-anchor="middle" font-size="13" fill="#868e96">1</text>
+  <text x="100" y="190" text-anchor="middle" font-size="16" font-weight="600" fill="#212529">작성자 검증</text>
+  <text x="100" y="216" text-anchor="middle" font-size="13" fill="#868e96">테스트 · 빌드</text>
+
+  <rect x="187" y="126" width="130" height="120" rx="10" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5"/>
+  <text x="252" y="160" text-anchor="middle" font-size="13" fill="#868e96">2</text>
+  <text x="252" y="190" text-anchor="middle" font-size="16" font-weight="600" fill="#212529">필수 CI</text>
+  <text x="252" y="216" text-anchor="middle" font-size="13" fill="#868e96">실패 시 머지 불가</text>
+
+  <rect x="339" y="126" width="130" height="120" rx="10" fill="#edf2ff" stroke="#4c6ef5" stroke-width="2"/>
+  <text x="404" y="160" text-anchor="middle" font-size="13" fill="#5c7cfa">3</text>
+  <text x="404" y="190" text-anchor="middle" font-size="16" font-weight="600" fill="#3b5bdb">AI 리뷰</text>
+  <text x="404" y="216" text-anchor="middle" font-size="13" fill="#364fc7">병렬 탐색 · 투표</text>
+
+  <rect x="491" y="126" width="130" height="120" rx="10" fill="#edf2ff" stroke="#4c6ef5" stroke-width="2"/>
+  <text x="556" y="160" text-anchor="middle" font-size="13" fill="#5c7cfa">4</text>
+  <text x="556" y="190" text-anchor="middle" font-size="16" font-weight="600" fill="#3b5bdb">보안 리뷰</text>
+  <text x="556" y="216" text-anchor="middle" font-size="13" fill="#364fc7">미해결 시 차단</text>
+
+  <rect x="643" y="126" width="130" height="120" rx="10" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5"/>
+  <text x="708" y="160" text-anchor="middle" font-size="13" fill="#868e96">5</text>
+  <text x="708" y="190" text-anchor="middle" font-size="16" font-weight="600" fill="#212529">사람 승인</text>
+  <text x="708" y="216" text-anchor="middle" font-size="13" fill="#868e96">위험도별 0 · 1 · 2명</text>
+
+  <rect x="795" y="126" width="130" height="120" rx="10" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5"/>
+  <text x="860" y="160" text-anchor="middle" font-size="13" fill="#868e96">6</text>
+  <text x="860" y="190" text-anchor="middle" font-size="16" font-weight="600" fill="#212529">머지 큐 · 플래그</text>
+  <text x="860" y="216" text-anchor="middle" font-size="13" fill="#868e96">사내 먼저 배포</text>
+
+  <!-- arrows -->
+  <line x1="167" y1="186" x2="183" y2="186" stroke="#adb5bd" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="319" y1="186" x2="335" y2="186" stroke="#adb5bd" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="471" y1="186" x2="487" y2="186" stroke="#adb5bd" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="623" y1="186" x2="639" y2="186" stroke="#adb5bd" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="775" y1="186" x2="791" y2="186" stroke="#adb5bd" stroke-width="2" marker-end="url(#a)"/>
+
+  <!-- rollback base -->
+  <rect x="35" y="266" width="890" height="46" rx="8" fill="#fff4e6" stroke="#fd7e14" stroke-width="1.5"/>
+  <text x="480" y="295" text-anchor="middle" font-size="15" font-weight="600" fill="#d9480f">빠른 감지 · 빠른 롤백 — 플래그 끄기, revert, 단계적 배포</text>
+
+  <!-- metrics -->
+  <text x="480" y="352" text-anchor="middle" font-size="14" fill="#868e96">사내 지표</text>
+
+  <rect x="120" y="370" width="200" height="66" rx="8" fill="#ffffff" stroke="#dee2e6" stroke-width="1.5"/>
+  <text x="220" y="399" text-anchor="middle" font-size="18" font-weight="600" fill="#212529">16% → 54%</text>
+  <text x="220" y="422" text-anchor="middle" font-size="13" fill="#868e96">의미 있는 리뷰가 달린 PR</text>
+
+  <rect x="380" y="370" width="200" height="66" rx="8" fill="#ffffff" stroke="#dee2e6" stroke-width="1.5"/>
+  <text x="480" y="399" text-anchor="middle" font-size="18" font-weight="600" fill="#212529">2.08 → 1.32</text>
+  <text x="480" y="422" text-anchor="middle" font-size="13" fill="#868e96">통과까지 평균 리뷰 횟수</text>
+
+  <rect x="640" y="370" width="200" height="66" rx="8" fill="#ffffff" stroke="#dee2e6" stroke-width="1.5"/>
+  <text x="740" y="399" text-anchor="middle" font-size="18" font-weight="600" fill="#212529">revert −40%+</text>
+  <text x="740" y="422" text-anchor="middle" font-size="13" fill="#868e96">PR 2배 증가 속에서</text>
+</svg>
